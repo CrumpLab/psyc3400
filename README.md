@@ -1,2 +1,2 @@
-# psyc3400
-Website for Psyc 3400 Statistics @ Brooklyn College (Taught by Matt Crump)
+# psyc3450
+Course website for Experiment Psychology 3450, taught by Matthew Crump
