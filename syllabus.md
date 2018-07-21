@@ -4,7 +4,7 @@ title: Syllabus
 sidebar_link: true
 ---
 
-Experimental Psychology (PSYC3450W) Sections: MTAL,BL,CL,DL,EL,FL
+Statistics (PSYC3400) Sections: TBD
 
 Lectures 	
 - Monday	12:25PM-2:05PM 	RM: Ingersoll 1310
