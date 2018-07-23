@@ -1,0 +1,51 @@
+---
+title: "Textbook"
+output: html_document
+---
+
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+
+<div class="row" style="padding-top: 30px;">
+<div class="col-sm-6">
+
+# **Textbook**
+
+STILL IN DRAFT DONE BY FALL 2018
+
+### *Answering Questions with data* {style="padding-top: 0px;"}
+
+The textbook for this course is free and open-source. The web-based version of the textbook can be accessed here:
+
+<a class="page-link" href="https://crumplab.github.io/statistics/"><i class="fa fa-book" aria-hidden="true"></i> https://crumplab.github.io/statistics/</a>
+
+Read the preface of the textbook to learn how to use [hypothesis](https://web.hypothes.is) to post comments about the textbook as you read it.
+
+#### Creative Commons license and acknowledgments
+
+This is licensed on a ...
+
+#### The source code
+
+This book was written in Rmarkdown and compiled using the bookdown package. All of the source code is available in this github repository [https://github.com/CrumpLab/statistics](https://github.com/CrumpLab/statistics).
+
+
+</div>
+<div class="col-sm-6">
+
+<a href="https://crumplab.github.io/statistics/">
+```{r statsTextbook, out.width=400, echo=F}
+knitr::include_graphics("images/TextbookCover.png")
+```
+</a>
+</div>
+</div>
+

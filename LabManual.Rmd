@@ -1,0 +1,47 @@
+---
+title: "Textbook"
+output: html_document
+---
+
+<style type="text/css">
+.title {
+  display: none;
+}
+
+#getting-started img {
+  margin-right: 10px;
+}
+
+</style>
+
+<div class="row" style="padding-top: 30px;">
+<div class="col-sm-6">
+
+# **Lab Manual**
+
+STILL IN DRAFT DONE FOR FALL 2018
+
+### *Answering Questions with data* {style="padding-top: 0px;"}
+
+Every week you will participate in a statistics lab. Here you will learn how to use R and R-studio to solve problems in statistics. You will be following the exercises in this lab manual.
+
+[Psyc 3400 Lab Manual](https://crumplab.github.io/statisticsLab/).
+
+The web address is [https://crumplab.github.io/statisticsLab/](https://crumplab.github.io/statisticsLab/).
+
+The lab manual is on the web, so you can look at what you are going to do each week any time you want!
+
+NOTE: You will be using the R sections of the lab manual, not the Excel, SPSS, or JAMOVI sections. However, if you are curious you can go ahead and learn how to solve statistics problems in those software packages as well.
+
+</div>
+<div class="col-sm-6">
+
+<a href="https://crumplab.github.io/statisticsLab/">
+```{r statsLabManual, out.width=400, echo=F}
+knitr::include_graphics("images/LabmanualCover.png")
+```
+</a>
+
+</div>
+</div>
+

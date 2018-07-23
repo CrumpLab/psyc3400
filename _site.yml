@@ -1,0 +1,15 @@
+name: "Psyc 3400"
+navbar:
+  title: "Psyc 3400"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Textbook"
+      href: Textbook.html
+    - text: "Lab Manual"
+      href: LabManual.html
+    - text: "Syllabus"
+      href: Syllabus.html
+    - text: "Resources"
+      href: Resources.html
+output_dir: "docs"

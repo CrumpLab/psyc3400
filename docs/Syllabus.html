@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Syllabus</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Psyc 3400</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="Textbook.html">Textbook</a>
+</li>
+<li>
+  <a href="LabManual.html">Lab Manual</a>
+</li>
+<li>
+  <a href="Syllabus.html">Syllabus</a>
+</li>
+<li>
+  <a href="Resources.html">Resources</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Syllabus</h1>
+
+</div>
+
+
+<p><strong>this is copied from a previous course, needs to be updated, using for example syllabus</strong></p>
+<p>Statistical Methods in Psychological Research (PSYC3400) Sections: TBD</p>
+<p>Lectures<br />
+- Monday 12:25PM-2:05PM RM: Ingersoll 1310</p>
+<p>Instructor</p>
+<ul>
+<li>Dr. Matt Crump 4307B James Hall</li>
+<li>Office hours: by appointment</li>
+<li>Office phone: 718-951-5000 x. 6068</li>
+<li><a href="mailto:mcrump@brooklyn.cuny.edu">mcrump@brooklyn.cuny.edu</a></li>
+</ul>
+<div id="labs-and-lab-instructors" class="section level3">
+<h3>Labs and Lab Instructors</h3>
+<table style="width:83%;">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Section</th>
+<th align="center">Day</th>
+<th align="left">Time</th>
+<th align="left">Room</th>
+<th align="left">Instructor</th>
+<th align="left">email</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">MTAB 17771</td>
+<td align="center">M</td>
+<td align="left">2:15p-5:50p</td>
+<td align="left">WJ3106</td>
+<td align="left">Beliz Hazan</td>
+<td align="left"><a href="mailto:belizhazanlab@gmail.com">belizhazanlab@gmail.com</a></td>
+</tr>
+<tr class="even">
+<td align="left">MTBB 17773</td>
+<td align="center">M</td>
+<td align="left">2:15p-5:50p</td>
+<td align="left">WJ4109</td>
+<td align="left">Nicholaus Brosowsky</td>
+<td align="left"><a href="mailto:nbrosowsky@gradcenter.cuny.edu">nbrosowsky@gradcenter.cuny.edu</a></td>
+</tr>
+<tr class="odd">
+<td align="left">MTCB 17775</td>
+<td align="center">W</td>
+<td align="left">12:25-4:00p</td>
+<td align="left">WJ3106</td>
+<td align="left">Taylan Ergun</td>
+<td align="left"><a href="mailto:taylansergun@gmail.com">taylansergun@gmail.com</a></td>
+</tr>
+<tr class="even">
+<td align="left">MTDB 17777</td>
+<td align="center">W</td>
+<td align="left">12:25p-4:00p</td>
+<td align="left">WJ4109</td>
+<td align="left">Alexandra Gaynor</td>
+<td align="left"><a href="mailto:alexandra.gaynor@gmail.com">alexandra.gaynor@gmail.com</a></td>
+</tr>
+<tr class="odd">
+<td align="left">MTEB 53895</td>
+<td align="center">F</td>
+<td align="left">9:05a-12:40p</td>
+<td align="left">WJ-3106</td>
+<td align="left">Matthew Goldberg</td>
+<td align="left"><a href="mailto:matt.goldberg100@gmail.com">matt.goldberg100@gmail.com</a></td>
+</tr>
+<tr class="even">
+<td align="left">MTFB 53897</td>
+<td align="center">F</td>
+<td align="left">9:05a-12:40p</td>
+<td align="left">WJ-4109</td>
+<td align="left">Beliz Hazan</td>
+<td align="left"><a href="mailto:belizhazanlab@gmail.com">belizhazanlab@gmail.com</a></td>
+</tr>
+</tbody>
+</table>
+<p>Website: <a href="http://crumplab.github.io/courses/experimental" class="uri">http://crumplab.github.io/courses/experimental</a></p>
+</div>
+<div id="catalog-description" class="section level3">
+<h3>Catalog Description</h3>
+<p>2 hours lecture, 4 hours laboratory, 4 credits</p>
+<p>Basic principles of experimental psychology and experimental methodology. A variety of specific content areas in psychology, including those in social psychology, learning, perception, and cognitive psychology. Laboratory replication of classic experiments from these content areas. Writing intensive course</p>
+</div>
+<div id="course-objectives" class="section level3">
+<h3>Course Objectives</h3>
+<p>My goal is for you to learn:</p>
+<ol style="list-style-type: decimal">
+<li>To read and evaluate psychological literature</li>
+<li>The basics of scientific methodology in psychology. This will be achieved by working through most of the important steps involved in conducting experimental research</li>
+<li>How research benefits from being conducted as part of a research team and in the context of a critical community of peers</li>
+<li>Whether you may be interested in other courses and programs that involve empirical research</li>
+<li>To evaluate claims like those presented in the media (e.g., do video games improve your attention, etc.), and understand the differences between science and pseudoscience</li>
+</ol>
+<p>NOTE: The schedule and procedures described in this syllabus are subject to change in the event of extenuating circumstances. You will always be notified of changes both in class AND by posts to the class website. Your enrollment in the course represents your acknowledgment and acceptance of the non-negotiable policies described in the syllabus.</p>
+</div>
+<div id="textbook.-required" class="section level3">
+<h3>Textbook. Required:</h3>
+<p>The textbook for this course is FREE and downloadable as a .pdf. See the main page for the download link.</p>
+<p>UPDATE</p>
+</div>
+<div id="lecture-schedule" class="section level3">
+<h3>Lecture Schedule</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Lecture</th>
+<th align="left">Date</th>
+<th align="left">Topic</th>
+<th align="left">Chapter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">28-Aug</td>
+<td align="left">Course Overview</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">4-Sep</td>
+<td align="left">NO CLASS Labor Day</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">11-Sep</td>
+<td align="left">Intro Psych Science</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">18-Sep</td>
+<td align="left">Measurement</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">25-Sep</td>
+<td align="left">Experimental research</td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">2-Oct</td>
+<td align="left">Factorial Designs I</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="left">16-Oct</td>
+<td align="left">Factorial Designs II</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left">7</td>
+<td align="left">23-Oct</td>
+<td align="left">Factorial Designs III</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">8</td>
+<td align="left">30-Oct</td>
+<td align="left">Midterm</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">9</td>
+<td align="left">6-Nov</td>
+<td align="left">Theory and Phenomena</td>
+<td align="left">6</td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">13-Nov</td>
+<td align="left">Research Ethics</td>
+<td align="left">7</td>
+</tr>
+<tr class="even">
+<td align="left">11</td>
+<td align="left">20-Nov</td>
+<td align="left">Control Problems I</td>
+<td align="left">8</td>
+</tr>
+<tr class="odd">
+<td align="left">12</td>
+<td align="left">27-Nov</td>
+<td align="left">Control Problems II</td>
+<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">13</td>
+<td align="left">4-Dec</td>
+<td align="left">Communicating Research</td>
+<td align="left">12</td>
+</tr>
+<tr class="odd">
+<td align="left">13</td>
+<td align="left">11-Dec</td>
+<td align="left">Open Science</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="important-dates" class="section level3">
+<h3>Important dates</h3>
+<table style="width:11%;">
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Date</th>
+<th align="left">Event</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Thursday, August 31</td>
+<td align="left">Last day to add a course</td>
+</tr>
+<tr class="even">
+<td align="left">Thursday, September 14</td>
+<td align="left">Last day to drop a course without a grade of “W”</td>
+</tr>
+<tr class="odd">
+<td align="left">Friday, September 15</td>
+<td align="left">Last day to apply for Fall 2017 Graduation</td>
+</tr>
+<tr class="even">
+<td align="left">Thursday, November 9</td>
+<td align="left">Last day to resolve Spring and Summer 2017 incomplete grade (INC)</td>
+</tr>
+<tr class="odd">
+<td align="left">Friday, November 10</td>
+<td align="left">Last day to withdraw from a course with a W (non-penalty) grade</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="lab-schedule" class="section level3">
+<h3>Lab Schedule</h3>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Lecture</th>
+<th align="left">Date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">Lab Overview</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">Paper Project 1: Fluency</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">Paper Project 1: Continued</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">Adaptive memory</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">Task-Switching</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">Stroop</td>
+</tr>
+<tr class="odd">
+<td align="left">7</td>
+<td align="left">Paper Project 2: Face-Inversion</td>
+</tr>
+<tr class="even">
+<td align="left">8</td>
+<td align="left">Paper Project 2 continued</td>
+</tr>
+<tr class="odd">
+<td align="left">9</td>
+<td align="left">Brainstorm Individual projects</td>
+</tr>
+<tr class="even">
+<td align="left">10</td>
+<td align="left">Individual presentations</td>
+</tr>
+<tr class="odd">
+<td align="left">11</td>
+<td align="left">Group work Final Project</td>
+</tr>
+<tr class="even">
+<td align="left">12</td>
+<td align="left">Group work Final Project</td>
+</tr>
+<tr class="odd">
+<td align="left">13</td>
+<td align="left">Group work Final Project</td>
+</tr>
+<tr class="even">
+<td align="left">14</td>
+<td align="left">Final Presentations</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="additional-resources" class="section level3">
+<h3>Additional resources</h3>
+<p>Supplementary material will be posted on the course website. Lab instructors may recommend a text that specifically outlines the APA format and writing APA style research reports. This course will require use of the web, internet tools, and open-source (free) computing tools available in the lab.</p>
+</div>
+<div id="course-structure" class="section level3">
+<h3>Course Structure:</h3>
+<div id="the-lecture" class="section level4">
+<h4>The Lecture</h4>
+<p>There will be a two hour lecture each week. The lecture covers material that is available in the text book. The course schedule outlines chapters that should be read prior to each lecture. Some lectures will require reading of supplementary material, and access to these materials will be posted online using the course website. The lectures will also cover material that is thematically related to that presented in the textbook. The purpose of the lecture is to cover important concepts in experimental psychology, and prepare you for conducting psychological research in the laboratory. You will be tested on material from the lectures and textbook in two exams: a midterm, and a cumulative final exam.</p>
+</div>
+<div id="the-lab" class="section level4">
+<h4>The Lab</h4>
+<p>There will be a four hour lab each week. Details on the lab component will be made available by your lab instructor. All sections will complete several lab projects, and three lab papers. Each lab paper involves writing a full APA research report. The first two papers are predetermined, and will cover classic experimental procedures. The third lab paper is to create, conduct, and report your own research project. The third lab paper will require two separate in-class presentations, the first is an individual five minute presentation, and the second is a ten minute group presentation. The third lab paper also requires that each individual submit a complete, and independently written research report. The details of each lab assignment will be made available to you through the lab syllabus, as well as online through the course website.</p>
+</div>
+</div>
+<div id="grading-total-of-100" class="section level3">
+<h3>Grading (total of 100)</h3>
+<p>Your final grade combines your performance in the lab and lecture portions of the course. The percentage grade is determined from the following components.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Total %</td>
+</tr>
+<tr class="even">
+<td align="left">Lecture</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Assignments &amp; Attendance (lab and lecture)</td>
+<td align="left">20%</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Midterm</td>
+<td align="left">10%</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Final exam (cumulative)</td>
+<td align="left">25%</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Extra Credit</td>
+<td align="left">up to 2% (see below)</td>
+</tr>
+<tr class="odd">
+<td align="left">Lab</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Paper 1</td>
+<td align="left">10%</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Paper 2</td>
+<td align="left">10%</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Paper 3</td>
+<td align="left">15%</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">Presentation 1</td>
+<td align="left">5%</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">Presentation 2</td>
+<td align="left">5%</td>
+</tr>
+</tbody>
+</table>
+<p>Percentage grades are converted to letter grades according to the following rubric.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Letter grade</th>
+<th align="left">Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">F</td>
+<td align="left">0-59.99</td>
+</tr>
+<tr class="even">
+<td align="left">D-</td>
+<td align="left">60-63.32</td>
+</tr>
+<tr class="odd">
+<td align="left">D</td>
+<td align="left">63.33-66.66</td>
+</tr>
+<tr class="even">
+<td align="left">D+</td>
+<td align="left">66.67-69.99</td>
+</tr>
+<tr class="odd">
+<td align="left">C-</td>
+<td align="left">70-72.99</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="left">73-76.66</td>
+</tr>
+<tr class="odd">
+<td align="left">C+</td>
+<td align="left">76.67-79.49</td>
+</tr>
+<tr class="even">
+<td align="left">B-</td>
+<td align="left">79.5-83.32</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="left">83.33-86.66</td>
+</tr>
+<tr class="even">
+<td align="left">B+</td>
+<td align="left">86.67-89.99</td>
+</tr>
+<tr class="odd">
+<td align="left">A-</td>
+<td align="left">90-93.32</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">93.33-96.66</td>
+</tr>
+<tr class="odd">
+<td align="left">A+</td>
+<td align="left">96.67-100</td>
+</tr>
+</tbody>
+</table>
+<p>The course allows for some flexibility in determining your final grade. If you perform better on the final exam than on the midterm, you may replace the midterm grade with your higher final grade (the reverse does not apply). The major focus of this course is to develop your writing abilities. As writing in the APA format may be unfamiliar to some, the course allows that, IF you complete all 3 papers, then, you will have the opportunity to replace your lowest paper grade from paper 1 or paper 2, with your highest grade from paper 1 or 2. The instructor reserves the right to determine whether the final grade depends more heavily on a scale or a curve.</p>
+</div>
+<div id="lecture-and-lab-assignments-and-attendance" class="section level3">
+<h3>Lecture and Lab Assignments and Attendance</h3>
+<p>The lecture portion will involve weekly assignments that are to be completed electronically on blackboard. Assignments are usually short quizzes (10-20 questions). “Assignments &amp; Attendance” accounts for 20% of the final grade. The 20% is computed from the assignments, but can be decreased as a result of poor attendance. If a student is late or misses more than 3 classes, then each additional late/missed class will result in subtracting 1% from the 20% for Assignments and Attendance.</p>
+<p>Lecture attendance is taken every lecture at the very beginning of class. Latecomers who miss attendance will not be allowed to record their attendance, and will be recorded as absent.</p>
+<p>The lab portion will involve weekly assignments completed in the lab. Attendance will also be taken in the lab each week. It is absolutely critical that you arrive to labs on time. If you do not arrive on time you will be given a late. If you are late or miss a lab more than three times, then you will be penalized for each additional lateness or absence by 1% of from the 20% for Assignments and Attendance.</p>
+<p>If you do have to miss class due to exceptional circumstances, please make arrangements to get notes from a classmate</p>
+</div>
+<div id="extra-credit" class="section level3">
+<h3>Extra credit</h3>
+<p>You have the opportunity to gain extra credit in this course by participating in experiments that are offered through the online sign-up system <a href="http://brooklyncollege.sona-systems.com/" class="uri">http://brooklyncollege.sona-systems.com/</a> You must give yourself a new user name, and select this course. For every hour of participation you will receive 1% extra credit, to a max of 2%. The system will automatically record your credit. If you wish to receive extra credit without participating, ask me about other writing assignment options.</p>
+</div>
+<div id="universitys-policy-on-academic-integrity" class="section level3">
+<h3>University’s policy on Academic Integrity</h3>
+<p>The faculty and administration of Brooklyn College support an environment free from cheating and plagiarism. As a student, you are personally responsible for being aware of what constitutes cheating, and plagiarism; and, for avoiding both. You can view the complete text of the CUNY Academic Integrity Policy here: <a href="http://www.brooklyn.cuny.edu/bc/policies" class="uri">http://www.brooklyn.cuny.edu/bc/policies</a> If a faculty member suspects a violation of academic integrity, and upon investigation, confirms that violation, or if the student admits the violation, the faculty member MUST report the violation.</p>
+</div>
+<div id="missing-an-exam-or-class" class="section level3">
+<h3>Missing an Exam or class</h3>
+<p>Make-up exams will be given only when there is a “good” reason for having missed an exam. For example, if a sudden illness causes you to miss an exam, then you should be prepared to provide me with a brief note signed by your physician. Contact me before an exam in the event that you anticipate missing one. In the event of an emergency, contact me as soon as possible. If you are missing a class for religious reasons refer to the state law regarding non-attendance because of religious beliefs (p. 64 in the Undergraduate Bulletin or p. 40 of the Graduate Bulletin).</p>
+<p>WARNING: This is not the kind of course for which you do not need to come to class, and read the textbook at the last minute and expect to do well on tests and papers. The material in this course builds in complexity across classes, and doing well in this course will require a constant moderate level of effort. If you join the course later or are unsure about anything please ask.</p>
+</div>
+<div id="accessibility" class="section level3">
+<h3>Accessibility</h3>
+<p>It is important to me that the course be accessible to all students. In order to receive disability-related academic accommodations students must first be registered with the Center for Student Disability Services. Students who have a documented disability or suspect they may have a disability are invited to set up an appointment with the Director of the Center for Student Disability Services, Ms. Valerie Stewart-Lovell at 718-951-5538. If you have already registered with the Center for Student Disability Services please provide me with the course accommodation form so we may discuss your specific accommodation. A guide and more information can be found here <a href="http://catsweb.cuny.edu" class="uri">http://catsweb.cuny.edu</a></p>
+<div id="class-citizenshiprules-of-conduct" class="section level4">
+<h4>Class Citizenship/Rules of Conduct</h4>
+</div>
+<div id="cell-phones" class="section level4">
+<h4>Cell phones</h4>
+<p>Your cell phone, PDA or other device must be turned off during class. If you are a habitual offender in this respect (i.e. it happens more than twice during the semester), you will be asked to leave the classroom. If you absolutely need to have your phone on during class—talk to me at the beginning of the semester.</p>
+</div>
+<div id="keep-the-room-clean" class="section level4">
+<h4>Keep the room clean</h4>
+<p>Please pick up after yourself. Absolutely no food is allowed in the lecture and lab rooms.</p>
+</div>
+<div id="email-correspondence" class="section level4">
+<h4>Email Correspondence</h4>
+<p>I will regularly use e-mail to send out announcements, changes in the syllabus, reminders about tests or due dates etc. It is your responsibility to check e-mail regularly to keep up-to-date with these announcements. I will use the e-mail address you have listed with the College. Therefore, please make sure that this is indeed the correct address.</p>
+</div>
+<div id="general-help-with-research-and-writing" class="section level4">
+<h4>General Help with Research and Writing</h4>
+<p>The Library maintains a collection of links to sites that can assist you with proper citation format and paraphrasing and quoting other authors at <a href="https://library.brooklyn.cuny.edu/resources/?service=research-help">Research &amp; Writing Help</a>. The Learning Center has writing tutors available to help you with your writing <a href="http://lc.brooklyn.cuny.edu/" class="uri">http://lc.brooklyn.cuny.edu/</a>.</p>
+<p>The best learning is done in conversation with others, whether they are people—classmates, teachers, friends—or texts—books, articles, essays, poems, films etc. It should not be a solitary process. However, the assignments that you hand in for this course must be done on your own, should represent your own thinking, and should be original work that you have done for this particular course. A good way to balance these two seemingly contradictory approaches (collaborative learning and original individually-produced work) without knowingly—or, even unwittingly—resorting to plagiarism or other forms of academic misconduct is to learn and meticulously observe the rules for citing the work of others (this could be the great point your roommate made that you used in your paper, it could be a well-turned phrase from an academic essay, or it could be anything in between). It is your responsibility to learn what constitutes plagiarism and the correct rules for citing sources—read the information on the following website carefully: <a href="http://www.brooklyn.cuny.edu/bc/policies/" class="uri">http://www.brooklyn.cuny.edu/bc/policies/</a>. The bottom line is: passing off anyone’s words or ideas as your own for any reason whatsoever is plagiarism.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
