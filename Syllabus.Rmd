@@ -6,12 +6,12 @@ output:
     toc_float: true
     collapsed: false
     number_sections: false
-    toc_depth: 3
+    toc_depth: 4
 ---
 
-**this is copied from a previous course, needs to be updated, using for example syllabus**
+### Statistical Methods in Psychological Research (PSYC3400) Sections: TBD
 
-Statistical Methods in Psychological Research (PSYC3400) Sections: TBD
+### Instructor Info
 
 Lectures 	
 - Monday	12:25PM-2:05PM 	RM: Ingersoll 1310
@@ -23,24 +23,24 @@ Instructor
 - Office phone: 718-951-5000 x. 6068
 - mcrump@brooklyn.cuny.edu
 
-### Labs and Lab Instructors
+---
 
-| Section| Day | Time| Room| Instructor| email|
-|:--------|:-------:|:--------|:--------|:--------|:--------|
-|MTAB 17771| 	M | 2:15p-5:50p |	WJ3106 |Beliz Hazan	|belizhazanlab@gmail.com|
-|MTBB 17773| 	M | 2:15p-5:50p	|WJ4109|Nicholaus Brosowsky|nbrosowsky@gradcenter.cuny.edu|
-|MTCB 17775| 	W   | 12:25-4:00p| WJ3106| Taylan Ergun	|	taylansergun@gmail.com |
-|MTDB 17777| 	W  | 12:25p-4:00p|  WJ4109 |	Alexandra Gaynor|alexandra.gaynor@gmail.com|
-|MTEB 53895| 	F  | 9:05a-12:40p| WJ-3106  |Matthew Goldberg	|matt.goldberg100@gmail.com |
-|MTFB 53897| 	F  | 9:05a-12:40p|  WJ-4109 |	Beliz Hazan|belizhazanlab@gmail.com|
+### Lecture and Lab Info
 
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(data.table)
+intructors <- fread("Instructors.csv")
+knitr::kable(intructors)
 
+```
+
+---
 
 ### Lecture Schedule
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 library(data.table)
-schedule<-fread("Schedule.csv")
+schedule <- fread("Schedule.csv")
 knitr::kable(schedule)
 
 ```
@@ -49,93 +49,69 @@ knitr::kable(schedule)
 
 Website:  [http://crumplab.github.io/courses/experimental](http://crumplab.github.io/courses/experimental)
 
+---
+
 ### Catalog Description
 
 2 hours lecture, 4 hours laboratory, 4 credits
 
-Basic principles of experimental psychology and experimental methodology. A variety of specific content areas in psychology, including those in social psychology, learning, perception, and cognitive psychology. Laboratory replication of classic experiments from these content areas. Writing intensive course
+Basic descriptive and inferential statistics including the elements of experimental designs in psychological research. STEM variant course - Satisfies Pathways Required Core Math and Quantitative Reasoning requirement. 
 
 ### Course Objectives
 
 My goal is for you to learn:
 
-1. To read and evaluate psychological literature
-2. The basics of scientific methodology in psychology. This will be achieved by working through most of the important steps involved in conducting experimental research
-3. How research benefits from being conducted as part of a research team and in the context of a critical community of peers
-4.	Whether you may be interested in other courses and programs that involve empirical research
-5.	To evaluate claims like those presented in the media (e.g., do video games improve your attention, etc.), and understand the differences between science and pseudoscience
+1. How to answer research questions in Psychology with data
+
+2. The basics of research designs in psychology, and how they relate to data-anlaysis strategies
+
+3. an intuitive, practical, and conceptual understanding of strategies for asking and answering questions with data
+
+4.	How to use R, a free and open-source statistics software program.
 
 NOTE: The schedule and procedures described in this syllabus are subject to change in the event of extenuating circumstances. You will always be notified of changes both in class AND by posts to the class website. Your enrollment in the course represents your acknowledgment and acceptance of the non-negotiable policies described in the syllabus.
 
-### Textbook. Required:
+---
 
-The textbook for this course is FREE and downloadable as a .pdf. See the main page for the download link.
+### Textbook (FREE)
 
-UPDATE
+The textbook for this course is ["Answering questions with Data"](https://crumplab.github.io/statistics/), it is FREE and available online as a web-book. 
+
+The [lab manual](https://crumplab.github.io/statisticsLab/) for this cours is also free, and is available online as a web-book.
 
 
-### Important dates
-
-|Date| Event|
-|:--|:--|
-|Thursday, August 31|Last day to add a course|
-|Thursday, September 14| Last day to drop a course without a grade of "W"|
-|Friday, September 15 |Last day to apply for Fall 2017 Graduation|
-|Thursday, November 9| Last day to resolve Spring and Summer 2017 incomplete grade (INC)|
-|Friday, November 10| Last day to withdraw from a course with a W (non-penalty) grade|
-
-### Lab Schedule		
-
-|Lecture|	Date|
-|:--|:--|
-|1|	Lab Overview		|
-|2|	Paper Project 1: Fluency|
-|3|	Paper Project 1: Continued|		
-|4|	Adaptive memory	|
-|5|	Task-Switching	|
-|6|	Stroop		|
-|7|	Paper Project 2: Face-Inversion	|
-|8|	Paper Project 2 continued		|
-|9|	Brainstorm Individual projects|
-|10|	Individual presentations	|
-|11|	Group work Final Project	|
-|12|	Group work Final Project	|
-|13|	Group work Final Project	|
-|14|	Final Presentations	|
-
+---
 
 ### Additional resources
 
-Supplementary material will be posted on the course website. Lab instructors may recommend a text that specifically outlines the APA format and writing APA style research reports. This course will require use of the web, internet tools, and open-source (free) computing tools available in the lab.
+Supplementary material will be posted on the course website. For example, check out the [resources page](https://crumplab.github.io/psyc3400/Resources.html) on this website.
+
+---
 
 ### Course Structure:
 
 #### The Lecture
 
-There will be a two hour lecture each week. The lecture covers material that is available in the text book. The course schedule outlines chapters that should be read prior to each lecture. Some lectures will require reading of supplementary material, and access to these materials will be posted online using the course website. The lectures will also cover material that is thematically related to that presented in the textbook. The purpose of the lecture is to cover important concepts in experimental psychology, and prepare you for conducting psychological research in the laboratory. You will be tested on material from the lectures and textbook in two exams: a midterm, and a cumulative final exam.
+There will be two, 1 hour 15 minute, lectures each week. The lecture covers material that is available in the text book. The course schedule outlines chapters that **should be read prior to each lecture**. It is very important to read the textbook before you come to lecture. I've said it twice, now again. **Read the assigned parts of the textbook before each lecture**. Read it at home, read it on the bus, read it in a tree, read it at the library. Just read it.
+
+You will be tested on material from the lectures and textbook in two exams: a midterm, and a cumulative final exam.
 
 #### The Lab
 
-There will be a four hour lab each week. Details on the lab component will be made available by your lab instructor. All sections will complete several lab projects, and three lab papers. Each lab paper involves writing a full APA research report. The first two papers are predetermined, and will cover classic experimental procedures. The third lab paper is to create, conduct, and report your own research project. The third lab paper will require two separate in-class presentations, the first is an individual five minute presentation, and the second is a ten minute group presentation. The third lab paper also requires that each individual submit a complete, and independently written research report. The details of each lab assignment will be made available to you through the lab syllabus, as well as online through the course website.  
+There will be one two hour lab each week (1 hour 50 minutes). Every week you will be completing a structured set of activities that we have planned for you in the [lab manual](https://crumplab.github.io/statisticsLab/). This is where you will spend time learning how to use computer software, in particular R, and R-studio, to do statistics on real data. 
+
+---
 
 ### Grading (total of 100)
 
 Your final grade combines your performance in the lab and lecture portions of the course. The percentage grade is determined from the following components.
 
-||||
-|:--|:--|:--|
-|						||Total %|
-|Lecture|||
-||Assignments & Attendance (lab and lecture)	|		20%|
-||Midterm 				|	10%|
-||Final exam (cumulative) 		|	25%|
-||Extra Credit				|	up to 2% (see below)|
-|Lab||
-||Paper 1 				|	10%|
-||Paper 2 				|10%|
-||Paper 3 				|	15%|
-||Presentation 1 	|			5%|
-||Presentation 2  |				5%|
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(data.table)
+grading <- fread("Grading.csv")
+knitr::kable(grading)
+
+```
 
 Percentage grades are converted to letter grades according to the following rubric.
 
@@ -155,30 +131,103 @@ Percentage grades are converted to letter grades according to the following rubr
 |A	|93.33-96.66|
 |A+	|96.67-100|
 
-The course allows for some flexibility in determining your final grade. If you perform better on the final exam than on the midterm, you may replace the midterm grade with your higher final grade (the reverse does not apply).  The major focus of this course is to develop your writing abilities. As writing in the APA format may be unfamiliar to some, the course allows that, IF you complete all 3 papers, then, you will have the opportunity to replace your lowest paper grade from paper 1 or paper 2, with your highest grade from paper 1 or 2. The instructor reserves the right to determine whether the final grade depends more heavily on a scale or a curve.
+The course allows for some flexibility in determining your final grade. If you perform better on the final exam than on the midterm, you may replace the midterm grade with your higher final grade (the reverse does not apply).  
 
-### Lecture and Lab Assignments and Attendance
+The instructor reserves the right to determine whether the final grade depends more heavily on a scale or a curve.
+
+---
+
+#### Lab Work (40%)
 
 
+As you can see, your lab work takes up 40% of your entire grade. Compared to everything else, this is the single biggest part of your entire grade. There are 11 graded labs.
 
-The lecture portion will involve weekly assignments that are to be completed electronically on blackboard. Assignments are usually short quizzes (10-20 questions). “Assignments & Attendance” accounts for 20% of the final grade. The 20% is computed from the assignments, but can be decreased as a result of poor attendance. If a student is late or misses more than 3 classes, then each additional late/missed class will result in subtracting 1% from the 20% for Assignments and Attendance.
+The lab work for each week is split up into three parts. Your grade for each lab will be broken down as follows (4 total points for each lab). 
+
+The whole point of the labs is **to train you how to do things**. You will notice that half of the lab is pass/fail, you just have to show up and follow along, and hand in your work to get half of the grade. The third part is graded, but you will see why in a moment, we're giving you practice for the kinds of the questions you will see on the midterm and final.
+
+**Part 1. Learn** 1 point
+
+- Part 1 grading is pass/fail:
+    
+    a. Pass =  you must attend lab, and hand in your assignment with a completed part 1
+    b. Fail = you don't attend lab; or you do, but you don't hand in your assignment.
+        
+- Part 1 activities: You will follow the step-by-step instructions in the lab manual to complete data analysis tasks using R. Don't worry this is actually pretty easy, we are mainly asking you to copy/paste things and press enter.
+
+**Part 2. Generalize** 1 point
+
+- Part 2 grading is pass/fail:
+    
+    a. Pass =  you must attend lab, and hand in your assignment with your part 2 attempt
+    b. Fail = you don't attend lab; or you do, but you don't hand in your assignment.
+
+- Part 2 activities: After you see how we did something in Part 1, you try to do something very similar in part 2. You will show your work in a file that we give you. You may or may not be able to succesfully complete the generalization assignment. That is ok. You will pa
+
+**Part 3. Think and write** 2 points
+
+The third part of each lab will have some questions that require written answers. Your answers to these questions will be graded by your TA, who will give you feedback on your answers.
+
+Each question will come with a clear rubric about how the question will be graded.
+
+**Group work** is possible for part 3. If you want to form a group other students for part 3, then you can do this. You can work together to come up with a written answer to the question(s) in part 3. If you write as a group, then you MUST hand-in as a group. That means everybody in the group hands in the "exact" same written work to the question, and everybody in the group will get the exact same grade for the question.
+
+**IMPORTANT: Part 3 of the labs will prepare you for the Midterm and Final**. Half of the midterm and half of the final involve writing. In fact, some of the long answer questions on the midterm and final will be taken from your labs, so you will already have had practice thinking about the questions. However, the **midterm and final** are **individual** assignments, so if you do group work in lab, make sure you are prepared to give answers individually for the midterm and final.
+
+---
+
+#### Weekly Quizzes (15%)
+
+Each week you will be given an online quiz on Blackboard. It will typically be around 10 questions about the material for that week. Here are some things you should know about the quizzes:
+
+1. You will have the entire week to complete the quiz, and **you will be able to take the quiz over and over as many times as you want.**
+
+2. Your grade on the quiz will always be taken from the last attempt.
+
+3. Many of the quiz questions, or very similar ones, will be on the midterm and the final. The purpose of the quizzes is to give you practice with the kinds of questions that will be on the midterm and final. If you are wondering what kinds of questions are going to be on the midterm and final, **you will find out by taking the quizzes**.
+
+---
+
+#### Midterm (20%) and Final Exam (Cumulative 25%)
+
+Everyone has questions about the midterm and final. Here are the answers to all of your questions. You already know the midterm is worth 20% of your final grade, and your final exam is worth 25% of the final grade.
+
+**Q. What's on the exams?** A: the midterm and final have the same stucture. Half of each exam is multiple choice questions, the other half is long-answer questions
+
+**Q. What kind of multiple choice questions, I need examples...** A: All of the MC questions on the midterm and final will be like the ones in your weekly quizzes, which you can do over and over again. Yes, some of the midterm and final questions will be very similar (or even identical except for slightly different values) to the ones from the quizzes
+
+**Q. What kind of long-answer questions, I need examples and feedback**: The long-answer questions will be very similar, and sometimes the same as the long-answers you write for Part 3 of each lab. You will get feedback from the lab instructor each week about your answers to those questions. In general you will have about 6-7 weeks of feedback on your answers before you take the exams. 
+
+**Q. Is the final cumulative**? A: Yes, but it contains more things from the second half of the semester, roughly 75% second half things, and 25% first half things.
+
+**Q. Is there some deal about the final and midterm, is this true?** A: Yes, if you perform better on the final exam than on the midterm, I will automatically replace your midterm grade with your higher final grade. Let's say you got 75% on the midterm and 85% on the final. I will then automatically give you 85% on both the midterm and final. However, the reverse does not apply.  If you got 85% on the midterm, and 75% on the final, you will receive those grades with no changes.
+
+
+---
+
+### Attendance
+
+Lecture and Lab attendance is taken every lecture and lab.
+
+** You will LOSE points on your quizzes and lab assignments for NOT ATTENDING LECTURE AND LAB**.
+
+LECTURE ATTENDANCE POLICY: If a student is late or misses more than 3 classes, then each additional late/missed class will result in subtracting 1% from the 15% for the Weekly quizzes. We know that life happends and sometimes you can't make it to class. We are giving you you three classes where you can miss (because of things happening in your life that we don't need to know about) without having any impact on your grade (all lecture notes are online for missed classes, talk to a friend, read the textbook, etc.)
 
 Lecture attendance is taken every lecture at the very beginning of class. Latecomers who miss attendance will not be allowed to record their attendance, and will be recorded as absent.
 
-The lab portion will involve weekly assignments completed in the lab. Attendance will also be taken in the lab each week. It is absolutely critical that you arrive to labs on time. If you do not arrive on time you will be given a late. If you are late or miss a lab more than three times, then you will be penalized for each additional lateness or absence by 1% of from the 20% for Assignments and Attendance.
+LAB ATTENDANCE POLICY: If you do not show up and participate in the lab, and hand your lab assignments in during the lab, then you will receive 0 points on each lab you miss.
 
-If you do have to miss class due to exceptional circumstances, please make arrangements to get notes from a classmate
+If you do have to miss class or lab due to exceptional circumstances let me or your lab instructor know.
 
-### Extra credit
-
-You have the opportunity to gain extra credit in this course by participating in experiments that are offered through the online sign-up system [http://brooklyncollege.sona-systems.com/](http://brooklyncollege.sona-systems.com/)
-You must give yourself a new user name, and select this course. For every hour of participation you will receive 1% extra credit, to a max of 2%.  The system will automatically record your credit. If you wish to receive extra credit without participating, ask me about other writing assignment options.
+---
 
 ### University’s policy on Academic Integrity
 
-The faculty and administration of Brooklyn College support an environment free from cheating and plagiarism. As a student, you are personally responsible for being aware of what constitutes cheating, and plagiarism; and, for avoiding both. You can view the complete text of the CUNY Academic Integrity Policy here:
+The faculty and administration of Brooklyn College support an environment free from cheating and plagiarism. As a student, **you are personally responsible for being aware of what constitutes cheating, and plagiarism; and, for avoiding both**. You can view the complete text of the CUNY Academic Integrity Policy here:
 [http://www.brooklyn.cuny.edu/bc/policies](http://www.brooklyn.cuny.edu/bc/policies)
-If a faculty member suspects a violation of academic integrity, and upon investigation, confirms that violation, or if the student admits the violation, the faculty member MUST report the violation.
+**If a faculty member suspects a violation of academic integrity, and upon investigation, confirms that violation, or if the student admits the violation, the faculty member MUST report the violation**.
+
+---
 
 ### Missing an Exam or class
 
@@ -186,11 +235,15 @@ Make-up exams will be given only when there is a “good” reason for having mi
 
 WARNING: This is not the kind of course for which you do not need to come to class, and read the textbook at the last minute and expect to do well on tests and papers. The material in this course builds in complexity across classes, and doing well in this course will require a constant moderate level of effort. If you join the course later or are unsure about anything please ask.
 
+---
+
 ### Accessibility
 
 It is important to me that the course be accessible to all students. In order to receive disability-related academic accommodations students must first be registered with the Center for Student Disability Services. Students who have a documented disability or suspect they may have a disability are invited to set up an appointment with the Director of the Center for Student Disability Services, Ms. Valerie Stewart-Lovell at 718-951-5538. If you have already registered with the Center for Student Disability Services please provide me with the course accommodation form so we may discuss your specific accommodation. A guide and more information can be found here [http://catsweb.cuny.edu](http://catsweb.cuny.edu)
 
-#### Class Citizenship/Rules of Conduct
+---
+
+### Class Citizenship/Rules of Conduct
 
 #### Cell phones
 
@@ -200,7 +253,9 @@ Your cell phone, PDA or other device must be turned off during class. If you are
 
 Please pick up after yourself. Absolutely no food is allowed in the lecture and lab rooms.
 
-#### Email Correspondence
+--- 
+
+### Email Correspondence
 
 I will regularly use e-mail to send out announcements, changes in the syllabus, reminders about tests or due dates etc. It is your responsibility to check e-mail regularly to keep up-to-date with these announcements. I will use the e-mail address you have listed with the College. Therefore, please make sure that this is indeed the correct address.
 
