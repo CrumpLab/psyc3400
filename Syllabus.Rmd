@@ -35,6 +35,18 @@ Instructor
 |MTFB 53897| 	F  | 9:05a-12:40p|  WJ-4109 |	Beliz Hazan|belizhazanlab@gmail.com|
 
 
+
+### Lecture Schedule
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(data.table)
+schedule<-fread("Schedule.csv")
+knitr::kable(schedule)
+
+```
+
+
+
 Website:  [http://crumplab.github.io/courses/experimental](http://crumplab.github.io/courses/experimental)
 
 ### Catalog Description
@@ -60,26 +72,6 @@ NOTE: The schedule and procedures described in this syllabus are subject to chan
 The textbook for this course is FREE and downloadable as a .pdf. See the main page for the download link.
 
 UPDATE
-
-### Lecture Schedule
-
-|Lecture|	Date|	Topic|	Chapter|
-|:--|:--|:--|:--|
-|1|	28-Aug|	Course Overview|	1|
-||4-Sep	|NO CLASS Labor Day	||
-|2|	11-Sep|	Intro Psych Science|	2|
-|3|	18-Sep|	Measurement	|3|
-|4|	25-Sep|	Experimental research|	4|
-|5|	2-Oct |	Factorial Designs I|	5|
-|6|16-Oct	|Factorial Designs II|	5|
-|7|23-Oct	|Factorial Designs III|	5|
-|8|30-Oct	|Midterm|	|
-|9|6-Nov	|Theory and Phenomena|6|
-|10|13-Nov	|Research Ethics|7|
-|11|20-Nov	|Control Problems I|8|
-|12|27-Nov	|Control Problems II|8|
-|13|4-Dec	|Communicating Research|12|
-|13|11-Dec	|Open Science||
 
 
 ### Important dates
