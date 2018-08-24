@@ -21,7 +21,6 @@ output: html_document
 
 ### *Statistical Methods in Psychological Research* {style="padding-top: 0px;"}
 
-THIS COURSE IS PRESENTLY BEING BUILT FOR FALL 2018, STILL IN DRAFT
 
 All materials are totally free and open, including [textbook](https://crumplab.github.io/statistics/), and [lab manual](https://crumplab.github.io/statisticsLab/).
 

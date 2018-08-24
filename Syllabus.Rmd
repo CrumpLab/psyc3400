@@ -176,7 +176,7 @@ Each question will come with a clear rubric about how the question will be grade
 
 ---
 
-#### Weekly Quizzes (15%)
+#### Weekly Quizzes (25%)
 
 Each week you will be given an online quiz on Blackboard. It will typically be around 10 questions about the material for that week. Here are some things you should know about the quizzes:
 
@@ -188,7 +188,7 @@ Each week you will be given an online quiz on Blackboard. It will typically be a
 
 ---
 
-#### Midterm (20%) and Final Exam (Cumulative 25%)
+#### Midterm (10%) and Final Exam (Cumulative 25%)
 
 Everyone has questions about the midterm and final. Here are the answers to all of your questions. You already know the midterm is worth 20% of your final grade, and your final exam is worth 25% of the final grade.
 
@@ -209,7 +209,7 @@ Everyone has questions about the midterm and final. Here are the answers to all 
 
 Lecture and Lab attendance is taken every lecture and lab.
 
-** You will LOSE points on your quizzes and lab assignments for NOT ATTENDING LECTURE AND LAB**.
+**You will LOSE points on your quizzes and lab assignments for NOT ATTENDING LECTURE AND LAB**.
 
 LECTURE ATTENDANCE POLICY: If a student is late or misses more than 3 classes, then each additional late/missed class will result in subtracting 1% from the 15% for the Weekly quizzes. We know that life happens and sometimes you can't make it to class. We are giving you you three classes where you can miss (because of things happening in your life that we don't need to know about) without having any impact on your grade (all lecture notes are online for missed classes, talk to a friend, read the textbook, etc.)
 
