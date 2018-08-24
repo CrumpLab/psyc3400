@@ -1,0 +1,21 @@
+---
+title: "Lectures"
+output: 
+  html_document:
+    toc: false
+    toc_float: true
+    collapsed: false
+    number_sections: false
+    toc_depth: 3
+---
+
+All slides for each lecture presentation will be posted and available here. Slides may be made available in advance of the lecture, but they will always be available after each lecture.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(data.table)
+Lectures <- fread("Lectures.csv")
+knitr::kable(Lectures)
+```
+
+
+

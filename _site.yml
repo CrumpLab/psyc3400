@@ -4,6 +4,8 @@ navbar:
   left:
     - text: "Home"
       href: index.html
+    - text: "Lectures"
+      href: Lectures.html
     - text: "Textbook"
       href: Textbook.html
     - text: "Lab Manual"
