@@ -14,7 +14,7 @@ output:
 ### Instructor Info
 
 Lectures 	
-- Monday	12:25PM-2:05PM 	RM: Ingersoll 1310
+- Monday	12:25PM-2:05PM 	RM: Ingersoll 1127
 
 Instructor
 
@@ -47,7 +47,7 @@ knitr::kable(schedule)
 
 
 
-Website:  [http://crumplab.github.io/courses/experimental](http://crumplab.github.io/courses/experimental)
+Website:  [http://crumplab.github.io/psyc3400](http://crumplab.github.io/psyc3400)
 
 ---
 
