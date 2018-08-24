@@ -269,7 +269,7 @@ I will announce opporunities for extra credit as we go through the course. Extra
 
 # Let's look at the course website
 
-[]()
+[https://crumplab.github.io/psyc3400](https://crumplab.github.io/psyc3400)
 
 
 
