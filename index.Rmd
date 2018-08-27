@@ -17,16 +17,21 @@ output: html_document
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **Psyc 3400**
-
+# **Psyc 3400 Fall 2018**
 ### *Statistical Methods in Psychological Research* {style="padding-top: 0px;"}
 
+#### Matthew Crump
+Last updated: `r Sys.Date()`
 
-All materials are totally free and open, including [textbook](https://crumplab.github.io/statistics/), and [lab manual](https://crumplab.github.io/statisticsLab/).
 
-### This website can be copied
 
-This website is written using R Markdown. The source code is here [https://github.com/CrumpLab/psyc3400](https://github.com/CrumpLab/psyc3400). For anyone interesting in adopting these materials, the idea is you can fork the repos for the website, the textbook, and the lab manual. Then edit as desired for your own purposes. This makes it easy to get many thing you might want to have all in one bundle, all ready to go.
+
+
+All materials are totally **free and open**, including [textbook](https://crumplab.github.io/statistics/), and [lab manual](https://crumplab.github.io/statisticsLab/).
+
+### Copying/Adopting these materials
+
+This website is written using R Markdown. The source code is here [https://github.com/CrumpLab/psyc3400](https://github.com/CrumpLab/psyc3400). For anyone interested in adopting these materials, the idea is you can fork the repos for the [website](https://github.com/CrumpLab/psyc3400), the [textbook](https://github.com/CrumpLab/statistics), and the [lab manual](https://github.com/CrumpLab/statisticsLab). Then edit as desired for your own purposes. 
 
 </div>
 <div class="col-sm-6">

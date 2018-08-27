@@ -9,12 +9,13 @@ output:
     toc_depth: 4
 ---
 
-### Statistical Methods in Psychological Research (PSYC3400) Sections: TBD
+### Statistical Methods in Psychological Research (PSYC 3400)
 
 ### Instructor Info
 
-Lectures 	
-- Monday	12:25PM-2:05PM 	RM: Ingersoll 1127
+Lectures
+
+- T,TH	11:00am-12:15pm 	RM: Ingersoll 1127
 
 Instructor
 
@@ -40,7 +41,7 @@ knitr::kable(intructors)
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
 library(data.table)
-schedule <- fread("Schedule.csv")
+schedule <- fread("Lectures.csv")
 knitr::kable(schedule)
 
 ```
