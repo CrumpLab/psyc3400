@@ -205,19 +205,19 @@ a<-ggplot(ss_df, aes(x = people_you_know)) +
   xlab("Number of people you know")+
   ylab("Frequency Counts")
 
-b<-a<-ggplot(ss_df, aes(x = people_you_know)) +
+b<-ggplot(ss_df, aes(x = people_you_know)) +
   geom_histogram(bins=4, color="white")+
   theme_classic(base_size = 15)+
   xlab("Number of people you know")+
   ylab("Frequency Counts")
 
-c<-a<-ggplot(ss_df, aes(x = people_you_know)) +
+c<-ggplot(ss_df, aes(x = people_you_know)) +
   geom_histogram(bins=5, color="white")+
   theme_classic(base_size = 15)+
   xlab("Number of people you know")+
   ylab("Frequency Counts")
 
-d<-a<-ggplot(ss_df, aes(x = people_you_know)) +
+d<-ggplot(ss_df, aes(x = people_you_know)) +
   geom_histogram(bins=7, color="white")+
   theme_classic(base_size = 15)+
   xlab("Number of people you know")+
