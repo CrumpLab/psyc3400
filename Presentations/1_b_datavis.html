@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Visualization</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data Visualization
+## Looking at the data to answer questions
+### Matthew Crump
+### 2018/07/20 (updated: 2018-08-30)
+
+---
+
+
+
+
+class: pink, center, middle, clear
+
+# What is Data Visualization?
+
+--
+
+## Making a way to look at the data
+
+---
+
+class: pink, center, middle, clear
+
+# Why do we visualize data?
+
+--
+
+## So we can see what it looks like
+
+---
+
+class: pink, center, middle, clear
+
+# Why would we want to see what data looks like?
+
+--
+
+## So we can use the data to answer questions
+
+---
+
+class: pink, center, middle, clear
+
+# Examples: Let's look at the data from the questionnaire I sent out on Tuesday
+
+---
+
+# Here's what I did
+
+1. I used [https://www.google.com/forms/](https://www.google.com/forms/) to create the questionnaire. It's free, and you can send the link to anyone.
+
+2. You answered the questions, and the data was saved in a google spreadsheet.
+
+3. Let's take a look
+
+---
+
+# The questions
+
+1. How many people do you know in this class?
+2. How many text messages do you send per day?
+3. How many books have you read in your life?
+4. Think back to your earliest memory, how old were you?
+5. Where is your consciousness...
+6. How vivid is your mental imagery?
+
+---
+
+# How can we look at the data?
+
+1. We can look at the summary provided by google forms
+2. We can look at the raw data in the google spreadsheet
+3. We can download the data, and use R to make graphs
+
+---
+# Interpreting graphs
+
+We are about to look at data visualizations for your answers to each of the questionnaire questions.
+
+1. A data visualization is useful if we can easily interpret the pattern in the data by looking at it
+2. Visualizations present data in different ways, need to make sure you are interpreting the visual meaning correctly
+
+---
+
+# Q1: People you know in class?
+
+
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Interpretation
+
+1. Each dot was a single data point from a single person
+--
+
+2. x-axis represented an index number for each person (first person to last person to fill out questionnaire)
+--
+
+3. y-axis represented the answer given by each person (how many people they said they knew in class)
+--
+
+4. **Was it useful?** Sort of, we can see the raw data, but the dots are kind of everywhere, not very useful for summarizing the patterns
+
+
+---
+# Stacked dot plot
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Interpretation
+
+1. Each dot was a single data point from a single person
+--
+
+2. x-axis represents the range of answers given to the question (ordered from the smallest to largest)
+--
+
+3. Dots are stacked on top of each other, showing how many people gave each answer
+--
+
+4. Y-axis is meaningless (the default settings from R make the y-axis meaningless)
+--
+
+5. **Was it useful?** Yes, we can see the raw data, and we can see the pattern of the data (which answers were more or less common)
+
+
+---
+# Histogram
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+# Histogram interpretation
+
+1. Each bar is a bin, counting up the number of values in a range
+--
+
+2. x-axis represents the range of answers given to the question (ordered from the smallest to largest)
+--
+
+3. y-axis shows the frequency count for each bin (number of answers in that bin)
+--
+
+4. **Was it useful?** Yes, we can't see the raw data, **but** we can see the pattern of the data (which **ranges** of answers were more or less common)
+
+---
+# Histogram - bin width
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+# Q2: Texts sent per day
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Q2: texts sent, &lt; 500 only
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Q3: Books read in life
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Q4: Age of Earliest Memory
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Q5: Where is your consciousness?
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Q6: Mental Imagery?
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+
+--- 
+class: pink, center, middle, clear
+
+# Conceptual issues for data-visualization
+
+---
+
+# Knowing what the graph represents
+
+The raw data is transformed into a graph, it may or may not show raw scores
+
+  a. Dot plots show the **raw data**
+  
+  b. Histograms show **summaries** (frequency counts) of the raw data in particular bins (ranges)
+  
+---
+
+# Histogram concepts
+
+Histograms are useful for seeing 
+
+1. The **shape** of the data
+
+2. **Central tendencies** (where most of the data is)
+
+3. **Differences** (how the data is spread around)
+
+
+---
+
+# Sameness vs. Differentness
+
+The **shape** of the histogram tells us about two properties of the data
+
+1. **Sameness**: What makes the numbers the same. Are most of the numbers clustering somewere? Do they have a central tendency?
+
+2. **Differentess**: Are the numbers spread about, showing that there are lots of different kinds of numbers?
+
+---
+class: pink, center, middle, clear
+
+# Let's look at some histograms, and discuss their shape, sameness and differentness
+
+
+---
+
+# Histogram shape: Bell-Shaped
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Histogram shape: Right Skew
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Histogram shape: Left Skew
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Histogram shape: Bimodal
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Histogram shape: Uniform
+
+&lt;img src="1_b_datavis_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+
+
+
+
+
+class: pink, center, middle, clear
+
+# Conceptual issues for the questions we asked
+
+---
+
+# Can we trust the numbers?
+
+Potential issues:
+
+1. Guessing
+--
+
+2. Lying / Fooling around
+--
+
+3. Different understandings of the question
+--
+
+4. Relying on Subjective report...
+
+---
+
+# Validity
+
+Do the numbers measure what we want them to measure?
+
+--
+
+&lt;img src="figs/1b_q6.png" width="800" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Converging measures
+
+There can be many ways to measure a **construct** of interest
+
+**Constructs** are the psychological process we are interested in studying (e.g., like the subjective experience of consciousness)
+
+When different measures of the same construct converge on similar patterns, we cna be more confident that we measuring what we think we are measuring.
+
+---
+
+# A different self-location measure
+
+&lt;img src="figs/1b_selfA.png" width="905" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The new measure
+
+&lt;img src="figs/1b_selfB.png" width="400px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The results
+
+&lt;img src="figs/1b_selfC.png" width="637" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Generalization
+
+- We **sampled** data from the class by asking 6 questions
+
+--
+
+- The patterns we found represent data from the portion of the class that answered the questions
+
+--
+
+1. Would the patterns **generalize** (be the same) if we took another sample from another class?
+
+2. Would the patterns **generalize** to the entire population of humans?
+
+---
+
+class: pink, center, middle, clear
+
+# Data Visualization Extras
+
+---
+
+# John Tukey
+
+Pioneered methods for visual analysis and exploration of data.
+
+&lt;img src="figs/tukey.png" width="300px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Edward Tufte
+
+Lots of books showing histories and good/bad ways of data visualization in many domains
+
+&lt;img src="figs/tufte.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# ggplot2 (r package) Hadley Wickham
+
+ggplot2 is an r package for data visualization
+
+- “The emphasis in ggplot2 is reducing the amount of thinking time by making it easier to go from the plot in your brain to the plot on the page.” (Wickham, 2012)
+
+- “Base graphics are good for drawing pictures; ggplot2 graphics are good for understanding the data.” (Wickham, 2012)
+
+- [https://ggplot2.tidyverse.org](https://ggplot2.tidyverse.org)
+
+---
+
+# gapminder
+
+- interactive website for visualizing data on world metrics (like life exepctancy and income over time) [https://www.gapminder.org/tools/](https://www.gapminder.org/tools/)
+
+&lt;img src="figs/gapminder.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Reminders
+
+1. Quiz 1 is online, due Tuesday 4th, end of day (11:59pm). You must take the quiz before the deadline, otherwise you will receive 0 points. You can take the quiz as many times as you want before the deadline
+
+2. If you want to get a headstart on Lab 2, try it out at home. [https://crumplab.github.io/statisticsLab/lab-2-descriptive-statistics.html](https://crumplab.github.io/statisticsLab/lab-2-descriptive-statistics.html)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
