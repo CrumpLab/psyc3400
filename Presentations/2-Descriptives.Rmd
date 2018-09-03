@@ -212,6 +212,11 @@ class: pink, center, middle, clear
 ---
 
 
+class: pink, center, middle, clear
+
+# Mode
+
+---
 
 # Mode
 
@@ -223,7 +228,7 @@ The mode is the single most frequently occuring number
 
 - Find the mode by counting the occurence of each number, the mode is the most frequently occuring number
 
-- If there is a tie, then you have two or three or more modes (depends on how many differen numbers tie)
+- If there is a tie, then you have two or three or more modes (depends on how many different numbers tie)
 
 ---
 
@@ -234,7 +239,7 @@ The mode is the single most frequently occuring number
 
 We make 25 numbers, how do we get R to find the mode?
 
-```{r, echo=TRUE, eval=TRUE}
+```{r, echo=TRUE, eval=TRUE, cache=T}
 #make some numbers
 a <- round(rnorm(n=25, mean=24, sd=5)) 
 ```
@@ -253,11 +258,11 @@ knitr::kable(matrix(a,ncol=5))
 
 `table` function automatically counts the occurence of each number
 
-```{r, echo=TRUE, results='markup'}
+```{r, echo=TRUE, results='markup', cache=T}
 table(a)
 ```
 
-We can see that 29 occurs the most
+We can see that 21 occurs the most
 
 ---
 
@@ -266,16 +271,15 @@ We can see that 29 occurs the most
 
 You can always write your own function for the mode. This one is called `my_mode`
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, cache=T}
 my_mode <- function(x) {
      ux <- unique(x)
      ux[which.max(tabulate(match(x, ux)))]
- }
-```
+}
 
-```{r, echo=TRUE, cache=FALSE}
 my_mode(a)
 ```
+
 
 ---
 
@@ -293,5 +297,403 @@ my_mode(a)
 
 ---
 
+class: pink, center, middle, clear
 
+# Median
+
+---
+
+# Median
+
+The median is the middle number 
+
+> 1 1 2 2 3 4 **5** 6 7 7 7 7 7
+
+- The median is 5 because it is the middle number
+
+- Find the median by ordering the numbers from smallest to largest, then take the number in the middle
+
+---
+
+# Median (even number of numbers)
+
+If there are an even number of numbers, find the two in the middle, and
+
+> 1 2 3 **4** **5** 6 7 8
+
+- The median is 4.5 because, 4.5 is in between the two middle numbers
+
+---
+
+# Finding the Median in R
+
+Put some numbers in a variable. The `c()` function combines numbers.
+
+```{r, echo=TRUE, eval=TRUE}
+#make some numbers
+a <- c(1,1,2,2,3,4,5,6,7,7,7,7,7)
+
+```
+
+
+```{r, class.output='font50', cache=TRUE, eval=TRUE}
+knitr::kable(matrix(a,ncol=5))
+```
+
+```{r, echo=TRUE, eval=TRUE}
+median(a)
+```
+
+---
+
+# median()
+
+R has a median function.
+
+```
+median(my_variable)
+```
+
+The median function will compute the median of a variable that contains numbers
+
+```{r, echo=T}
+a<-c(1,2,3,4,5,6,7)
+median(a)
+```
+
+---
+
+# median()
+
+You can also put the numbers inside a median function this way using the `c()` function
+
+```{r, echo=T}
+median(c(1,2,3,4,5,6,7))
+```
+
+---
+
+# Thinking about the median
+
+1. Tells us the number in the middle of the ordered numbers
+
+--
+
+2. Is it representative of all the numbers?
+
+--
+
+3. When would the median be a good thing to know?
+
+---
+
+class: pink, center, middle, clear
+
+
+# Mean
+
+---
+
+# Mean
+
+The Mean (also called average) is the sum of the numbers, divided by the number of numbers
+
+$\text{Mean} = \frac{\text{sum of numbers}}{\text{number of numbers}}$
+
+> 1 1 2 2 3 4 5 6 7 7 7 7 7
+
+- Sum = 1+1+2+2+3+4+5+6+7+7+7+7 = 59
+- Number of numbers = 13
+- Mean = 59/13 = 4.538462
+
+
+
+---
+
+# Mean
+
+$\text{Mean} = \bar{X} = \frac{\sum_{i=1}^{i=N}{x_i}}{N}$
+
+- $\bar{X}$ bar symbolizes the mean
+
+- $\sum_{i=1}^{i=N}{x_i}$ Summation notation
+
+ - $x$ = all the numbers (1,2,3,4...) 
+ - $i$ = an index value, representing the first to last and all the numbers in between of x.
+ - $N$ = the number of numbers
+ - $\sum$ = instruction to add up numbers
+
+---
+
+# Summation example
+
+$x = 4,7,9$
+
+$\sum_{i=1}^{i=N}{x_i}$ = 
+
+$x_{i=1} = 4$ + $x_{i=2} = 7$ + $x_{i=3} = 9$ 
+
+$\sum_{i=1}^{i=N}{x_i} = 4 + 7 + 9 = 20$
+
+---
+
+# Mean in a table
+
+```{r}
+library(dplyr)
+x<-c(4,7,2,9,8)
+index<-c(1,2,3,4,5)
+df<-data.frame(index,x)
+
+df <- df %>%
+  rbind(c("Sum",sum(df[1:5,2]))) %>%
+  rbind(c("N",5)) %>%
+  rbind(c("Mean",mean(df[1:5,2])))
+knitr::kable(df,'html')
+
+```
+
+---
+
+# The mean equally divides the sum
+
+```{r}
+library(dplyr)
+x<-c(4,7,2,9,8)
+index<-c(1,2,3,4,5)
+equal_parts<-c(6,6,6,6,6)
+df<-data.frame(index,x, equal_parts)
+
+df <- df %>%
+  rbind(c("Sum",colSums(df[1:5,2:3]))) %>%
+  rbind(c("N",5,5)) %>%
+  rbind(c("Mean",colMeans(df[1:5,2:3])))
+knitr::kable(df,'html')
+
+```
+
+---
+
+# Finding the Mean in R
+
+Use the `mean()` function
+
+```{r, echo=TRUE, eval=TRUE}
+#make some numbers
+a <- c(1,1,2,2,3,4,5,6,7,7,7,7,7)
+mean(a)
+```
+
+
+
+
+---
+
+# sum() and length()
+
+- `sum()` sums up the numbers
+- `length()` counts up the number of numbers in the variable
+
+
+```{r, echo=T}
+a<-c(1,2,3,4,5,6,7)
+sum(a)
+length(a)
+```
+
+---
+
+# Mean  = sum()/length()
+
+```{r, echo=T}
+a<-c(1,2,3,4,5,6,7)
+sum(a)/length(a)
+```
+
+
+---
+
+# Thinking about the Mean
+
+1. The mean divides the total sum into equal parts.
+
+--
+
+2. Is it representative of all the numbers?
+
+--
+
+3. When would the mean be a good thing to know?
+
+
+---
+
+class: pink, center, middle, clear
+
+
+# Do descriptive statistics for central tendency actually describe the data?
+
+## It depends on the data
+
+---
+
+# Histogram shape: Bell-Shaped
+
+Mean (Red), Median (Green), Mode (Blue)
+
+```{r, fig.align='center', out.width='450px'}
+p_df<- data.frame(s=1:100,
+                  d<-round(rnorm(100,100,25)))
+
+my_mode <- function(x) {
+     ux <- unique(x)
+     ux[which.max(tabulate(match(x, ux)))]
+}
+
+
+ggplot(p_df, aes(x = d)) +
+  geom_histogram(bins=25, color="black",
+                 fill="white")+
+  theme_classic(base_size = 15)+
+  geom_vline(xintercept=mean(p_df$d), 
+             color='red', size=2)+
+  geom_vline(xintercept=median(p_df$d), 
+             color='green', size=2)+
+  geom_vline(xintercept=my_mode(p_df$d), 
+             color='blue', size=2)+
+  xlab("values")+
+  ylab("counts")+
+  ggtitle("Bell-shaped")
+
+```
+
+---
+
+# Right-skewed
+
+```{r, fig.align='center', out.width='450px'}
+d<-round(rnorm(1000,100,25))
+d<-d[d>100]
+p_df<- data.frame(s=1:length(d),
+                  d)
+
+my_mode <- function(x) {
+     ux <- unique(x)
+     ux[which.max(tabulate(match(x, ux)))]
+}
+
+
+ggplot(p_df, aes(x = d)) +
+  geom_histogram(bins=25, color="black",
+                 fill="white")+
+  theme_classic(base_size = 15)+
+  geom_vline(xintercept=mean(p_df$d), 
+             color='red', size=2)+
+  geom_vline(xintercept=median(p_df$d), 
+             color='green', size=2)+
+  geom_vline(xintercept=my_mode(p_df$d), 
+             color='blue', size=2)+
+  xlab("values")+
+  ylab("counts")+
+  ggtitle("Right-skew")
+
+```
+
+---
+
+# Outliers
+
+Outliers are really big or really small values that are unusual compared to the rest of the data
+
+```{r, fig.align='center', out.width="400px"}
+load("1_b_Data.RData")
+names(ss_df)<-c("timestamp",
+                "people_you_know",
+                "texts_per_day",
+                "books_read",
+                "earliest_memory",
+                "consciousness",
+                "Mental Imagery")
+
+ggplot(ss_df, aes(x = earliest_memory)) +
+  geom_histogram(bins=10, color="white")+
+  theme_classic(base_size = 24)+
+  xlab("Age of earliest memory")+
+  ylab("Frequency Counts")
+```
+
+---
+
+# Mean, Median, and outliers
+
+The mean is influenced by outliers, the median is not.
+
+```{r, fig.align='center', out.width="400px"}
+ggplot(ss_df, aes(x = earliest_memory)) +
+  geom_histogram(bins=10, color="white")+
+   geom_vline(xintercept=mean(ss_df$earliest_memory), 
+             color='red', size=2)+
+  geom_vline(xintercept=median(ss_df$earliest_memory), 
+             color='green', size=2)+
+  theme_classic(base_size = 24)+
+  xlab("Age of earliest memory")+
+  ylab("Frequency Counts")
+```
+
+---
+
+# Zooming in
+
+The big number (2000) makes the mean really big, because it is included in the sum.
+
+```{r, fig.align='center', out.width="400px"}
+ggplot(ss_df[ss_df$earliest_memory<10,], aes(x = earliest_memory)) +
+  geom_histogram(bins=20, color="white")+
+   geom_vline(xintercept=mean(ss_df$earliest_memory), 
+             color='red', size=2)+
+  geom_vline(xintercept=median(ss_df$earliest_memory), 
+             color='green', size=2)+
+  theme_classic(base_size = 24)+
+  xlab("Age of earliest memory")+
+  ylab("Frequency Counts")
+```
+
+---
+
+class: pink, center, middle, clear
+
+
+# Always plot your data
+
+---
+
+# Big ideas
+
+1. Descriptive statistics help us reduce a large pile of numbers to a few numebrs that "describe the data"
+
+--
+
+2. Mode, median, mean, are descriptives for central tendency in the data (meant to represent what most of the numbers are like)
+
+--
+
+3. Measures of central tendency can be "off" by quite a bit depending on the shape of the data, need to look at data to see if they are appropriate
+
+---
+
+# Next class: Variation
+
+1. Today we looked measures of central tendency that capture "sameness" in the data
+
+2. When data is variable (have different values), the measures of central tendency will always have some **error**.
+
+3. Next class we look at descriptive statistics for summarizing the amount of **error** (the amount of differences in the data)
+
+---
+
+# Reminder
+
+1. Quiz 1 for last week is due tonight @ 11:59pm. If you do not complete the quiz, you will be given 0 points
+
+2. Quiz 2 for this week is due next Tuesday @ 11:59pm
 
