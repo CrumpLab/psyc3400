@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Variability</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Variability
+## Describing differences
+### Matthew Crump
+### 2018/07/20 (updated: 2018-09-03)
+
+---
+
+
+
+
+class: pink, center, middle, clear
+
+# We already know what lots of numbers look like
+
+---
+
+# Lots of Numbers look like this
+
+Like this
+
+&lt;div class=rtable&gt;
+&lt;table&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 84 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 45 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -35 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; -16 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -41 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 27 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -76 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -58 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -58 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; -94 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -63 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -84 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 52 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -58 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -51 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 54 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -73 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -19 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 77 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 84 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -99 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -47 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -94 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -69 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 98 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 31 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -46 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -53 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 98 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 32 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 90 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -41 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 52 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -65 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -93 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -26 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -94 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 97 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -59 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -84 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -51 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 99 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 41 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 73 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 51 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 71 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -82 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 95 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 95 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 39 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -62 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 51 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 73 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 82 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 26 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -52 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -98 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 59 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 34 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 79 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -35 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -95 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 39 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -80 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -39 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 61 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 96 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -56 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 74 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -95 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -12 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 98 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 58 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; -46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 21 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 93 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 47 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 47 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -46 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 39 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -92 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -88 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -35 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 52 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 64 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 36 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -40 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+
+---
+
+# Summary numbers
+
+We want to reduce the big set of numbers down to a few numbers that we can look at and make sense of.
+
+## Sameness (Central Tendency)
+
+- What are all the numbers close to? (topic from last class)
+
+## Differentness (Variance)
+
+- How different are the numbers? (topic for this class)
+
+---
+
+
+class: pink, center, middle, clear
+
+# Graph the numbers to get a better look at the differences
+
+---
+
+# Histogram
+
+We can see the spread in the data, there are different numbers...
+
+&lt;img src="2b_variation_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: pink, center, middle, clear
+
+# Range
+
+---
+
+
+# The Range
+
+&lt;img src="2b_variation_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+# The Range
+
+The range is two numbers.
+
+- minimum value: the smallest number in the data
+- maximum value: the largest number in the data
+
+`1 4 3 6 5 7 6 8 7 6 9`
+
+Range is (1,9)
+
+- smallest number is 1
+- largest number is 9
+
+---
+
+# min()
+
+Use the `min()` function to find the smallest value in a variable in R
+
+
+```r
+x &lt;- c(1,4,3,6,5,7,6,8,7,6,9)
+min(x)
+```
+
+```
+## [1] 1
+```
+
+---
+
+# max()
+
+Use the `max()` function to find the largest value in a variable in R
+
+
+```r
+x &lt;- c(1,4,3,6,5,7,6,8,7,6,9)
+max(x)
+```
+
+```
+## [1] 9
+```
+
+---
+
+# Thinking about the range
+
+- Pros: Great way to find out the largest possible difference
+
+- Cons: The biggest possible difference is probably not representative of all the differences in the numbers
+
+
+---
+
+# Some numbers
+
+Here are two sets of numbers. What is the range? Does it do a good job showing the average differences?
+
+`1 5 6 5 4 5 6 5 4 5 6 5 4 100`
+
+`1 2 1 2 1 1 1 1 2 2 2 2 1 2` 
+
+
+---
+
+# Average differences
+
+- It would be nice if we could find a way to measure the average amount of differences. 
+
+- This average could be a **representative** value that summarizes the differences between the numbers
+
+---
+
+# Average differences
+
+What should the average difference for these numbers be?
+
+` 1 2 1 2 1 1 1 1 2 2 2 2 1 2` 
+
+- All of the numbers are 1s or 2s. 
+- The difference between 1 and 2 is 1
+- It seems the average difference should be 1 (+ or -)
+
+---
+
+# Differences between numbers
+
+Consider these 10 numbers:
+
+` 1 3 4 5 5 6 7 8 9 24`
+
+- We can see there are some differences, they are not all the same.
+
+- We can measure the differences, by finding the difference between each score, and every other scores
+
+- e.g., 1-3 = 2, 1-4 = 3, etc.
+
+---
+
+# Difference scores
+
+&lt;img src="figs/2bdifferences.png" width="1789" /&gt;
+
+---
+
+# Problem: The sum = 0
+
+&lt;img src="figs/2bdifferences.png" width="1789" /&gt;
+
+---
+
+# Summarizing the difference scores
+
+1. We can find the differences between scores
+--
+
+2. There are lots of difference scores
+--
+
+3. Even though we can see the difference scores have different values, we can't summarize them in the normal fashion
+
+--
+4. The sum adds up to 0...
+
+--
+5. How can we solve the problem?
+
+---
+
+class: pink, center, middle, clear
+
+# Difference scores from the mean
+
+---
+
+# Difference scores from the mean
+
+Consider these numbers:
+
+` 1 6 4 2 6 8`
+
+1. We can compute the mean to describe the central tendency of the numbers
+
+2. How far off is the mean for each number? This is the amount of error
+
+3. The difference scores from the mean show how far off (different) each score is from the mean
+
+difference score = `\(\bar{X} - x_{i}\)`
+
+---
+
+# Difference scores from the mean
+
+&lt;img src="figs/2bdiffmean.png" width="1776" /&gt;
+
+---
+
+# sum = 0, Same problem...
+
+&lt;img src="figs/2bdiffmean.png" width="1776" /&gt;
+
+---
+
+# Mean is the balancing point
+
+1. The mean is the balancing point in the data
+
+--
+2. Half of the data is on one side of the mean, the other half is on the other side
+
+--
+3. Difference scores from mean will always sum to 0
+
+---
+
+# The mean minimizes the deviations
+
+The mean is the only number that minimizes the sum of the deviations (difference scores)
+
+`\(\sum_{i=1}^{i=N} (\bar{X} - x_{i}) = 0\)`
+
+--
+
+If the mean difference scores will always sum to 0, how can we find a sum for the difference scores that does not sum to 0?
+
+---
+
+class: pink, center, middle, clear
+
+# Squared Deviations
+
+---
+
+# Squared deviations
+
+&lt;img src="figs/2bsquared.png" width="1763" /&gt;
+
+---
+
+# Squared deviations
+
+Why square the deviations (differences between mean and each score)?
+
+- Squaring converts all the negative numbers to postive numbers
+- This allows us to sum them all up, and not get 0!
+
+---
+
+class: pink, center, middle, clear
+
+# SS (Sum of squared deviations)
+
+---
+
+# SS (sum of squared deviations)
+
+&lt;img src="figs/2bsquaredSS.png" width="1763" /&gt;
+
+---
+
+# SS (sum of squared deviations)
+
+The formula for the sum of squared deviations (SS, also called sum of squares) is:
+
+`\(SS = \sum_{i=1}^{i=N} (\bar{X} - x_{i})^2\)`
+
+---
+
+# What next?
+
+1. We've found a way to sum up the differences (SS)
+
+--
+
+2. We used the squared differences from the mean, and added them all up
+
+--
+3. How can we find the average? Remember, we want a single number that does a good job of representing the differences...
+
+---
+
+class: pink, center, middle, clear
+
+# Variance
+
+---
+
+# Variance = SS/N
+
+&lt;img src="figs/2bsquaredV.png" width="1763" /&gt;
+
+---
+
+# Jargon
+
+1. Learning statistics can be confusing because there are many new terms, and some of them refer to normal everyday concepts
+
+Everyday words:
+
+  - Variability &amp; Variance: The things aren't all the same, they have some variability
+  
+**Statistical Variance**: The average of the sum of the squared difference scores from the mean 
+
+---
+
+# Variance
+
+The average of the sum of the squared difference scores from the mean 
+
+`\(Variance = SS / N\)`
+
+`\(Variance = \frac{\sum_{i=1}^{i=N}(\bar{X}-x_i)^2}{N}\)`
+
+Usefulness
+
+Pros: The variance provides us with one summary number about the average differences
+
+Cons: We squared the differences, so the variance doesn't directly relate to size of the original differences
+
+---
+
+# The variance is too big
+
+&lt;img src="figs/2bsquaredV2.png" width="1763" /&gt;
+
+---
+
+# What to do?
+
+1. We are searching for a summary number to represent the differences in our data.
+
+--
+2. The variance is too big because of squaring
+
+--
+3. What can we do to solve the problem, and make our summary number in the range of the actual differences?
+
+---
+
+# Square root the variance
+
+1. Squaring numbers makes them bigger (e.g., `\(2^2 =4\)`)
+2. Square rooting numbers brings them back down to their unsquared size (e.g., `\(\sqrt{2^2}=2\)`)
+3. Let's square root the variance
+
+---
+
+# Square root the variance
+
+&lt;img src="figs/2bsquaredV3.png" width="1763" /&gt;
+
+---
+
+class: pink, center, middle, clear
+
+# Standard Deviation
+
+---
+
+# Standard deviation = sqrt(variance)
+
+When we took the square root of the variance, we also did something else, called computing the **standard deviation**.
+
+`\(\text{standard deviation} = \sqrt{\text{variance}}\)`
+
+`\(\text{standard deviation} = \sqrt{\frac{SS}{N}}\)`
+
+`\(\text{standard deviation} = \sqrt{ \frac{\sum_{i=1}^{i=N}(\bar{X}-x_i)^2}{N}}\)`
+
+The standard deviation is a summary of the variability in the data that is in the same scale as the original differences
+
+---
+
+# Standard Deviation
+
+&lt;img src="figs/2bsquaredV3.png" width="1763" /&gt;
+
+---
+
+# Populations vs samples
+
+There are different formulas for the variance and standard deviation, depending on whether your data represents an entire population of scores, or just a sample (a subset of the population).
+
+**Population**: Divide by N (this is what you will do for the quiz, we tell you to divide by N)
+
+**Sample**: Divide by N-1 (this is what you will do in the lab)
+
+- The differences are explained in week 4 (distributions and sampling)
+
+---
+
+class: pink, center, middle, clear
+
+# Data sense with Descriptives
+
+---
+
+# What if?
+
+- Someone told you they had some numbers with:
+
+--
+
+- Mean = 100, Standard Deviation = 25
+
+--
+
+- What would most of the numbers be like?
+- What would be a good summary of the average differences in the data?
+- What kind of numbers would you expect to see or not see?
+
+---
+
+# Animating the standard deviation
+
+&lt;img src="figs/2banimSD.gif" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: pink, center, middle, clear
+
+# R tips
+
+---
+
+# Warning
+
+- R has functions for variance and standard deviation...
+- But, they divide by N-1, not N
+- We talk about what this means later in the course, and why R does this
+- For now, you can't use the R formulas `sd()` or `var()`
+
+---
+
+# R: Mean difference scores
+
+
+```r
+x &lt;- c(8,2,6,4,6,2,4,4)
+mean(x)-x
+```
+
+```
+## [1] -3.5  2.5 -1.5  0.5 -1.5  2.5  0.5  0.5
+```
+
+```r
+sum(mean(x)-x)
+```
+
+```
+## [1] 0
+```
+
+---
+
+# R: Squared deviations
+
+
+```r
+x &lt;- c(8,2,6,4,6,2,4,4)
+(mean(x)-x)^2
+```
+
+```
+## [1] 12.25  6.25  2.25  0.25  2.25  6.25  0.25  0.25
+```
+
+---
+
+# R: SS, sum of squares
+
+
+```r
+x &lt;- c(8,2,6,4,6,2,4,4)
+sum((mean(x)-x)^2)
+```
+
+```
+## [1] 30
+```
+
+More explicit code:
+
+
+```r
+x &lt;- c(8,2,6,4,6,2,4,4)
+squared_deviations &lt;- (mean(x)-x)^2
+SS &lt;- sum(squared_deviations)
+SS
+```
+
+```
+## [1] 30
+```
+
+---
+
+# R: Variance
+
+
+```r
+x &lt;- c(8,2,6,4,6,2,4,4)
+squared_deviations &lt;- (mean(x)-x)^2
+SS &lt;- sum(squared_deviations)
+N &lt;- length(x)
+variance &lt;- SS/N
+variance
+```
+
+```
+## [1] 3.75
+```
+
+---
+
+# R: Standard Deviation
+
+
+```r
+x &lt;- c(8,2,6,4,6,2,4,4)
+squared_deviations &lt;- (mean(x)-x)^2
+SS &lt;- sum(squared_deviations)
+N &lt;- length(x)
+variance &lt;- SS/N
+standard_deviation &lt;- sqrt(variance)
+standard_deviation
+```
+
+```
+## [1] 1.936492
+```
+
+---
+
+# Next class: Variation
+
+1. Today we looked measures of variability, to summarize differences in the data
+
+2. Tuesday, September 11th **No Class**
+
+3. Thursday, Septemebr 13th, we look at how measurements of more than one variable can be related to one another (correlation)
+
+---
+
+# Reminder
+
+1. Quiz 2 for this week is due next Tuesday @ 11:59pm
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
