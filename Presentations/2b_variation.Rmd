@@ -41,11 +41,11 @@ knitr::kable(a, 'html')
 
 We want to reduce the big set of numbers down to a few numbers that we can look at and make sense of.
 
-## Sameness (Central Tendency)
+**Sameness (Central Tendency)**
 
 - What are all the numbers close to? (topic from last class)
 
-## Differentness (Variance)
+**Differentness (Variance)**
 
 - How different are the numbers? (topic for this class)
 
@@ -582,4 +582,4 @@ standard_deviation
 
 # Reminder
 
-1. Quiz 2 for this week is due next Tuesday @ 11:59pm
+1. Quiz 2 for this week is due next Thursday @ 11:59pm
