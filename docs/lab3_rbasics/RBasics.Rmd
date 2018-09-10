@@ -1,0 +1,145 @@
+---
+title: "R Basics"
+output: 
+ html_document:
+   toc: true
+   toc_float: true
+   collapsed: false
+   number_sections: false
+   toc_depth: 4
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Lab 3 is called R Basics. In the first two labs you have been introduced to R and R-studio with working example code for graphing and descriptive statistics. This lab is intended to familiarize you with some basic R operations. 
+
+**Instructions**: Below you will find two things. Screencasts and some lists of problems to learn about and solve. The screencasts show how to solve all the problems.
+
+Your task will be to create a blank .Rmd file, and then solve as many of these problems as you can. Submit your .rmd file on blackboard. This lab is intended to help resolve some basic issues and errors that might crop up when you use R and R-studio. Your .rmd file simply has to show that you worked through the lab.
+
+### R-studio basics
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X7nBaqvM36E" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+1. Do you know where the console is, and what it does?
+2. Do you know where the editor window is and what it does.
+3. Do you know the difference between writing code in the editor in window, and running code in the console?
+4. What is the environment tab, and what does it show you?
+5. How to clear the workspace
+6. What is the files tab, and what does it show you?
+7. How to copy a file
+8. How to rename a file
+9. How to move a file
+
+### R scripts and R markdown files
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/no2ezd2nOR8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+In our class we are primarily working with .Rmd files, otherwise called R markdown files. R markdown files provide a way to write plain language as well as code, and have your notes, your code, and the output of your code be compiled to a document so that everything is one place. There are other ways to write code in R, including using regular R scripts, these have a .R ending. Although we don't use .R scripts in the lab, it is worth knowing what they are. You should be able to:
+
+1. Make a new R markdown file
+2. Delete the template to start fresh
+3. Save your R markdown file
+4. Add some notes and code to the file
+5. know how to make an R code block
+6. Knit the file
+7. Know how to set eval=FALSE so the code bock does not run
+8. Know how to set echo=FALSE to the code block is not displayed
+9. Add comments to a code block
+
+
+1. Make a new R script
+2. add code to an r script
+3. add comments to an r script
+4. save an r script
+5. run code from an r script
+
+### Basic R stuff
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QxkCm-fgN90" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+1. Do basic math with R
+2. Store a number in a variable
+3. Store a string in a variable
+4. Store multiple numbers in a variable
+5. Store multiple strings in a variable
+6. Index a particular location in a variable
+7. Replace a particular value in a variable at a particular location
+8. Do basic math with numbers in variable.
+9. Hot key for running a line a code
+10. Copy and paste code into console and press enter
+11. press play in Rmd file to run code in code block
+12. Select any number of lines and run code using hot key
+
+
+### R packages
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FY6OQgjZrj4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+1. Know how to install an R package
+2. Know how to load a package using `library()`
+3. Know how to load a package by clicking it in the packages a tab
+4. Understand why knitting would fail if you did not load a library you need in your .rmd file.
+
+#### Data
+
+1. Know how to load a .csv file from a data folder using `library(data.table)` and the `fread()` function
+
+#### First things first (order matters)
+
+R code provides a recipe for completing operations. These operations usually need to be completed in order from first to last. In the lab assignments, there are lots of examples of code from the beginning of the lab to the end of the lab. All of the code will work when the code is run in order from first to last. If you are trying to run some code near the end, but have not first run the code blocks at the beginning, this could be one reason why your code isn't running. Watch the screencast to see some examples
+
+#### Where does the output go?
+
+1. If you run a line a code in the console to make a variable contain some numbers, where does the variable get stored?
+
+2. If you run a line of code from an .rmd file to make a variable contain some numbers, where does the variable get stored?
+
+3. If you run a line of code from an .rmd file by knitting the .rmd file, where does the variable get stored?
+
+### Data frames
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Mi0Y3LWt0ec" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+1. What is a data frame?
+2. How to make a data frame
+3. How to change the column names of a data frame
+4. How to select the data in one column of a data frame
+5. how to convert strings to factors
+
+#### Using some basic R functions
+
+1. use `rep()` to replicate something many times
+
+```{r, eval=FALSE}
+
+rep(x=1, times=5)
+rep(1,5)
+rep(300,4)
+rep(c(1,2,3),2)
+rep(c(1,2,3),each=2)
+rep("words",4)
+
+```
+
+2. use `seq()` to make a sequence of numbers
+
+```{r, eval=FALSE}
+seq(1,5,1)
+seq(from=100, to=10, by= -10)
+rep(seq(1,3,1),times=2)
+```
+
+### dplyr
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y8wTRUV_jqc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+Some discussion of how we have used dplyr so far up to lab 2
+
+
+
+
+
+
