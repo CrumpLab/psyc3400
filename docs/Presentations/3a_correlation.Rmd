@@ -1,0 +1,505 @@
+---
+title: "Correlation"
+subtitle: "Relationships between measures"
+author: "Matthew Crump"
+date: "2018/07/20 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: ["defaultb.css", "metropolisb.css", "metropolis-fontsb.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE, cache = TRUE)
+```
+
+class: pink, center, middle, clear
+
+# Correlation does not equal Causation
+
+---
+
+# Questions for this class
+
+1. **What is Causation?** Why do we care about it?
+
+2. **What is Correlation?** Why do we care about it?
+
+3. **Why does correlation not equal causation?**...lots of reasons
+
+---
+
+# Causation
+
+Why does a ping pong ball move when you hit it?
+
+```{r, out.width="75%"}
+knitr::include_graphics("figs/correlation/Figures/Figures.001.png")
+```
+
+
+---
+
+# Simple Physics
+
+1. The energy from swinging the paddle gets transferred to the ping pong ball when they collide
+
+2. The **force** in the paddle that is transferred to the ball **causes** the ball to move
+
+---
+
+# Measuring two things
+
+What if we measured two things in the ping pong ball example
+
+1. The strength of the swing
+
+2. The distance travelled by the ball
+
+Would we expect a relationship between the two measurements, what would happen to the ball if we swung the paddle soft, to medium, to hard?
+
+---
+
+class: pink, center, middle, clear
+
+```{r}
+knitr::include_graphics("figs/correlation/Figures/Figures.002.png")
+```
+
+---
+
+class: pink, center, middle, clear
+
+```{r}
+knitr::include_graphics("figs/correlation/Figures/Figures.003.png")
+```
+
+---
+
+class: pink, center, middle, clear
+
+```{r}
+knitr::include_graphics("figs/correlation/Figures/Figures.004.png")
+```
+
+---
+
+class: pink, center, middle, clear
+
+```{r}
+knitr::include_graphics("figs/correlation/Figures/Figures.005.png")
+```
+
+---
+
+# What have we learned 
+
+1. We know hitting a ball can cause it to move
+
+--
+
+2. The action of the causal force can be measured by relating a measure of the cause (swing strength) to a measure of the outcome (distance travelled)
+
+--
+
+3. There is a positive relationship between the two measures, increasing swing strength is associated with longer distances
+
+---
+
+# What have we learned cont.
+
+4. We use the term **correlation** to describe the relationship between the two measures, in this case we found a **positive** correlation
+
+--
+
+5. We have seen that a causal force (swing strength) can produce a correlation between two measures
+
+---
+
+class: pink, center, middle, clear
+
+# What if we indirectly measured swing strength by asking the person to report how hard they thought the swing was
+
+---
+
+class: center, middle, clear
+
+```{r}
+knitr::include_graphics("figs/correlation/Figures/Figures.006.png")
+```
+
+---
+
+class: pink, center, middle, clear
+
+# What if our x-axis was a random number chosen by somebody before each swing?
+
+---
+
+class: center, middle, clear
+
+```{r}
+knitr::include_graphics("figs/correlation/Figures/Figures.007.png")
+```
+
+---
+
+# Causation
+
+1. Psychological science is interested in understanding the causes of psychological processes
+
+--
+
+2. We can measure change in a causal force, and measure change in an outcome (psychological process)
+
+--
+
+3. If the force causally changes the outcome, we expect a relationship or association between the force and the outcome.
+
+---
+
+# Correlation
+
+1. A measure of association or relationship between two variables
+
+--
+
+2. In general, correlations occur when change in one variable corresponds in some regular way to change in another variable
+
+---
+
+# 3 kinds of correlation
+
+```{r}
+knitr::include_graphics('figs/correlation/3posnegrand-1.png')
+```
+
+---
+
+# Positive correlation
+
+- **Increases** in the X variable are associated with **increases** in the Y variable
+
+AND
+
+- **Decreases** in the X variable are associated with **decreases** in the Y variable
+
+---
+
+# Negative correlation
+
+- **Increases** in the X variable are associated with **decreases** in the Y variable
+
+AND
+
+- **Decreases** in the X variable are associated with **increases** in the Y variable
+
+---
+
+# Random (no correlation)
+
+- **Increases** in the X variable are **NOT** associated with **increases** or **decreases** in the Y variable
+
+AND
+
+- **Decreases** in the X variable are **NOT** associated with **increases** or **decreases** in the Y variable
+
+---
+
+class: pink, center, middle, clear
+
+# Correlations can be weak or strong
+
+---
+
+# Increasing positive correlation
+
+```{r}
+library(ggplot2)
+all_df<-data.frame()
+for(r in 0:8){
+  A<-1:20
+  B<-1:20
+  rA<-runif(20,-r,r)
+  rB<-runif(20,-r,r)
+  pearson<-round(cor((A+rA),(B+rB)),digits=2)
+  temp_df<-data.frame(x=(A+rA), y=(B+rB),sim=rep(pearson,20))
+  all_df<-rbind(all_df, temp_df)
+}
+
+ggplot(all_df, aes(x=x,y=y))+
+  geom_point()+
+  theme_classic(base_size=20)+
+  facet_wrap(~sim)
+
+
+```
+
+---
+
+# Negative correlations
+
+```{r}
+all_df<-data.frame()
+for(r in 0:8){
+  A<-1:20
+  B<-20:1
+  rA<-runif(20,-r,r)
+  rB<-runif(20,-r,r)
+  pearson<-round(cor((A+rA),(B+rB)),digits=2)
+  temp_df<-data.frame(x=(A+rA), y=(B+rB),sim=rep(pearson,20))
+  all_df<-rbind(all_df, temp_df)
+}
+
+ggplot(all_df, aes(x=x,y=y))+
+  geom_point()+
+  theme_classic(base_size=20)+
+  facet_wrap(~sim)
+
+
+```
+
+---
+
+# Correlation Strength
+
+- Super strong (Perfect): dots all line up, no exceptions
+
+- Strong: Clear pattern, not much variation in dots
+
+- Medium: There is a pattern but dots have a lot of variaion
+
+- Weak: Sort of a hint of a pattern, dots have loads of variation
+
+- None: Dots are everywhere, no clear pattern
+
+---
+
+# Pearson's r
+
+A single number that summarizes the strength of the correlation
+
+- varies between -1 and 1
+- 0 means no correlation
+- 1 means perfect positive correlation
+- (-1) means perfect negative correlation
+- values in between indicate more or less strength
+
+**How do we compute this number?**
+
+---
+
+# Formula for Pearson's r
+
+```{r}
+knitr::include_graphics('figs/correlation/cov.png')
+```
+
+```{r}
+knitr::include_graphics('figs/correlation/r.png')
+```
+
+---
+
+# Covariation
+
+If you have two measures that can vary, then **co-variation** is how they vary together
+
+- If the variation in X is associated (predicts or corresponds to) variation in Y, then there is some co-variation
+
+- If the variation in X is totally random (does not predict or correspond to) variation in Y, then there isn't co-variation, there's just a lot of variation.
+
+---
+
+# Measuring covariation
+
+1. We will look at two set of measures taken from 10 fictitious people (how much chocolate they have, and how happy they are)
+
+2. We show that multiplying the scores and summing them up can help us measure covariation
+
+3. We then show to compute covarition more formally using mean difference scores
+
+---
+
+# Two variables
+
+```{r,out.width="80%"}
+knitr::include_graphics('figs/correlation/cov1.png')
+```
+
+
+---
+
+# Sum of products
+
+```{r,out.width="80%"}
+knitr::include_graphics('figs/correlation/cov2.png')
+```
+
+
+---
+
+# Sum of products continued
+
+1. multiply each pair of scores
+2. sum them all up
+
+- What would make the sum of products very large?
+
+- What would make the sum of prodcuts very small?
+
+
+---
+
+# Biggest (XY) vs. smallest (AB)
+
+```{r,out.width="80%"}
+knitr::include_graphics('figs/correlation/cov3.png')
+```
+
+
+---
+
+# Biggest vs. smallest sums of products
+
+**Biggest sum** - occurs when the smallest to largest numbers in X, are perfectly lined up with the smallest to largest numbers in Y
+
+**Smallest sum** - occurs when the smallest to largest numbers in X, are perfectly lined up with LARGEST to SMALLEST numbers in Y
+
+---
+
+# Simulation demonstration
+
+1. Take the numbers in X and Y
+2. Randomly scramble the numbers in X
+3. Randomly scramble the numbers in Y
+4. Compute the sum of products
+5. Do this a bunch to see if the sum of products is always between the smallest and biggest value that we have already found for these numbers
+
+---
+
+# Simulation Results
+
+```{r,out.width="80%"}
+knitr::include_graphics('figs/correlation/3simsum-1.png')
+```
+
+---
+
+# The problem
+
+A sum of products can describe the covariation between two measurements, but it is not a convenient number.
+
+- It is not readily interpretable, need to know the possible range to know whether the observed value reflects positive, negative, or 0 co-variation
+
+---
+
+# Covariation (the formula)
+
+Notice the formula for the covariation involves a sum of products, but the products are not between the raw data, they are between the mean difference scores
+
+```{r}
+knitr::include_graphics('figs/correlation/cov.png')
+```
+
+---
+
+# Still a problem
+
+Covariation can tell us about correlation in the data, it is a measure of correlation.
+
+- It varies between negative and postive values, so we can know the direction of the correlation
+
+- But, we still need to know the possible range to interpret the strength
+
+- **Solution**, transform the covarition so it is always between -1 and +1
+
+---
+
+
+
+# Computing Covariation
+
+```{r, out.width="80%"}
+knitr::include_graphics('figs/correlation/cov4.png')
+```
+
+---
+
+# Back to Pearson's r
+
+Pearson's r divides the covariance by the product of the standard deviations of each variable. This causes the r-value to be between -1 and 1
+
+```{r}
+knitr::include_graphics('figs/correlation/r.png')
+```
+
+---
+
+# R: sum of products
+
+```{r, echo=TRUE}
+x <- c(1,2,3,4,5)
+y <- c(4,3,6,7,8)
+x*y
+sum(x*y)
+```
+
+---
+
+# R: covariation
+
+```{r, echo=TRUE}
+x <- c(1,2,3,4,5)
+y <- c(4,3,6,7,8)
+N <- 5
+sum((x-mean(x))*(y-mean(y)))/N
+```
+
+---
+
+# R: Pearson's r
+
+```{r, echo=TRUE}
+x <- c(1,2,3,4,5)
+y <- c(4,3,6,7,8)
+N <- 100
+covariation<-sum((x-mean(x))*(y-mean(y)))/N
+SD_x <- sqrt(sum((x-mean(x))^2)/N)
+SD_y <- sqrt(sum((y-mean(y))^2)/N)
+r <- covariation/(SD_x*SD_y)
+r
+```
+
+---
+
+# R's cor() function
+
+R has a function to compute correlations called `cor()`. 
+```{r}
+x <- c(1,2,3,4,5)
+y <- c(4,3,6,7,8)
+cor(x,y)
+
+```
+
+---
+
+# Next class: Variation
+
+1. Today we looked measures of variability, to summarize differences in the data
+
+2. Tuesday, September 11th **No Class**
+
+3. Thursday, Septemebr 13th, we look at how measurements of more than one variable can be related to one another (correlation)
+
+---
+
+# Reminder
+
+1. Quiz 2 for this week is due next Thursday @ 11:59pm
