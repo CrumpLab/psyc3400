@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Correlation
 ## Relationships between measures
 ### Matthew Crump
-### 2018/07/20 (updated: 2018-09-12)
+### 2018/07/20 (updated: 2018-09-13)
 
 ---
 
@@ -437,25 +437,149 @@ r
 
 R has a function to compute correlations called `cor()`. 
 
+```r
+x &lt;- c(1,2,3,4,5)
+y &lt;- c(4,3,6,7,8)
+cor(x,y)
+```
+
 ```
 ## [1] 0.9149914
 ```
 
+
+
+
 ---
 
-# Next class: Variation
+# Pearson's r (a different way)
 
-1. Today we looked measures of variability, to summarize differences in the data
+1. Pearson's r gives us a value between -1 and 1 that is easier to interpret than covariation (which is not necessarilly between -1 and 1).
 
-2. Tuesday, September 11th **No Class**
+2. The reason covariance is not between -1 and 1 is because the values for X and Y can have very different ranges
 
-3. Thursday, Septemebr 13th, we look at how measurements of more than one variable can be related to one another (correlation)
+What happens when we transform the X and Y values so they are in the same range...
+
+---
+
+# Transforming Scores
+
+Any set of scores can be transformed. 
+
+E.g., to transorm proportions (between 0 and 1) to percentages, between 0 and 100, we multiply the proportions by 100
+
+
+```r
+x &lt;- c(.1,  .3, .5, .6, .8, .9)
+x
+```
+
+```
+## [1] 0.1 0.3 0.5 0.6 0.8 0.9
+```
+
+```r
+x*100
+```
+
+```
+## [1] 10 30 50 60 80 90
+```
+
+---
+
+# Difference score transformation
+
+If we subtract the mean from each score, we center the data around 0, and preserve the differences between the numbers, but ranges can be different. 
+
+
+```r
+x &lt;- c(1,3,5,7,9)
+x-mean(x)
+```
+
+```
+## [1] -4 -2  0  2  4
+```
+
+```r
+y &lt;- c(100,300,500,700,900)
+y-mean(y)
+```
+
+```
+## [1] -400 -200    0  200  400
+```
+
+
+---
+
+# Z score transformation
+
+If we divide the mean difference scores by their standard deviation, we center the data around 0, and make the ranges the same
+
+
+```r
+x &lt;- c(1,3,5,7,9)
+(x-mean(x)) / sd(x)
+```
+
+```
+## [1] -1.2649111 -0.6324555  0.0000000  0.6324555  1.2649111
+```
+
+```r
+y &lt;- c(100,300,500,700,900)
+(y-mean(y)) / sd(y)
+```
+
+```
+## [1] -1.2649111 -0.6324555  0.0000000  0.6324555  1.2649111
+```
+
+---
+
+# Computing correlation from z-scores
+
+
+```r
+x &lt;- c(1,4,6,8,9)
+y &lt;- c(200,500,100,800,900)
+N &lt;- 5
+z_x &lt;- (x-mean(x)) / sd(x)
+z_y &lt;- (y-mean(y)) / sd(y)
+covariation &lt;- sum(z_x*z_y)/(N-1)
+covariation
+```
+
+```
+## [1] 0.7270769
+```
+
+```r
+cor(x,y)
+```
+
+```
+## [1] 0.7270769
+```
+
+---
+
+# Next class: Regression
+
+1. Today we looked a measure of correlation, to summarize assocations between two measures
+
+2. Tuesday, September 18th **No Class**
+
+3. Thursday, September 20th, we continue to look at interpreting correlations, and introduce the concept of regression. (READ THE TEXTBOOK)
 
 ---
 
 # Reminder
 
-1. Quiz 2 for this week is due next Thursday @ 11:59pm
+1. Quiz 2 for last week is due tonight @ 11:59pm
+2. Quiz 3 for this week will be up by Monday, it will be due Tuesday, September, 25th.
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
