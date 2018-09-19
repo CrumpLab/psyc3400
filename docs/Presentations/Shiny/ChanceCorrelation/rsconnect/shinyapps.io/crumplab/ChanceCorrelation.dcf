@@ -1,0 +1,12 @@
+name: ChanceCorrelation
+title: ChanceCorrelation
+username:
+account: crumplab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 455604
+bundleId: 1593930
+url: https://crumplab.shinyapps.io/ChanceCorrelation/
+when: 1537370257.62031
+asMultiple: FALSE
+asStatic: FALSE

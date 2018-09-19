@@ -1,0 +1,12 @@
+name: Lines
+title: Lines
+username:
+account: crumplab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 455177
+bundleId: 1593570
+url: https://crumplab.shinyapps.io/Lines/
+when: 1537359513.25803
+asMultiple: FALSE
+asStatic: FALSE

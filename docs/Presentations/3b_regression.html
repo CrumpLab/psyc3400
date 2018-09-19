@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Correlation</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Correlation
+## Regression, interpretation, and chance
+### Matthew Crump
+### 2018/07/20 (updated: 2018-09-19)
+
+---
+
+
+
+
+class: pink, center, middle, clear
+
+# Correlations can occur by chance
+
+---
+
+# Issues for this class
+
+1. **What is Regression?** 
+
+2. **Interpretation of Correlations**
+
+3. **Correlation and chance**
+
+---
+
+class: pink, center, middle, clear
+
+# Regression
+
+---
+
+# Regression
+
+- geometric interpretation of correlation
+- can be used for prediction
+
+---
+
+# Examples of correlation
+
+&lt;img src="figs/correlation/3posnegrand-1.png" width="1792" /&gt;
+
+---
+
+# Correlation with Regression lines
+
+&lt;img src="figs/correlation/3regression-1.png" width="1792" /&gt;
+
+---
+
+# What is a regression line?
+
+- the best fit line
+
+- what makes it the best fit line?
+
+---
+
+# Residuals and error
+
+&lt;img src="figs/correlation/3regressionResiduals-1.png" width="1792" /&gt;
+
+---
+
+# What is a regression line?
+
+- the best fit line
+
+- what makes it the best fit line?
+
+**The regression line minimizes the sum of the residuals**
+
+---
+
+# Animated Residuals
+
+![](figs/correlation/regression-1.gif)&lt;!-- --&gt;
+
+---
+
+# Minimizing the error
+
+&lt;img src="figs/correlation/3minimizeSS-1.png" width="1792" /&gt;
+
+---
+
+# Finding the best fit line
+
+- how do we find the best fit line?
+
+- First step, remember what lines are...
+
+---
+
+# Equation for a line
+
+`\(y = mx +b\)`
+
+`\(y = \text{slope}*x + \text{y intercept}\)`
+
+
+- y = value on y-axis
+- m = slope of the line
+- x = value on x-axis
+- b = a constant for the y-intercept
+
+---
+
+class: center, middle, clear
+
+&lt;iframe style="width:100%;height:100%;border-style:none;", src="https://crumplab.shinyapps.io/Lines/" /&gt;
+
+---
+
+# solving for y
+
+`\(y = .5x + 2\)`
+
+What is the value of y, when x is 0?
+
+`\(y = .5*0 + 2 = 0+2 = 2\)`
+
+What is the value of y, when x is 4?
+
+`\(y = .5*4 + 2 = 2+2 = 6\)`
+
+---
+
+# solving for x
+
+`\(y = .5x + 2\)`
+
+What is the value of x, when y is 4?
+
+`\(4 = .5*x + 2\)`
+
+`\(4-2 = .5*x\)`
+
+`\(2 = .5*x\)`
+
+`\(\frac{2}{.5} = x\)`
+
+`\(x = 1\)`
+
+---
+
+# Finding the best fit line
+
+&lt;img src="figs/correlation/reg1.png" width="867" /&gt;
+
+
+---
+
+# sample data
+
+&lt;img src="figs/correlation/reg2.png" width="1744" /&gt;
+
+---
+
+# sample calculations
+
+&lt;img src="figs/correlation/reg3.png" width="1496" /&gt;
+
+---
+
+# scatterplot plus regression line
+
+&lt;img src="figs/correlation/3corwithLine-1.png" width="1792" /&gt;
+
+---
+
+# R: intercept and slope
+
+
+```r
+x &lt;- c(1,4,3,6,5,7,8)
+y &lt;- c(2,5,1,8,6,8,9)
+df &lt;- data.frame(x,y)
+coef(lm(y~x, data=df))
+```
+
+```
+## (Intercept)           x 
+##  -0.2213115   1.1926230
+```
+
+---
+
+# Reminders: y-intercept
+
+What does the y-intercept mean?
+
+It is the value where the line crosses the y-axis when x = 0.
+
+---
+
+# Reminders: slope
+
+What does the slope mean?
+
+The slope tells you the rate of change. For example, for every 1 unit of x, you move the the "slope" amount on y.
+
+E.g., if slope = .5, then for every 1 unit of x, you increase y by .5 units.
+
+---
+
+class: pink, center, middle, clear
+
+# Interpreting Correlations
+
+&lt;img src="figs/correlation/CorXKCD.png" width="612" /&gt;
+
+---
+
+# What do correlations mean?
+
+Could mean that one variable causes change in another variable
+
+**BUT**, it can mean other things...
+
+2. Causal direction problem
+3. Non-linear problem
+4. Spurious correlations
+5. Chance problem
+
+---
+
+# Correlations as causes
+
+&lt;img src="figs/correlation/CorCause.png" width="80%" /&gt;
+
+---
+
+# Causal Directionality problem
+
+&lt;img src="figs/correlation/CorDirection.png" width="60%" /&gt;
+
+---
+
+# Nonlinearity problem
+
+&lt;img src="figs/correlation/CorNonlinear.png" width="60%" /&gt;
+
+---
+
+# Spurious correlations
+
+[http://www.tylervigen.com/spurious-correlations](http://www.tylervigen.com/spurious-correlations)
+
+---
+
+# Chance problem
+
+Correlations between two variables can occur by chance, and be completlely meaningless
+
+---
+
+class: pink, center, middle, clear
+
+# Correlations and Random Chance
+
+---
+
+# What is Randomness?
+
+Two related ideas:
+
+1. Things have equal chance of happening (e.g., a coin flip)
+  - 50% heads
+  - 50% tails
+
+2. Independence: One thing happening is totally unrelated to whether another thing happens
+  - the outcome of one flip doesn't predict the outcome of another
+  
+---
+
+# Two random variables
+
+On **average** there should be zero correlation between two variables containing randomly drawn numbers
+
+1. The numbers in variable X are drawn randomly (independently), so they do not predict numbers in Y
+2. The numbers in variable Y are drawn randomly (independently), so they do not predict numbers in X
+
+If X can't predict Y, then correlation should be 0 right?
+
+---
+
+# R: random numbers
+
+`runif()` allows you to sample `n` random numbers between a minimum and maximum value. Numbers in the range have an equal chance of occuring.
+
+
+```r
+runif(n=5, min=0, max=5)
+```
+
+```
+## [1] 2.7823796 1.7793979 0.3380814 0.7970099 2.1193088
+```
+
+```r
+runif(n=5, min=0, max=5)
+```
+
+```
+## [1] 1.209077 3.113228 1.294110 3.082745 1.560350
+```
+
+---
+
+# "Random" Correlations
+
+
+```r
+x &lt;- runif(n=5, min=0, max=5)
+y &lt;- runif(n=5, min=0, max=5)
+x
+```
+
+```
+## [1] 4.1140776 2.1363428 0.5185329 0.3099465 4.4108374
+```
+
+```r
+y
+```
+
+```
+## [1] 1.914633 4.400666 1.308386 2.734465 1.285952
+```
+
+```r
+cor(x,y)
+```
+
+```
+## [1] -0.2272809
+```
+
+
+---
+
+class: center, middle, clear
+
+&lt;iframe style="width:100%;height:100%;border-style:none;", src="https://crumplab.shinyapps.io/ChanceCorrelation/" /&gt;
+
+---
+
+# Small N "random" correlations
+
+![](figs/correlation/corUnifn10-1.gif)&lt;!-- --&gt;
+
+---
+
+# What is chance capable of?
+
+1. We can see that randomly sampling numbers can produce a range of correlations, even when there shouldn't be a "correlation"
+
+--
+
+2. What is the average correlation produced by chance?
+
+--
+
+3. What is the range of correlations that chance can produce?
+
+---
+
+# Simulating what chance can do
+
+&lt;img src="figs/correlation/3histrandcor-1.png" width="1792" /&gt;
+
+---
+
+# The role of sample size (N)
+
+![](figs/correlation/corUnifFourNs-1.gif)&lt;!-- --&gt;
+
+---
+
+# The role of sample size (N)
+
+The range of chance correlations decreases as N increases
+
+&lt;img src="figs/correlation/3corrandN-1.png" width="75%" /&gt;
+
+---
+
+class: pink, center, middle, clear
+
+# Statistical Inference (The rest of this course)
+
+---
+
+# The inference problem
+
+1. Let's say we found a correlation, (r = .5)
+
+2. We know chance can sometimes produce correlations
+
+**Problem for inference:**
+  - Is the correlation real? Is one variable really related to the other?
+  - Or, is the correlation spurious, and just happened to occur by chance?
+
+---
+
+# Making inferences about chance
+
+
+&lt;img src="figs/correlation/3corrandN-1.png" width="80%" /&gt;
+
+---
+
+# Next class: Distributions
+
+1. Tuesday, September 25th: We explore ideas about samples, populations, and distributions
+
+---
+
+# Reminder
+
+1. Quiz 3 for this week will be will be due Tuesday, September, 25th end of day (11:59pm).
+
+2. Quiz 4 for Distributions and Sampling will be posted next week on Tuesday.
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
