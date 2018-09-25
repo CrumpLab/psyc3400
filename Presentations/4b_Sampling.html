@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sampling</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Sampling
+## seeing what samples can do
+### Matthew Crump
+### 2018/07/20 (updated: 2018-09-24)
+
+---
+
+
+
+
+
+# Big ideas for this course
+
+1. Psychology interpets patterns in data to draw conclusions about psychological processes
+
+--
+
+2. Chance can produce "patterns" in data
+
+--
+
+3. **Problem**: How can we know if the pattern is real, or simply a random accident produced by chance
+
+---
+
+# Issues for this class
+
+1. **Sampling from distributions**
+
+2. **Normal distributions and central limit theorem**
+
+3. **Sampling distributions and statistics**
+
+---
+
+class: pink, center, middle, clear
+
+# Samples and populations
+
+---
+
+# Samples and populations
+
+- Population: A defined set of things
+
+- Sample: a subset of the population
+
+---
+
+# Random Sampling
+
+- A process for generating a sample (taking things from a population)
+
+--
+- Random samples ensure that each value in a sample is drawn **independently** from other values
+
+--
+- all values in the population have a chance of being in the sample
+
+---
+
+# Example: Sampling heights of people
+
+Let's say we wanted to know something about how tall people are. We can't measure the entire population (it's too big). So we take a sample.
+
+--
+
+What would happen if:
+
+1. We only measured really tall people (biased sample)
+
+--
+
+2. We randomly measured a bunch of people?
+
+
+---
+
+# Population statistics
+
+Populations have statistics. For example,
+
+The population of all people has:
+
+1. A distributions of heights
+2. The distribution has a mean (mean height of all people)
+3. The distribution has a standard deviation
+
+---
+
+# The population problem
+
+In the real world, we usually do not have all of the data for the entire population.
+
+So, we never actually know:
+
+1. The population distribution
+2. The population mean
+3. The population standard deviation, etc.
+
+
+---
+
+# The sampling solution
+
+Unknown: The population
+
+Solution: Take a sample of the population
+
+1. Samples will tend to look the population they came from, especially when sample-size (N) is large.
+
+2. We can use the sample to **estimate** the population.
+
+---
+
+# The sampling problem
+
+We take samples, and use them to estimate things. This works well when we have large, representative samples. 
+
+But, how do we know if the sample we obtained is "normal", or happens to be "weird"?
+
+Solution: We need to learn how the process of sampling works. We can use R to simulate the process of sampling. Then we can see how samples behave.
+
+---
+
+# Samples become populations
+
+- As sample-size increases, the sample becomes more like the population. 
+
+- As sample N approaches the population N, the sample becomes the population.
+
+---
+
+# Law of large numbers
+
+- As sample-size increases, properties of the sample become more like properties of the population
+
+Example:
+
+- As sample-size increases, the mean of the sample becomes more like the mean of the population
+
+---
+
+# Simulation: Population mean=100
+
+![](4b_Sampling_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+
+
+
+
+# Next class: Sampling
+
+1. Thursday, September 27th: We explore ideas about samples, populations, and distributions
+
+---
+
+# Reminder
+
+1. Quiz 3 for this week is due today Tuesday, September, 25th end of day (11:59pm).
+
+2. Quiz 4 for Distributions and Sampling will be posted by Wednesday, Due Next Tuesday (11:59 pm)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
