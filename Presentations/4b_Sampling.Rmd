@@ -666,6 +666,24 @@ knitr::include_graphics('figs/distribution/pop_samp.png')
 
 ---
 
+# sd() and SEM in R
+
+`sd()` computes the standard deviation using N-1
+
+```{r,echo=T}
+x <- c(4,6,5,7,8)
+sd(x)
+```
+
+SEM is estimate of standard deviation divided by square root of N
+
+```{r,echo=T}
+sd(x)/sqrt(length(x))
+```
+
+
+---
+
 # Questions for yourself
 
 1. What is the difference between a population mean and sample mean?

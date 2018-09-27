@@ -548,6 +548,34 @@ class: center, middle, clear
 
 ---
 
+# sd() and SEM in R
+
+`sd()` computes the standard deviation using N-1
+
+
+```r
+x &lt;- c(4,6,5,7,8)
+sd(x)
+```
+
+```
+## [1] 1.581139
+```
+
+SEM is estimate of standard deviation divided by square root of N
+
+
+```r
+sd(x)/sqrt(length(x))
+```
+
+```
+## [1] 0.7071068
+```
+
+
+---
+
 # Questions for yourself
 
 1. What is the difference between a population mean and sample mean?
