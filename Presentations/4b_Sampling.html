@@ -15,13 +15,31 @@ class: center, middle, inverse, title-slide
 # Sampling
 ## seeing what samples can do
 ### Matthew Crump
-### 2018/07/20 (updated: 2018-09-24)
+### 2018/07/20 (updated: 2018-09-27)
 
 ---
 
 
 
 
+
+class: pink, center, middle, clear
+
+# Make sure you understand sampling distributions
+
+---
+
+class: pink, center, middle, clear
+
+# Make sure you undertand this next graph
+
+---
+
+class: center, middle, clear
+
+&lt;img src="figs/distribution/pop_samp.png" width="2245" /&gt;
+
+---
 
 # Big ideas for this course
 
@@ -39,11 +57,11 @@ class: center, middle, inverse, title-slide
 
 # Issues for this class
 
-1. **Sampling from distributions**
+1. **Sampling distributions**
 
 2. **Normal distributions and central limit theorem**
 
-3. **Sampling distributions and statistics**
+3. **Estimation**
 
 ---
 
@@ -157,23 +175,420 @@ Example:
 
 # Simulation: Population mean=100
 
-![](4b_Sampling_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+![](4b_Sampling_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
 
 
 
+---
+
+# The sampling problem
+
+We take samples, and use them to estimate things. This works well when we have large, representative samples. 
+
+**But, how do we know if the sample we obtained is "normal", or happens to be "weird"?**
+
+Solution: **Sampling Distributions**
 
 
-# Next class: Sampling
+---
 
-1. Thursday, September 27th: We explore ideas about samples, populations, and distributions
+class: pink, center, middle, clear
+
+# Sampling distributions
+
+---
+
+# What are sampling distributions?
+
+- Definition: The distribution of a sample statistic
+
+- Example: 
+  - Many samples are drawn from the same distribution
+  - A statistic (e.g., mean, standard deviation) is computed for each sample, and saved
+  - The sampling distribution is the distribution of the measured statistic for each sample
+  - Sampling distributions can be simulated in R
+
+---
+
+# Begin with a distribution
+
+![](4b_Sampling_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+
+# Take many samples
+
+Save a sample statistic (e.g., mean) for each sample
+
+![](figs/distribution/sampleHistUnif-1.gif)&lt;!-- --&gt;
+
+---
+
+# Plot distribution of sample statistic
+
+&lt;img src="figs/distribution/4unifmany-1.png" width="1792" /&gt;
+
+---
+
+# Sampling distribution is bell-shaped
+
+Notice that the sampling distribution of the mean is bell-shaped, also called a **Normal Distribution**.
+
+&lt;img src="figs/distribution/4unifmany-1.png" width="50%" /&gt;
+
+---
+
+# Sampling distributions for anything
+
+A sampling distribution can be found for any sample statistic.
+
+1. Choose a statistic to measure (e.g., mean, median, variance, standard deviations, max, min, etc.)
+2. Measure statistics for each sample
+3. Plot the sampling distribution
+
+---
+
+# A few sampling distributions
+
+&lt;img src="figs/distribution/4samplestats-1.png" width="1792" /&gt;
+
+
+---
+
+# Use for sampling distributions?
+
+Question: What does a sampling distribution tell us?
+
+Answer: 
+
+- The distribution of values a sample statistic can take, for a sample of a particular size
+
+In other words,
+
+- Gives us information about range and probability of obtaining particular sample statistics
+
+---
+
+# Sampling distribution of the mean
+
+&lt;img src="figs/distribution/4unifmany-1.png" width="1792" /&gt;
+
+---
+
+# Standard error of the mean (SEM)
+
+- Definition: the standard deviation of the sampling distribution of the sample means
+
+Formulas: Can be computed directly for samples of any size if you know the standard deviation of the population distribution.
+
+`\(\text{SEM}=\frac{\text{standard deviation}}{\sqrt{N}}\)`
+
+`\(\text{SEM}=\frac{\sigma}{\sqrt{N}}\)`
+
+`\(\sigma\)` = population standard deviation
+
+---
+
+# SEM
+
+What does the SEM (standard error of the mean) tell you.
+
+- Let's say your sample mean was 5, and the SEM was 2.
+
+- The SEM is the standard deviation of the sampling distribution of the sample mean
+
+- Now you know that your sample mean is 5, but as an estimate of the population mean, that number varies a little bit. SEM tells you how much in standard deviation units.
+
+
+---
+
+# Central limit theorem
+
+With enough samples, sampling distributions are approximately **normal distributions**
+
+- Sampling distributions have the same shape as a normal distribution, even when the distribution that the sample came from does not have a normal shape.
+
+---
+
+class: pink, center, middle, clear
+
+# Normal Distributions
+
+---
+
+# Normal distributions are bell-shaped
+
+&lt;img src="figs/distribution/standardNormal-eps-converted-to.png" width="80%" /&gt;
+
+---
+
+# Normal distribution formula
+
+&lt;img src="figs/distribution/Normal_formula.png" width="715" /&gt;
+
+---
+
+# Normal distribution parameters
+
+Normal distributions have two important parameters that change their shape:
+
+1. The mean (where the peak of the distribution is centered)
+2. The standard deviation (how spread out the distribution is)
+
+---
+
+# Normal: Changing the mean
+
+![](figs/distribution/normalMovingMean-1.gif)&lt;!-- --&gt;
+
+---
+
+# Normal: Changing standard deviation
+
+![](figs/distribution/normalMovingSD-1.gif)&lt;!-- --&gt;
+
+---
+
+# rnorm()
+
+R has a function for generating numbers from a normal distribution.
+
+- n = number of samples
+- mean = mean of distribution
+- sd = standard deviation of distribution
+
+
+```r
+rnorm(n=100, mean = 50, sd = 25)
+```
+
+---
+
+# plotting a sample from a normal
+
+
+```r
+hist(rnorm(n=100, mean=50, sd=25))
+```
+
+&lt;img src="4b_Sampling_files/figure-html/unnamed-chunk-14-1.png" width="60%" /&gt;
+
+---
+
+
+# increasing N
+
+
+```r
+hist(rnorm(n=1000, mean=50, sd=25))
+```
+
+&lt;img src="4b_Sampling_files/figure-html/unnamed-chunk-15-1.png" width="60%" /&gt;
+
+
+---
+
+# Animating the central limit theorem
+
+![](figs/distribution/sampleDistNormal-1.gif)&lt;!-- --&gt;
+
+---
+
+# Normal &amp; central limit
+
+&lt;img src="figs/distribution/4sampledistmeannorm-1.png" width="1792" /&gt;
+
+---
+
+# Uniform &amp; central limit
+
+&lt;img src="figs/distribution/4samplemeanunif-1.png" width="1792" /&gt;
+
+---
+
+# exponential &amp; Central limit
+
+&lt;img src="figs/distribution/4samplemeanExp-1.png" width="1792" /&gt;
+
+---
+
+# Importance of central limit theorem
+
+1. We see that our sample statistics are distributed normally
+
+2. We can use our knowledge of normal distributions to help us make inferences about our samples.
+
+Question:
+
+A. What do we need to know about the normal distribution to make use of it?
+
+---
+
+# Normal distributions and probability
+
+&lt;img src="figs/distribution/4normalSDspercents-1.png" width="1792" /&gt;
+
+---
+
+# Normal distributions and probability
+
+&lt;img src="figs/distribution/4normalSDspercentsB-1.png" width="1792" /&gt;
+
+---
+
+# pnorm()
+
+Use the `pnorm()` function to determine the proportion of numbers up to a particular value
+
+q = quantile
+
+What proportion of values are smaller than 0, for a normal distribution with mean =0, and sd= 1?
+
+
+```r
+pnorm(q=0, mean= 0, sd =1)
+```
+
+```
+## [1] 0.5
+```
+
+
+---
+
+# pnorm() continued
+
+What proportion of values are between 0 and 1, for a normal distribution with mean =0, and sd =1?
+
+
+```r
+lower_value &lt;- pnorm(q=0, mean= 0, sd =1)
+higher_value &lt;- pnorm(q=1,mean=0, sd=1)
+higher_value-lower_value
+```
+
+```
+## [1] 0.3413447
+```
+
+---
+
+class: pink, center, middle, clear
+
+# Estimation
+
+---
+
+# Goals of estimation
+
+- Use statistics of samples to estimate the statistics of the population (parent distribution) they came from
+
+- Use statistics of samples to estimate "error" in the sample
+
+---
+
+# Biased vs. unbiased estimators
+
+Biased estimators: Sample statistics that are give systematically wrong estimates of a population parameter
+
+Unbiased estimators: Sample statistics that are not biased estimates of a population parameter
+
+---
+
+# Sample means are unbiased
+
+- The mean of a sample is an unbiased estimator of the population mean
+
+---
+
+# Sample demonstration
+
+![](4b_Sampling_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+
+
+---
+
+
+# Standard deviation is biased
+
+- The standard deviation formula (dividing by N) is a **biased** when applied to a sample, is a biased estimator of the population standard deviation.
+
+Formula for Population Standard Deviation
+
+`\(\text{Standard Deviation} = \sqrt{\frac{\sum{(x_{i}-\bar{X})^2}}{N}}\)`
+
+---
+
+# Sample demonstration
+
+![](4b_Sampling_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+
+---
+
+# Sample Standard Deviation
+
+- If we divide by N-1, which is the formula for a sample standard deviation, we get an **unbiased** estimate of the population standard deviation
+
+Formula for **Sample Standard Deviation**
+
+`\(\text{Standard Deviation} = \sqrt{\frac{\sum{(x_{i}-\bar{X})^2}}{N-1}}\)`
+
+
+---
+
+# Sample demonstration
+
+![](4b_Sampling_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+
+---
+
+class: center, middle, clear
+
+&lt;img src="figs/distribution/pop_samp.png" width="2245" /&gt;
+
+---
+
+# Questions for yourself
+
+1. What is the difference between a population mean and sample mean?
+
+2. What is the difference between a population standard deviation and sample standard deviation?
+
+3. There are two standard deviation formulas for a sample, one divides by N, and the other divided by N-1. What is the difference between the two?
+
+---
+
+# More questions
+
+1. What is a sampling distribution, how is it different from a single sample?
+
+2. What is the sampling distribution of the sample means?
+
+3. What is the standard error of the mean (SEM), and how does it relate to the sampling distribution of the sample means?
+
+---
+
+# Even more questions
+
+1. What is the difference between the standard error of the mean, and the estimated standard error of the mean?
+
+---
+
+
+# Next class: Inference
+
+1. Tuesday, October 2nd: We explore foundational ideas for statistical inference
 
 ---
 
 # Reminder
 
-1. Quiz 3 for this week is due today Tuesday, September, 25th end of day (11:59pm).
+1. Quiz 4 for this week is due Tuesday, October, 2nd end of day (11:59pm).
 
-2. Quiz 4 for Distributions and Sampling will be posted by Wednesday, Due Next Tuesday (11:59 pm)
+2. Quiz 5 for Inference will be posted Tuesday, October 2nd.
+
+
+---
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
