@@ -1,6 +1,6 @@
 ---
-title: "Sampling"
-subtitle: "seeing what samples can do"
+title: "Foundations for statistical inference"
+subtitle: "whodunnit?"
 author: "Matthew Crump"
 date: "2018/07/20 (updated: `r Sys.Date()`)"
 output:
@@ -21,743 +21,465 @@ knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE, cache = TRUE)
 
 class: pink, center, middle, clear
 
-# Make sure you understand sampling distributions
-
----
-
-class: pink, center, middle, clear
-
-# Make sure you undertand this next graph
-
----
-
-class: center, middle, clear
-
-```{r}
-knitr::include_graphics('figs/distribution/pop_samp.png')
-```
-
----
-
-# Big ideas for this course
-
-1. Psychology interpets patterns in data to draw conclusions about psychological processes
-
---
-
-2. Chance can produce "patterns" in data
-
---
-
-3. **Problem**: How can we know if the pattern is real, or simply a random accident produced by chance
+# Did chance produce your difference?
 
 ---
 
 # Issues for this class
 
-1. **Sampling distributions**
+1. **Sampling distribution of the mean differences**
 
-2. **Normal distributions and central limit theorem**
+2. **Experiments**
 
-3. **Estimation**
+3. **Crump test**
 
 ---
 
 class: pink, center, middle, clear
 
-# Samples and populations
+# What is statistical inference?
 
 ---
 
-# Samples and populations
+# Descriptive vs. inferential statistics
 
-- Population: A defined set of things
+Descriptive statistics:
+  - Tools for summarizing the shape, center, and variance of sample data
 
-- Sample: a subset of the population
-
----
-
-# Random Sampling
-
-- A process for generating a sample (taking things from a population)
-
---
-- Random samples ensure that each value in a sample is drawn **independently** from other values
-
---
-- all values in the population have a chance of being in the sample
+Inferential statistics:
+  - Tools for making educated guesses about where the sample data came from
 
 ---
 
-# Example: Sampling heights of people
+# Making inferences about chance
 
-Let's say we wanted to know something about how tall people are. We can't measure the entire population (it's too big). So we take a sample.
-
---
-
-What would happen if:
-
-1. We only measured really tall people (biased sample)
-
---
-
-2. We randomly measured a bunch of people?
-
-
----
-
-# Population statistics
-
-Populations have statistics. For example,
-
-The population of all people has:
-
-1. A distributions of heights
-2. The distribution has a mean (mean height of all people)
-3. The distribution has a standard deviation
-
----
-
-# The population problem
-
-In the real world, we usually do not have all of the data for the entire population.
-
-So, we never actually know:
-
-1. The population distribution
-2. The population mean
-3. The population standard deviation, etc.
-
-
----
-
-# The sampling solution
-
-Unknown: The population
-
-Solution: Take a sample of the population
-
-1. Samples will tend to look the population they came from, especially when sample-size (N) is large.
-
-2. We can use the sample to **estimate** the population.
-
----
-
-# The sampling problem
-
-We take samples, and use them to estimate things. This works well when we have large, representative samples. 
-
-But, how do we know if the sample we obtained is "normal", or happens to be "weird"?
-
-Solution: We need to learn how the process of sampling works. We can use R to simulate the process of sampling. Then we can see how samples behave.
-
----
-
-# Samples become populations
-
-- As sample-size increases, the sample becomes more like the population. 
-
-- As sample N approaches the population N, the sample becomes the population.
-
----
-
-# Law of large numbers
-
-- As sample-size increases, properties of the sample become more like properties of the population
-
-Example:
-
-- As sample-size increases, the mean of the sample becomes more like the mean of the population
-
----
-
-# Simulation: Population mean=100
-
-```{r}
-save_mean<-c()
-for(i in 1:1000){
-  save_mean[i]<-mean(rnorm(i,100,25))
-}
-df<-data.frame(sample=1:1000,save_mean)
-
-library(ggplot2)
-ggplot(df, aes(x=sample, y=save_mean))+
-  geom_point()+
-  geom_line()+
-  theme_classic(base_size = 12)+
-  ggtitle("Sample mean approaches 100 \n
-          as N increases")
-
-
-```
-
-
-
----
-
-# The sampling problem
-
-We take samples, and use them to estimate things. This works well when we have large, representative samples. 
-
-**But, how do we know if the sample we obtained is "normal", or happens to be "weird"?**
-
-Solution: **Sampling Distributions**
-
-
----
-
-class: pink, center, middle, clear
-
-# Sampling distributions
-
----
-
-# What are sampling distributions?
-
-- Definition: The distribution of a sample statistic
-
-- Example: 
-  - Many samples are drawn from the same distribution
-  - A statistic (e.g., mean, standard deviation) is computed for each sample, and saved
-  - The sampling distribution is the distribution of the measured statistic for each sample
-  - Sampling distributions can be simulated in R
-
----
-
-# Begin with a distribution
-
-```{r}
-ggplot()+
-  xlim(1,10)+
-  ylim(0,1)+
-  geom_hline(yintercept=.1)+
-  theme_classic(base_size = 20)
-
-```
-
----
-
-# Take many samples
-
-Save a sample statistic (e.g., mean) for each sample
-
-```{r}
-knitr::include_graphics('figs/distribution/sampleHistUnif-1.gif')
-```
-
----
-
-# Plot distribution of sample statistic
-
-```{r}
-knitr::include_graphics('figs/distribution/4unifmany-1.png')
-```
-
----
-
-# Sampling distribution is bell-shaped
-
-Notice that the sampling distribution of the mean is bell-shaped, also called a **Normal Distribution**.
-
-```{r, out.width="50%"}
-knitr::include_graphics('figs/distribution/4unifmany-1.png')
-```
-
----
-
-# Sampling distributions for anything
-
-A sampling distribution can be found for any sample statistic.
-
-1. Choose a statistic to measure (e.g., mean, median, variance, standard deviations, max, min, etc.)
-2. Measure statistics for each sample
-3. Plot the sampling distribution
-
----
-
-# A few sampling distributions
-
-```{r}
-knitr::include_graphics("figs/distribution/4samplestats-1.png")
-
-```
-
-
----
-
-# Use for sampling distributions?
-
-Question: What does a sampling distribution tell us?
-
-Answer: 
-
-- The distribution of values a sample statistic can take, for a sample of a particular size
-
-In other words,
-
-- Gives us information about range and probability of obtaining particular sample statistics
-
----
-
-# Sampling distribution of the mean
-
-```{r}
-knitr::include_graphics('figs/distribution/4unifmany-1.png')
-```
-
----
-
-# Standard error of the mean (SEM)
-
-- Definition: the standard deviation of the sampling distribution of the sample means
-
-Formulas: Can be computed directly for samples of any size if you know the standard deviation of the population distribution.
-
-$\text{SEM}=\frac{\text{standard deviation}}{\sqrt{N}}$
-
-$\text{SEM}=\frac{\sigma}{\sqrt{N}}$
-
-$\sigma$ = population standard deviation
-
----
-
-# SEM
-
-What does the SEM (standard error of the mean) tell you.
-
-- Let's say your sample mean was 5, and the SEM was 2.
-
-- The SEM is the standard deviation of the sampling distribution of the sample mean
-
-- Now you know that your sample mean is 5, but as an estimate of the population mean, that number varies a little bit. SEM tells you how much in standard deviation units.
-
-
----
-
-# Central limit theorem
-
-With enough samples, sampling distributions are approximately **normal distributions**
-
-- Sampling distributions have the same shape as a normal distribution, even when the distribution that the sample came from does not have a normal shape.
-
----
-
-class: pink, center, middle, clear
-
-# Normal Distributions
-
----
-
-# Normal distributions are bell-shaped
-
-```{r, out.width="80%"}
-knitr::include_graphics('figs/distribution/standardNormal-eps-converted-to.png')
-```
-
----
-
-# Normal distribution formula
-
-```{r}
-knitr::include_graphics('figs/distribution/Normal_formula.png')
-```
-
----
-
-# Normal distribution parameters
-
-Normal distributions have two important parameters that change their shape:
-
-1. The mean (where the peak of the distribution is centered)
-2. The standard deviation (how spread out the distribution is)
-
----
-
-# Normal: Changing the mean
-
-```{r}
-knitr::include_graphics('figs/distribution/normalMovingMean-1.gif')
-```
-
----
-
-# Normal: Changing standard deviation
-
-```{r}
-knitr::include_graphics('figs/distribution/normalMovingSD-1.gif')
-```
-
----
-
-# rnorm()
-
-R has a function for generating numbers from a normal distribution.
-
-- n = number of samples
-- mean = mean of distribution
-- sd = standard deviation of distribution
-
-```{r, eval=F, echo=T}
-rnorm(n=100, mean = 50, sd = 25)
-```
-
----
-
-# plotting a sample from a normal
-
-```{r, echo=T, out.width="60%"}
-hist(rnorm(n=100, mean=50, sd=25))
-```
-
----
-
-
-# increasing N
-
-```{r, echo=T, out.width="60%"}
-hist(rnorm(n=1000, mean=50, sd=25))
-```
-
-
----
-
-# Animating the central limit theorem
-
-```{r}
-knitr::include_graphics('figs/distribution/sampleDistNormal-1.gif')
-```
-
----
-
-# Normal & central limit
-
-```{r}
-knitr::include_graphics('figs/distribution/4sampledistmeannorm-1.png')
-```
-
----
-
-# Uniform & central limit
-
-```{r}
-knitr::include_graphics('figs/distribution/4samplemeanunif-1.png')
-```
-
----
-
-# exponential & Central limit
-
-```{r}
-knitr::include_graphics('figs/distribution/4samplemeanExp-1.png')
-```
-
----
-
-# Importance of central limit theorem
-
-1. We see that our sample statistics are distributed normally
-
-2. We can use our knowledge of normal distributions to help us make inferences about our samples.
+Let's say you run an experiment: You measure two samples in each of two experimental conditions, and you find a difference between the sample means.
 
 Question:
 
-A. What do we need to know about the normal distribution to make use of it?
+1. Did the experimental manipulation cause the difference between the sample means?
+
+2. Could random chance (sampling error) have caused the difference?
 
 ---
 
-# Normal distributions and probability
+# Gumballs: A silly start
+
+.pull-left[
+1. 50% red and green balls
+2. You are blindfolded
+3. You grab 5 balls with left hand, then 5 with right hand
+
+Question:
+
+Can using your left hand cause you to grab more green balls?
+
+]
+
+.pull-right[
 
 ```{r}
-knitr::include_graphics('figs/distribution/4normalSDspercents-1.png')
+knitr::include_graphics('figs/foundations/redgreen.png')
 ```
+
+]
 
 ---
 
-# Normal distributions and probability
+# Outcome of one experiment
 
 ```{r}
-knitr::include_graphics('figs/distribution/4normalSDspercentsB-1.png')
+knitr::include_graphics('figs/foundations/5gumballA-1.png')
 ```
 
 ---
 
-# pnorm()
+# Outcome of many experiments
 
-Use the `pnorm()` function to determine the proportion of numbers up to a particular value
-
-q = quantile
-
-What proportion of values are smaller than 0, for a normal distribution with mean =0, and sd= 1?
-
-```{r, eval=T, echo=T}
-pnorm(q=0, mean= 0, sd =1)
+```{r}
+knitr::include_graphics('figs/foundations/5gumballsims-1.png')
 ```
-
 
 ---
 
-# pnorm() continued
+# Difference scores
 
-What proportion of values are between 0 and 1, for a normal distribution with mean =0, and sd =1?
-
-```{r, eval=T, echo=T}
-lower_value <- pnorm(q=0, mean= 0, sd =1)
-higher_value <- pnorm(q=1,mean=0, sd=1)
-higher_value-lower_value
+```{r}
+knitr::include_graphics('figs/foundations/5gumballdiffs-1.png')
 ```
+
+---
+
+# Difference scores (100 sims)
+
+```{r}
+knitr::include_graphics('figs/foundations/5manydiffs-1.png')
+```
+
+---
+
+# Histogram: Difference scores
+
+```{r}
+knitr::include_graphics('figs/foundations/5histdiffgumball-1.png')
+```
+
+---
+
+# Interpretation
+
+.pull-left[
+
+The sampling distribution of mean difference scores shows the range of mean differences that can be produced by chance alone.
+
+- We can use this to evaluate the outcome of an experiment
+
+]
+
+.pull-right[
+
+```{r}
+knitr::include_graphics('figs/foundations/5histdiffgumball-1.png')
+```
+
+]
+
+---
+
+# Interpretation
+
+.pull-left[
+
+- What if mean difference was 0?
+
+- What if mean difference was 3?
+
+- What if mean difference was 6?
+
+]
+
+.pull-right[
+
+```{r}
+knitr::include_graphics('figs/foundations/5histdiffgumball-1.png')
+```
+
+]
+
+---
+
+# How much evidence do you need?
+
+- How big would the mean difference need to be? to convince you that the difference was not caused by chance
 
 ---
 
 class: pink, center, middle, clear
 
-# Estimation
+# Experiments
 
 ---
 
-# Goals of estimation
+# Experiments
 
-- Use statistics of samples to estimate the statistics of the population (parent distribution) they came from
+Experiments are tools we use to uncover causal forces. At minimum they must have:
 
-- Use statistics of samples to estimate "error" in the sample
-
----
-
-# Biased vs. unbiased estimators
-
-Biased estimators: Sample statistics that are give systematically wrong estimates of a population parameter
-
-Unbiased estimators: Sample statistics that are not biased estimates of a population parameter
+1. One independent variable
+  - The Manipulation
+  - must have at least 2 levels
+2. One dependent variable
+  - The Measurement
 
 ---
 
-# Sample means are unbiased
-
-- The mean of a sample is an unbiased estimator of the population mean
-
----
-
-# Sample demonstration
+# A simple experiment
 
 ```{r}
-save_means<-c()
-sequence<-seq(10,100,10)
-for(i in 1:10){
-  t_means<-c()
-  for(j in 1:1000){
-    t_means[j]<- mean(rnorm(sequence[i],100,25))
-  }
-  save_means[i] <- mean(t_means)
-}
-
-df<-data.frame(sample_size=sequence,sample_mean=save_means)
-
-ggplot(df, aes(x=sample_size, y=sample_mean))+
-  geom_hline(yintercept = 100)+
-  geom_point()+
-  geom_line()+
-  theme_classic(base_size=20)+
-  ylim(75,125)+
-  ggtitle("Average sample mean, \n 1000 simulations")
+knitr::include_graphics('figs/foundations/Foundation1.png')
 ```
-
-
+            
 ---
 
+# The empirical question
 
-# Standard deviation is biased
-
-- The standard deviation formula (dividing by N) is a **biased** when applied to a sample, is a biased estimator of the population standard deviation.
-
-Formula for Population Standard Deviation
-
-$\text{Standard Deviation} = \sqrt{\frac{\sum{(x_{i}-\bar{X})^2}}{N}}$
-
+```{r, out.width="50%"}
+knitr::include_graphics('figs/foundations/Foundation2.png')
+```
+            
 ---
 
-# Sample demonstration
+# Interpreting the outcomes
 
 ```{r}
-pop_sd<-function(x){
-  a<-sqrt(sum((x-mean(x))^2)/length(x))
-  return(a)
+knitr::include_graphics('figs/foundations/Foundation3.png')
+```
+            
+---
+
+# Interpreting the outcomes
+
+1. We run experiments to determine if a manipulation can cause differences in a measurement.
+
+2. If we find a difference, it could mean:
+
+- Manipulation caused the difference
+- A confound caused the difference
+- Difference was produced by chance
+            
+---
+
+# The role of chance
+
+Question: How can we know if a difference we observed was produced by chance?
+
+Answer: We find out the range of differences that chance can produce, then we compare our observed difference to this range. 
+
+---
+
+class: pink, center, middle, clear
+
+# The Crump Test
+
+---
+
+# The Crump Test
+
+- A made up test to illustrate the process of statistical inference
+
+1. Frequency of occurence (what is not alot)
+2. Simulating chance
+3. Judgment and Decision-making
+4. Experiment design
+5. Power
+
+---
+
+# Frequency of occurence
+
+We will be finding out how often chance produces mean differences of particular sizes
+
+1. Let's say chance produced a difference of 5 fairly often, if we found a difference of 5, we would know that chance could have produced it.
+
+2. When would we say that an outcome **does not occur very often**?
+
+---
+
+# Infrequent events
+
+How many times does something need to happen for it to happen not very much, or even really not at all? 
+
+Rare enough for you to not worry about it at all happening to you?
+
+---
+
+# Lightning strikes
+
+Would you go outside everyday if you thought that you would get hit by lightning 1 out of every 10 days?
+
+What about?
+
+- 1/100 days (3 times per year)
+- 1/1,000 days (once every 2.7 years)
+- 1/10,000 days (once every 27 years)
+- 1/100,000 days (once every 273 years)
+
+Where do you draw the line?
+
+---
+
+# Drawing the line
+
+There is no objective line defining rare events. You need to pick one you are comfortable with.
+
+Let's pick 1/10,000
+
+We are saying that if an event happens once in 10,000 times, it is a rare event.
+
+---
+
+# Textbook Example
+
+- Experiment with two groups, A and B. Let's imagine there is no manipulation, so we are measuring sampling from the same population twice.
+
+- Each group has 10 subjects (N=10)
+
+- Samples are taken from a normal population with mean=100, and sd = 20
+
+- `rnorm(10,mean=100, sd=20)`
+
+---
+
+# set paramaters of simulation
+
+```{r, echo=T}
+sims_to_run <- 10000
+sample_n   <- 10
+dist_mean  <- 100
+dist_sd    <- 20
+```
+
+
+---
+# run simulation
+
+```{r, echo=T}
+mean_differences <- length(sims_to_run)
+for(i in 1:sims_to_run){
+  mean_A <- mean(rnorm(sample_n, dist_mean, dist_sd))
+  mean_B <- mean(rnorm(sample_n, dist_mean, dist_sd))
+  mean_differences[i] <- mean_A - mean_B
 }
-
-save_sds<-c()
-sequence<-seq(2,20,1)
-for(i in 1:19){
-  t_sds<-c()
-  for(j in 1:1000){
-    t_sds[j]<- pop_sd(rnorm(sequence[i],100,25))
-  }
-  save_sds[i] <- mean(t_sds)
-}
-
-df<-data.frame(sample_size=sequence,sample_sd=save_sds)
-
-ggplot(df, aes(x=sample_size, y=sample_sd))+
-  geom_hline(yintercept = 25)+
-  geom_point()+
-  geom_line()+
-  theme_classic(base_size=20)+
-  ylim(15,30)+
-  ggtitle("Average SD, \n 1000 simulations")
-
 ```
 
 ---
 
-# Sample Standard Deviation
-
-- If we divide by N-1, which is the formula for a sample standard deviation, we get an **unbiased** estimate of the population standard deviation
-
-Formula for **Sample Standard Deviation**
-
-$\text{Standard Deviation} = \sqrt{\frac{\sum{(x_{i}-\bar{X})^2}}{N-1}}$
-
-
----
-
-# Sample demonstration
+# Histogram: Mean differences
 
 ```{r}
-
-pop_sd<-function(x){
-  a<-sqrt(sum((x-mean(x))^2)/length(x))
-  return(a)
-}
-
-save_psds<-c()
-save_ssds<-c()
-sequence<-seq(2,20,1)
-for(i in 1:19){
-  p_sds<-c()
-  s_sds<-c()
-  
-  for(j in 1:1000){
-    p_sds[j]<- pop_sd(rnorm(sequence[i],100,25))
-    s_sds[j]<- sd(rnorm(sequence[i],100,25))
-  }
-  save_psds[i] <- mean(p_sds)
-  save_ssds[i] <- mean(s_sds)
-}
-
-df<-data.frame(sample_size=sequence,
-               type=rep(c("population_SD","sample_SD"),each=19),
-               SD=c(save_psds,save_ssds)
-)
-
-ggplot(df, aes(x=sample_size, y=SD, group=type, color=type))+
-  geom_hline(yintercept = 25)+
-  geom_point()+
-  geom_line()+
-  theme_classic(base_size=20)+
-  ylim(15,30)+
-  ggtitle("Average SDs, \n 1000 simulations")
-
+knitr::include_graphics('figs/foundations/5histdiffgumball-1.png')
 ```
 
 ---
 
-class: center, middle, clear
+# The Chance window
 
 ```{r}
-knitr::include_graphics('figs/distribution/pop_samp.png')
+knitr::include_graphics('figs/foundations/5crumpdecision-1.png')
 ```
 
 ---
 
-# sd() and SEM in R
+# Allowing for uncertainty
 
-`sd()` computes the standard deviation using N-1
-
-```{r,echo=T}
-x <- c(4,6,5,7,8)
-sd(x)
+```{r}
+knitr::include_graphics('figs/foundations/5crumpuncertainty-1.png')
 ```
 
-SEM is estimate of standard deviation divided by square root of N
+---
 
-```{r,echo=T}
-sd(x)/sqrt(length(x))
+# Shades of uncertainty
+
+```{r}
+knitr::include_graphics('figs/foundations/5crumpshade-1.png')
 ```
 
+---
+
+# Sample size
+
+```{r}
+knitr::include_graphics('figs/foundations/5sampleDistNormal-1.png')
+```
 
 ---
 
-# Questions for yourself
+# Differences that chance can produce
 
-1. What is the difference between a population mean and sample mean?
-
-2. What is the difference between a population standard deviation and sample standard deviation?
-
-3. There are two standard deviation formulas for a sample, one divides by N, and the other divided by N-1. What is the difference between the two?
+```{r}
+knitr::include_graphics('figs/foundations/5crumpminmax-1.png')
+```
 
 ---
 
-# More questions
+# Sample-size and detecting differences
 
-1. What is a sampling distribution, how is it different from a single sample?
-
-2. What is the sampling distribution of the sample means?
-
-3. What is the standard error of the mean (SEM), and how does it relate to the sampling distribution of the sample means?
+```{r}
+knitr::include_graphics('figs/foundations/5crumpredline-1.png')
+```
 
 ---
 
-# Even more questions
+# Test-enhanced learning
 
-1. What is the difference between the standard error of the mean, and the estimated standard error of the mean?
+```{r}
+knitr::include_graphics('figs/foundations/TEL.png')
+```
 
 ---
 
+# The experiment
 
-# Next class: Inference
+- Question: Does being tested on the material cause you to remember it better later?
 
-1. Tuesday, October 2nd: We explore foundational ideas for statistical inference
+- Study-Study group: Studied some text twice
+
+- Study-Test group: Studied some text, then given brief quizzes about the text
+
+
+---
+
+# the data
+
+```{r, out.width="70%"}
+knitr::include_graphics('figs/foundations/TEL_data.png')
+```
+
+---
+
+# Estimate parameters
+
+- Assume both samples came from same distribution, estimated parameters from paper:
+
+```{r, echo=T}
+sims_to_run <- 100
+sample_n   <- 40
+dist_mean  <- .49
+dist_sd    <- .168
+```
+
+---
+
+# run simulation
+
+- Simulate 100 times
+
+```{r, echo=T}
+mean_differences <- length(sims_to_run)
+for(i in 1:sims_to_run){
+  mean_control_A      <- mean(rnorm(sample_n, dist_mean, dist_sd))
+  mean_control_B      <- mean(rnorm(sample_n, dist_mean, dist_sd))
+  mean_differences[i] <- mean_control_A - mean_control_B
+}
+```
+
+---
+
+# plot mean differences
+
+```{r}
+plot_df <- data.frame(sim=1:sims_to_run,mean_differences)
+
+ggplot(plot_df,aes(x=mean_differences))+
+  geom_histogram(bins=20, color="white")+
+  theme_classic()+
+  ggtitle("Histogram of mean differences in proportion remembered")+
+  xlab("mean difference")
+```
+
+---
+
+# find range, make a judgment
+
+```{r}
+min(mean_differences)
+max(mean_differences)
+```
+
+-observed mean difference was .14
+
+---
+
+# Next class: Randomization Test
+
+1. Thursday, October 4th: Randomizing data from a sample for statistical inference, and intro to hypothesis testing
 
 ---
 
 # Reminder
 
-1. Quiz 4 for this week is due Tuesday, October, 2nd end of day (11:59pm).
+1. Quiz 4 is due today Tuesday, October, 2nd end of day (11:59pm).
 
-2. Quiz 5 for Inference will be posted Tuesday, October 2nd.
-
+2. Quiz 5 for Inference will be posted tonight.
 
 ---
 
-
-
-```{r,eval=F,echo=F}
-library(ggpubr)
-
-normal_df<-data.frame(values=seq(50,150,1),
-                      density=dnorm(seq(50,150,1),100,10))
-a<-ggplot(normal_df,aes(x=values,y=density))+
-  geom_line()+
-  theme_classic(base_size = 13)+
-  ggtitle("Population Distribution")
-
-sample_df <- data.frame(nums=1:20,
-                        values=rnorm(20,100,10))
-
-b<-ggplot(sample_df,aes(x=values))+
-  geom_histogram(color="white",bins=10)+
-  theme_classic(base_size = 13)+
-  ggtitle("One sample (N=20)")
-
-sample_mean<-c()
-for(i in 1:10000){
-  sample_mean[i]<-mean(rnorm(20,100,10))
-}
-
-SEM_df<-data.frame(nums=1:10000,values=sample_mean)
-
-c<-ggplot(SEM_df,aes(x=values))+
-  geom_histogram(color="white",bins=20)+
-  theme_classic(base_size = 13)+
-  ggtitle("Sampling distribution of mean")
-
-ggarrange(a,b,c,ncol=3,nrow=1)
-
-```

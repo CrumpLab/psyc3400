@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Sampling</title>
+    <title>Foundations for statistical inference</title>
     <meta charset="utf-8">
     <meta name="author" content="Matthew Crump" />
     <link rel="stylesheet" href="defaultb.css" type="text/css" />
@@ -12,10 +12,10 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Sampling
-## seeing what samples can do
+# Foundations for statistical inference
+## whodunnit?
 ### Matthew Crump
-### 2018/07/20 (updated: 2018-09-27)
+### 2018/07/20 (updated: 2018-10-02)
 
 ---
 
@@ -25,596 +25,425 @@ class: center, middle, inverse, title-slide
 
 class: pink, center, middle, clear
 
-# Make sure you understand sampling distributions
-
----
-
-class: pink, center, middle, clear
-
-# Make sure you undertand this next graph
-
----
-
-class: center, middle, clear
-
-&lt;img src="figs/distribution/pop_samp.png" width="2245" /&gt;
-
----
-
-# Big ideas for this course
-
-1. Psychology interpets patterns in data to draw conclusions about psychological processes
-
---
-
-2. Chance can produce "patterns" in data
-
---
-
-3. **Problem**: How can we know if the pattern is real, or simply a random accident produced by chance
+# Did chance produce your difference?
 
 ---
 
 # Issues for this class
 
-1. **Sampling distributions**
+1. **Sampling distribution of the mean differences**
 
-2. **Normal distributions and central limit theorem**
+2. **Experiments**
 
-3. **Estimation**
+3. **Crump test**
 
 ---
 
 class: pink, center, middle, clear
 
-# Samples and populations
+# What is statistical inference?
 
 ---
 
-# Samples and populations
+# Descriptive vs. inferential statistics
 
-- Population: A defined set of things
+Descriptive statistics:
+  - Tools for summarizing the shape, center, and variance of sample data
 
-- Sample: a subset of the population
-
----
-
-# Random Sampling
-
-- A process for generating a sample (taking things from a population)
-
---
-- Random samples ensure that each value in a sample is drawn **independently** from other values
-
---
-- all values in the population have a chance of being in the sample
+Inferential statistics:
+  - Tools for making educated guesses about where the sample data came from
 
 ---
 
-# Example: Sampling heights of people
+# Making inferences about chance
 
-Let's say we wanted to know something about how tall people are. We can't measure the entire population (it's too big). So we take a sample.
-
---
-
-What would happen if:
-
-1. We only measured really tall people (biased sample)
-
---
-
-2. We randomly measured a bunch of people?
-
-
----
-
-# Population statistics
-
-Populations have statistics. For example,
-
-The population of all people has:
-
-1. A distributions of heights
-2. The distribution has a mean (mean height of all people)
-3. The distribution has a standard deviation
-
----
-
-# The population problem
-
-In the real world, we usually do not have all of the data for the entire population.
-
-So, we never actually know:
-
-1. The population distribution
-2. The population mean
-3. The population standard deviation, etc.
-
-
----
-
-# The sampling solution
-
-Unknown: The population
-
-Solution: Take a sample of the population
-
-1. Samples will tend to look the population they came from, especially when sample-size (N) is large.
-
-2. We can use the sample to **estimate** the population.
-
----
-
-# The sampling problem
-
-We take samples, and use them to estimate things. This works well when we have large, representative samples. 
-
-But, how do we know if the sample we obtained is "normal", or happens to be "weird"?
-
-Solution: We need to learn how the process of sampling works. We can use R to simulate the process of sampling. Then we can see how samples behave.
-
----
-
-# Samples become populations
-
-- As sample-size increases, the sample becomes more like the population. 
-
-- As sample N approaches the population N, the sample becomes the population.
-
----
-
-# Law of large numbers
-
-- As sample-size increases, properties of the sample become more like properties of the population
-
-Example:
-
-- As sample-size increases, the mean of the sample becomes more like the mean of the population
-
----
-
-# Simulation: Population mean=100
-
-![](4b_Sampling_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
-
-
-
----
-
-# The sampling problem
-
-We take samples, and use them to estimate things. This works well when we have large, representative samples. 
-
-**But, how do we know if the sample we obtained is "normal", or happens to be "weird"?**
-
-Solution: **Sampling Distributions**
-
-
----
-
-class: pink, center, middle, clear
-
-# Sampling distributions
-
----
-
-# What are sampling distributions?
-
-- Definition: The distribution of a sample statistic
-
-- Example: 
-  - Many samples are drawn from the same distribution
-  - A statistic (e.g., mean, standard deviation) is computed for each sample, and saved
-  - The sampling distribution is the distribution of the measured statistic for each sample
-  - Sampling distributions can be simulated in R
-
----
-
-# Begin with a distribution
-
-![](4b_Sampling_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
-
----
-
-# Take many samples
-
-Save a sample statistic (e.g., mean) for each sample
-
-![](figs/distribution/sampleHistUnif-1.gif)&lt;!-- --&gt;
-
----
-
-# Plot distribution of sample statistic
-
-&lt;img src="figs/distribution/4unifmany-1.png" width="1792" /&gt;
-
----
-
-# Sampling distribution is bell-shaped
-
-Notice that the sampling distribution of the mean is bell-shaped, also called a **Normal Distribution**.
-
-&lt;img src="figs/distribution/4unifmany-1.png" width="50%" /&gt;
-
----
-
-# Sampling distributions for anything
-
-A sampling distribution can be found for any sample statistic.
-
-1. Choose a statistic to measure (e.g., mean, median, variance, standard deviations, max, min, etc.)
-2. Measure statistics for each sample
-3. Plot the sampling distribution
-
----
-
-# A few sampling distributions
-
-&lt;img src="figs/distribution/4samplestats-1.png" width="1792" /&gt;
-
-
----
-
-# Use for sampling distributions?
-
-Question: What does a sampling distribution tell us?
-
-Answer: 
-
-- The distribution of values a sample statistic can take, for a sample of a particular size
-
-In other words,
-
-- Gives us information about range and probability of obtaining particular sample statistics
-
----
-
-# Sampling distribution of the mean
-
-&lt;img src="figs/distribution/4unifmany-1.png" width="1792" /&gt;
-
----
-
-# Standard error of the mean (SEM)
-
-- Definition: the standard deviation of the sampling distribution of the sample means
-
-Formulas: Can be computed directly for samples of any size if you know the standard deviation of the population distribution.
-
-`\(\text{SEM}=\frac{\text{standard deviation}}{\sqrt{N}}\)`
-
-`\(\text{SEM}=\frac{\sigma}{\sqrt{N}}\)`
-
-`\(\sigma\)` = population standard deviation
-
----
-
-# SEM
-
-What does the SEM (standard error of the mean) tell you.
-
-- Let's say your sample mean was 5, and the SEM was 2.
-
-- The SEM is the standard deviation of the sampling distribution of the sample mean
-
-- Now you know that your sample mean is 5, but as an estimate of the population mean, that number varies a little bit. SEM tells you how much in standard deviation units.
-
-
----
-
-# Central limit theorem
-
-With enough samples, sampling distributions are approximately **normal distributions**
-
-- Sampling distributions have the same shape as a normal distribution, even when the distribution that the sample came from does not have a normal shape.
-
----
-
-class: pink, center, middle, clear
-
-# Normal Distributions
-
----
-
-# Normal distributions are bell-shaped
-
-&lt;img src="figs/distribution/standardNormal-eps-converted-to.png" width="80%" /&gt;
-
----
-
-# Normal distribution formula
-
-&lt;img src="figs/distribution/Normal_formula.png" width="715" /&gt;
-
----
-
-# Normal distribution parameters
-
-Normal distributions have two important parameters that change their shape:
-
-1. The mean (where the peak of the distribution is centered)
-2. The standard deviation (how spread out the distribution is)
-
----
-
-# Normal: Changing the mean
-
-![](figs/distribution/normalMovingMean-1.gif)&lt;!-- --&gt;
-
----
-
-# Normal: Changing standard deviation
-
-![](figs/distribution/normalMovingSD-1.gif)&lt;!-- --&gt;
-
----
-
-# rnorm()
-
-R has a function for generating numbers from a normal distribution.
-
-- n = number of samples
-- mean = mean of distribution
-- sd = standard deviation of distribution
-
-
-```r
-rnorm(n=100, mean = 50, sd = 25)
-```
-
----
-
-# plotting a sample from a normal
-
-
-```r
-hist(rnorm(n=100, mean=50, sd=25))
-```
-
-&lt;img src="4b_Sampling_files/figure-html/unnamed-chunk-14-1.png" width="60%" /&gt;
-
----
-
-
-# increasing N
-
-
-```r
-hist(rnorm(n=1000, mean=50, sd=25))
-```
-
-&lt;img src="4b_Sampling_files/figure-html/unnamed-chunk-15-1.png" width="60%" /&gt;
-
-
----
-
-# Animating the central limit theorem
-
-![](figs/distribution/sampleDistNormal-1.gif)&lt;!-- --&gt;
-
----
-
-# Normal &amp; central limit
-
-&lt;img src="figs/distribution/4sampledistmeannorm-1.png" width="1792" /&gt;
-
----
-
-# Uniform &amp; central limit
-
-&lt;img src="figs/distribution/4samplemeanunif-1.png" width="1792" /&gt;
-
----
-
-# exponential &amp; Central limit
-
-&lt;img src="figs/distribution/4samplemeanExp-1.png" width="1792" /&gt;
-
----
-
-# Importance of central limit theorem
-
-1. We see that our sample statistics are distributed normally
-
-2. We can use our knowledge of normal distributions to help us make inferences about our samples.
+Let's say you run an experiment: You measure two samples in each of two experimental conditions, and you find a difference between the sample means.
 
 Question:
 
-A. What do we need to know about the normal distribution to make use of it?
+1. Did the experimental manipulation cause the difference between the sample means?
+
+2. Could random chance (sampling error) have caused the difference?
 
 ---
 
-# Normal distributions and probability
+# Gumballs: A silly start
 
-&lt;img src="figs/distribution/4normalSDspercents-1.png" width="1792" /&gt;
+.pull-left[
+1. 50% red and green balls
+2. You are blindfolded
+3. You grab 5 balls with left hand, then 5 with right hand
 
----
+Question:
 
-# Normal distributions and probability
+Can using your left hand cause you to grab more green balls?
 
-&lt;img src="figs/distribution/4normalSDspercentsB-1.png" width="1792" /&gt;
+]
 
----
+.pull-right[
 
-# pnorm()
+&lt;img src="figs/foundations/redgreen.png" width="532" /&gt;
 
-Use the `pnorm()` function to determine the proportion of numbers up to a particular value
-
-q = quantile
-
-What proportion of values are smaller than 0, for a normal distribution with mean =0, and sd= 1?
-
-
-```r
-pnorm(q=0, mean= 0, sd =1)
-```
-
-```
-## [1] 0.5
-```
-
+]
 
 ---
 
-# pnorm() continued
+# Outcome of one experiment
 
-What proportion of values are between 0 and 1, for a normal distribution with mean =0, and sd =1?
+&lt;img src="figs/foundations/5gumballA-1.png" width="1792" /&gt;
 
+---
 
-```r
-lower_value &lt;- pnorm(q=0, mean= 0, sd =1)
-higher_value &lt;- pnorm(q=1,mean=0, sd=1)
-higher_value-lower_value
-```
+# Outcome of many experiments
 
-```
-## [1] 0.3413447
-```
+&lt;img src="figs/foundations/5gumballsims-1.png" width="1792" /&gt;
+
+---
+
+# Difference scores
+
+&lt;img src="figs/foundations/5gumballdiffs-1.png" width="1792" /&gt;
+
+---
+
+# Difference scores (100 sims)
+
+&lt;img src="figs/foundations/5manydiffs-1.png" width="1792" /&gt;
+
+---
+
+# Histogram: Difference scores
+
+&lt;img src="figs/foundations/5histdiffgumball-1.png" width="1792" /&gt;
+
+---
+
+# Interpretation
+
+.pull-left[
+
+The sampling distribution of mean difference scores shows the range of mean differences that can be produced by chance alone.
+
+- We can use this to evaluate the outcome of an experiment
+
+]
+
+.pull-right[
+
+&lt;img src="figs/foundations/5histdiffgumball-1.png" width="1792" /&gt;
+
+]
+
+---
+
+# Interpretation
+
+.pull-left[
+
+- What if mean difference was 0?
+
+- What if mean difference was 3?
+
+- What if mean difference was 6?
+
+]
+
+.pull-right[
+
+&lt;img src="figs/foundations/5histdiffgumball-1.png" width="1792" /&gt;
+
+]
+
+---
+
+# How much evidence do you need?
+
+- How big would the mean difference need to be? to convince you that the difference was not caused by chance
 
 ---
 
 class: pink, center, middle, clear
 
-# Estimation
+# Experiments
 
 ---
 
-# Goals of estimation
+# Experiments
 
-- Use statistics of samples to estimate the statistics of the population (parent distribution) they came from
+Experiments are tools we use to uncover causal forces. At minimum they must have:
 
-- Use statistics of samples to estimate "error" in the sample
-
----
-
-# Biased vs. unbiased estimators
-
-Biased estimators: Sample statistics that are give systematically wrong estimates of a population parameter
-
-Unbiased estimators: Sample statistics that are not biased estimates of a population parameter
+1. One independent variable
+  - The Manipulation
+  - must have at least 2 levels
+2. One dependent variable
+  - The Measurement
 
 ---
 
-# Sample means are unbiased
+# A simple experiment
 
-- The mean of a sample is an unbiased estimator of the population mean
+&lt;img src="figs/foundations/Foundation1.png" width="1107" /&gt;
+            
+---
+
+# The empirical question
+
+&lt;img src="figs/foundations/Foundation2.png" width="50%" /&gt;
+            
+---
+
+# Interpreting the outcomes
+
+&lt;img src="figs/foundations/Foundation3.png" width="2077" /&gt;
+            
+---
+
+# Interpreting the outcomes
+
+1. We run experiments to determine if a manipulation can cause differences in a measurement.
+
+2. If we find a difference, it could mean:
+
+- Manipulation caused the difference
+- A confound caused the difference
+- Difference was produced by chance
+            
+---
+
+# The role of chance
+
+Question: How can we know if a difference we observed was produced by chance?
+
+Answer: We find out the range of differences that chance can produce, then we compare our observed difference to this range. 
 
 ---
 
-# Sample demonstration
+class: pink, center, middle, clear
 
-![](4b_Sampling_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+# The Crump Test
+
+---
+
+# The Crump Test
+
+- A made up test to illustrate the process of statistical inference
+
+1. Frequency of occurence (what is not alot)
+2. Simulating chance
+3. Judgment and Decision-making
+4. Experiment design
+5. Power
+
+---
+
+# Frequency of occurence
+
+We will be finding out how often chance produces mean differences of particular sizes
+
+1. Let's say chance produced a difference of 5 fairly often, if we found a difference of 5, we would know that chance could have produced it.
+
+2. When would we say that an outcome **does not occur very often**?
+
+---
+
+# Infrequent events
+
+How many times does something need to happen for it to happen not very much, or even really not at all? 
+
+Rare enough for you to not worry about it at all happening to you?
+
+---
+
+# Lightning strikes
+
+Would you go outside everyday if you thought that you would get hit by lightning 1 out of every 10 days?
+
+What about?
+
+- 1/100 days (3 times per year)
+- 1/1,000 days (once every 2.7 years)
+- 1/10,000 days (once every 27 years)
+- 1/100,000 days (once every 273 years)
+
+Where do you draw the line?
+
+---
+
+# Drawing the line
+
+There is no objective line defining rare events. You need to pick one you are comfortable with.
+
+Let's pick 1/10,000
+
+We are saying that if an event happens once in 10,000 times, it is a rare event.
+
+---
+
+# Textbook Example
+
+- Experiment with two groups, A and B. Let's imagine there is no manipulation, so we are measuring sampling from the same population twice.
+
+- Each group has 10 subjects (N=10)
+
+- Samples are taken from a normal population with mean=100, and sd = 20
+
+- `rnorm(10,mean=100, sd=20)`
+
+---
+
+# set paramaters of simulation
+
+
+```r
+sims_to_run &lt;- 10000
+sample_n   &lt;- 10
+dist_mean  &lt;- 100
+dist_sd    &lt;- 20
+```
+
+
+---
+# run simulation
+
+
+```r
+mean_differences &lt;- length(sims_to_run)
+for(i in 1:sims_to_run){
+  mean_A &lt;- mean(rnorm(sample_n, dist_mean, dist_sd))
+  mean_B &lt;- mean(rnorm(sample_n, dist_mean, dist_sd))
+  mean_differences[i] &lt;- mean_A - mean_B
+}
+```
+
+---
+
+# Histogram: Mean differences
+
+&lt;img src="figs/foundations/5histdiffgumball-1.png" width="1792" /&gt;
+
+---
+
+# The Chance window
+
+&lt;img src="figs/foundations/5crumpdecision-1.png" width="1792" /&gt;
+
+---
+
+# Allowing for uncertainty
+
+&lt;img src="figs/foundations/5crumpuncertainty-1.png" width="1792" /&gt;
+
+---
+
+# Shades of uncertainty
+
+&lt;img src="figs/foundations/5crumpshade-1.png" width="1792" /&gt;
+
+---
+
+# Sample size
+
+&lt;img src="figs/foundations/5sampleDistNormal-1.png" width="1792" /&gt;
+
+---
+
+# Differences that chance can produce
+
+&lt;img src="figs/foundations/5crumpminmax-1.png" width="1792" /&gt;
+
+---
+
+# Sample-size and detecting differences
+
+&lt;img src="figs/foundations/5crumpredline-1.png" width="1792" /&gt;
+
+---
+
+# Test-enhanced learning
+
+&lt;img src="figs/foundations/TEL.png" width="2635" /&gt;
+
+---
+
+# The experiment
+
+- Question: Does being tested on the material cause you to remember it better later?
+
+- Study-Study group: Studied some text twice
+
+- Study-Test group: Studied some text, then given brief quizzes about the text
 
 
 ---
 
+# the data
 
-# Standard deviation is biased
-
-- The standard deviation formula (dividing by N) is a **biased** when applied to a sample, is a biased estimator of the population standard deviation.
-
-Formula for Population Standard Deviation
-
-`\(\text{Standard Deviation} = \sqrt{\frac{\sum{(x_{i}-\bar{X})^2}}{N}}\)`
+&lt;img src="figs/foundations/TEL_data.png" width="70%" /&gt;
 
 ---
 
-# Sample demonstration
+# Estimate parameters
+
+- Assume both samples came from same distribution, estimated parameters from paper:
+
+
+```r
+sims_to_run &lt;- 100
+sample_n   &lt;- 40
+dist_mean  &lt;- .49
+dist_sd    &lt;- .168
+```
+
+---
+
+# run simulation
+
+- Simulate 100 times
+
+
+```r
+mean_differences &lt;- length(sims_to_run)
+for(i in 1:sims_to_run){
+  mean_control_A      &lt;- mean(rnorm(sample_n, dist_mean, dist_sd))
+  mean_control_B      &lt;- mean(rnorm(sample_n, dist_mean, dist_sd))
+  mean_differences[i] &lt;- mean_control_A - mean_control_B
+}
+```
+
+---
+
+# plot mean differences
 
 ![](4b_Sampling_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 
 ---
 
-# Sample Standard Deviation
-
-- If we divide by N-1, which is the formula for a sample standard deviation, we get an **unbiased** estimate of the population standard deviation
-
-Formula for **Sample Standard Deviation**
-
-`\(\text{Standard Deviation} = \sqrt{\frac{\sum{(x_{i}-\bar{X})^2}}{N-1}}\)`
+# find range, make a judgment
 
 
----
-
-# Sample demonstration
-
-![](4b_Sampling_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
-
----
-
-class: center, middle, clear
-
-&lt;img src="figs/distribution/pop_samp.png" width="2245" /&gt;
-
----
-
-# sd() and SEM in R
-
-`sd()` computes the standard deviation using N-1
-
-
-```r
-x &lt;- c(4,6,5,7,8)
-sd(x)
+```
+## [1] -0.07402056
 ```
 
 ```
-## [1] 1.581139
+## [1] 0.07260068
 ```
 
-SEM is estimate of standard deviation divided by square root of N
-
-
-```r
-sd(x)/sqrt(length(x))
-```
-
-```
-## [1] 0.7071068
-```
-
+-observed mean difference was .14
 
 ---
 
-# Questions for yourself
+# Next class: Randomization Test
 
-1. What is the difference between a population mean and sample mean?
-
-2. What is the difference between a population standard deviation and sample standard deviation?
-
-3. There are two standard deviation formulas for a sample, one divides by N, and the other divided by N-1. What is the difference between the two?
-
----
-
-# More questions
-
-1. What is a sampling distribution, how is it different from a single sample?
-
-2. What is the sampling distribution of the sample means?
-
-3. What is the standard error of the mean (SEM), and how does it relate to the sampling distribution of the sample means?
-
----
-
-# Even more questions
-
-1. What is the difference between the standard error of the mean, and the estimated standard error of the mean?
-
----
-
-
-# Next class: Inference
-
-1. Tuesday, October 2nd: We explore foundational ideas for statistical inference
+1. Thursday, October 4th: Randomizing data from a sample for statistical inference, and intro to hypothesis testing
 
 ---
 
 # Reminder
 
-1. Quiz 4 for this week is due Tuesday, October, 2nd end of day (11:59pm).
+1. Quiz 4 is due today Tuesday, October, 2nd end of day (11:59pm).
 
-2. Quiz 5 for Inference will be posted Tuesday, October 2nd.
-
+2. Quiz 5 for Inference will be posted tonight.
 
 ---
     </textarea>
