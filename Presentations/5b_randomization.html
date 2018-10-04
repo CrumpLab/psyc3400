@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Randomization Tests</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Randomization Tests
+## and little bit of hypothesis testing
+### Matthew Crump
+### 2018/07/20 (updated: 2018-10-04)
+
+---
+
+
+
+
+
+class: pink, center, middle, clear
+
+# Controversy
+
+---
+
+# Controversy
+
+Definition: disagreement, typically when prolonged, public, and heated.
+
+Would you believe it, statistical inference is controversial. There are different ways to do it. And, reasonable people disagree. Sometimes in public. With heat.
+
+---
+
+# Topics for class
+
+1. Hypothesis Testing 
+2. Randomization Test
+
+---
+
+class: pink, center, middle, clear
+
+# Hypothesis testing
+
+---
+
+# What is the big idea
+
+The big idea for inferential statistics is to make inferences about where the data came from.
+  - You get samples in each condition of an experiment
+  - Question: What kind of distribution(s) did these samples come from?
+
+---
+
+# Approaches
+
+1. Hypothesis testing approaches
+  - Make hypotheses about the distribution(s) that the sample data could have come from
+  - Create a system of judgment or decision-making to accept or reject those hypotheses
+  - Often binary outcomes
+  
+2. Bayesian approaches
+ - System of judgment and decision-making is more continuous
+ - Establish degree of belief
+ 
+---
+
+# Ronald Fisher
+
+.pull-left[
+
+Sir Ronald Fisher
+ - Creator of ANOVA (we learn about this after the midterm)
+ - Hypothesis testing as determining the probability that chance could have produced the pattern in your data
+
+]
+
+.pull-right[
+
+&lt;img src="figs/randomization/Fisher.png" width="265" /&gt;
+
+]
+
+---
+
+# A simple experiment
+
+You collect sample data in two experimental conditions A and B.
+
+1. You compare the means to see if they are different
+2. You want to know if the experimental manipulation caused a difference
+3. You recognize that random sampling error can also produce differences between the means.
+
+---
+
+# Fisherian Null-hypothesis testing
+
+Fisher was primarily concerned with ruling out the possibility that chance could have produced the difference between means.
+
+He was interested in testing the null-hypothesis
+
+**Null-hypothesis**: The difference between the sample means could have been produced by chance alone
+
+
+---
+
+# How to test the null-hypothesis
+
+1. Making a sampling distribution showing what chance can do. For example, we could make a sampling distribution of the mean differences between two samples drawn from the **same distribution**.
+2. Any differences must be due to chance
+
+Let's make a null-distribution
+
+
+---
+
+.pull-left[
+
+1. Create a null-distribution. This is a chance-window, showing how a statistic can behave by chance alone
+
+]
+
+.pull-right[
+
+![](5b_randomization_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+]
+
+
+---
+# What does the null tell us?
+
+- The null-distribution shows the probabilities of getting different ranges of values.
+- More important, it tells us the probability that chance could have produced particular kinds of values.
+
+How do we use this information?
+
+---
+
+# Interpreting the null
+
+Question:
+
+We see that the null can produce a range of values. What kind of value (e.g., mean difference) would you need to find to be confident that chance did not produce the value?
+
+Answer:
+
+There is no objective answer
+
+But, there is common practice (for better or worse)
+
+---
+
+# p &lt; .05
+
+The most common standard is p &lt; .05
+
+- p stands for probability
+- .05 refers to a 5% chance
+
+---
+
+# Using p &lt;.05
+
+Let's say that values larger than 10 only occur 5% of the time under the null.
+
+We could adopt a decision-criteria of 5% to evaluate our sample data.
+
+The decision criteria, is also called the **alpha value**.
+
+---
+
+# Rejecting the Null
+
+Situation: Our sample shows a mean difference of 15. Based on the null-distribution, we know that a mean difference of 15 or greater, occurs **less than 5% of the time** (p&lt;.05)
+
+Decision: We reject the null-hypothesis
+
+In other words, we reject the possibility that chance could have produced the result
+
+---
+
+# We might be wrong
+
+If we reject the null, we might be wrong. After all, chance will have some probability of producing the difference.
+
+**Type I error**: Concluding that chance **did not** produce the difference, even when it actually did.
+
+---
+
+# Failing to reject the null
+
+Situation: Our sample shows a mean difference of 2. Based on the null-distribution, we know that a mean difference of 2 or greater, occurs **more than 5% of the time** (p &gt; .05, p is greater than .05)
+
+Decision: We fail to reject the null-hypothesis
+
+In other words, we do not have enough evidence to reject the possibility that chance alone produced the differences
+
+---
+
+# We might be wrong again
+
+If we fail to reject the null, we might be wrong. After all, the manipulation could have caused the difference. The effect may be very small.
+
+**Type II error**: Concluding that the difference is not really caused by the manipulation, even when it actually was.
+
+---
+
+
+# What should alpha be?
+
+In this tradition, alpha is a line in the sand. It tells us when we reject or fail to reject the null hypothesis.
+
+What should alpha be?
+
+- p &lt; .05?
+- p &lt; .01?
+- p &lt; .005, or p &lt;.000001?
+
+The decision is up to you...
+
+---
+
+# Consequences of a high alpha
+
+What are the consequences of a high alpha value. E.g., what if we raised to p &lt;. 2, or p &lt; .3?
+
+- What would happen to type I error (wrongly rejecting the null)
+- What would happen to type II error (wrongly failing to reject the null)
+
+---
+
+# Consequences of a low alpha
+
+What are the consequences of a high alpha value. E.g., what if we lowered alpha to p &lt;.01 , or p &lt; .005?
+
+- What would happen to type I error (wrongly rejecting the null)
+- What would happen to type II error (wrongly failing to reject the null)
+
+---
+
+# Near the line?
+
+What happens when your p-value is really close to the alpha value, say p = .056?
+
+---
+
+# Other hypothesis testing traditions
+
+At the beginning of the lecture I mentioned other traditions...
+
+We stay with Fisher for now, and introduce the others later in this course.
+
+---
+
+# Directional Hypotheses
+
+Non-directional hypothesis: The manipulation will cause a difference. Any difference, up or down, positive or negative, just a difference
+
+Directional hypothesis: The manipulation cause a difference in a particular direction, positive only, or negative only.
+
+More on this when we get to t-tests
+
+---
+
+class: pink, center, middle, clear
+
+# Randomization Test
+
+---
+
+# Randomization Test
+
+- A way to find out what chance could have done in a particular situation
+
+---
+
+
+# Three steps
+
+1. Get some data in two conditions, find the sample means for each
+2. Randomly shuffle the numbers between the conditions, get the new means, repeat many times
+3. Compare the observed difference between the oringal sample means with the sampling distribution of the mean difference scores from the randomly shuffled samples.
+
+
+---
+
+# Animation of randomization test
+
+&lt;img src="figs/randomization/rtest_still.png" width="63%" /&gt;
+
+---
+
+# Animation of randomization test
+
+![](figs/randomization/randomizationTest-1.gif)&lt;!-- --&gt;
+
+---
+
+# Example
+
+.pull-left[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; B &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+
+
+```r
+mean(A)
+```
+
+```
+## [1] 3
+```
+
+```r
+mean(B)
+```
+
+```
+## [1] 6.5
+```
+
+```r
+mean(B)-mean(A)
+```
+
+```
+## [1] 3.5
+```
+
+
+]
+
+
+---
+
+# randomize the scores
+
+
+```r
+all_scores&lt;-c(A,B)
+all_scores
+```
+
+```
+##  [1] 1 3 2 4 3 5 6 5 7 6 8 7
+```
+
+```r
+random_scores&lt;-sample(all_scores,12,replace=FALSE)
+random_scores
+```
+
+```
+##  [1] 6 6 7 4 3 2 8 7 3 1 5 5
+```
+
+---
+
+# assign the random scores
+
+Makes new random samples for A and B, compute new mean difference
+
+
+```r
+random_A &lt;- random_scores[1:6]
+random_B &lt;- random_scores[7:12]
+mean(random_B)-mean(random_A)
+```
+
+```
+## [1] 0.1666667
+```
+
+---
+
+# repeat many times
+
+
+```r
+mean_differences&lt;-c()
+for(i in 1:1000){
+  random_scores &lt;- sample(all_scores,12,replace=FALSE)
+  random_A &lt;- random_scores[1:6]
+  random_B &lt;- random_scores[7:12]
+  mean_differences[i] &lt;- mean(random_B)-mean(random_A)
+}
+```
+
+---
+
+# Look at sampling distribution
+
+Red line is original observed mean difference
+
+&lt;img src="5b_randomization_files/figure-html/unnamed-chunk-10-1.png" width="50%" /&gt;
+
+---
+
+# Adopt an alpha criterion
+
+Let's adopt a 5% alpha rule. We will run a directional test.
+
+We need to find the line in the distribution where 95% of numbers are smaller, and only 5% of numbers are larger.
+
+---
+
+# Find the criticial value
+
+1. Sort the mean_differences variable from smallest to largest. 
+2. Find the 950th number
+
+
+```r
+critical_difference &lt;- sort(mean_differences)[950]
+print(critical_difference)
+```
+
+```
+## [1] 1.833333
+```
+
+---
+
+# Compare
+
+red = original difference, blue= critical value
+
+&lt;img src="5b_randomization_files/figure-html/unnamed-chunk-12-1.png" width="50%" /&gt;
+
+---
+
+# test the null-hypothesis
+
+Null hypothesis: The observed mean difference could have been produced by chance. 
+
+**Reject the null hypothesis:** We reject the null-hypothesis when the probability of the observed mean difference (3.5) or larger is less than 5%
+
+**Fail to the reject the null:** We retain (fail to reject) the null when the probability of the observed mean difference (3.5)  or larger is greater than 5%.
+
+---
+
+# test the null-hypothesis
+
+We found that 5% of the mean differences from the simulation were 1.8333333 or greater.
+
+**Reject the null hypothesis:** We reject the null-hypothesis when the probability of the observed mean difference (3.5) or larger is less than 5%
+
+**Fail to the reject the null:** We retain (fail to reject) the null when the probability of the observed mean difference (3.5)  or larger is greater than 5%.
+
+---
+
+# Probability of our observed difference
+
+We could find the probability of obtaining our observed mean difference by chance alone.
+
+1. Find all the numbers equal to or greater than 3.5
+2. Count them, and divide by number of simulations
+
+
+```
+## [1] 0.001
+```
+
+
+---
+
+# Properties of Randomization tests
+
+The number of simulations (randomizations) matter. 
+  - what would happen if you ran too few?
+  - how many do you need to run?
+  
+---
+
+# varying the number of simulations
+
+![](5b_randomization_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+---
+
+# Non-parametric tests
+
+Randomization tests are non-parametric
+
+1. They do not make assumptions about distributional parameters
+  - e.g., we did not assume our samples came from any particular kind of distribution
+
+
+---
+
+# Next class: Randomization Test
+
+1. Tuesday, October 9th: T-tests
+
+---
+
+# Reminder
+
+1. Quiz 5 is due today Tuesday, October, 9th end of day (11:59pm).
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
