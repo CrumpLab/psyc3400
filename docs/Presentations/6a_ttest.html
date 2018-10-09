@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>t-tests</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# t-tests
+## one sample
+### Matthew Crump
+### 2018/07/20 (updated: 2018-10-09)
+
+---
+
+
+
+
+
+class: pink, center, middle, clear
+
+# Student's t-test
+
+---
+
+# William Sealy Gosset
+
+.pull-left[
+
+- Creator of t-test (1908)
+- Worked for Guiness breweries, published under a pseuodnym (student)
+
+]
+
+.pull-right[
+
+&lt;img src="figs/ttest/student.png" width="640" /&gt;
+
+]
+
+---
+
+class: center
+
+# The Guiness Problem
+
+
+&lt;img src="figs/ttest/guiness.png" width="220" /&gt;
+
+---
+
+# This Class
+
+1. The t statistic 
+2. Experimental design and t-tests
+3. One-sample t-test
+
+---
+
+# Common ratio in inferential stastics
+
+Many inferential statistics have a common form
+
+.center[
+`\(\text{Inferential statistic}=\frac{\text{Measure of Effect}}{\text{Measure of Error}}\)`
+]
+
+Measure of effect = Some measure of the pattern in data
+Measure of error = Some measure of random fluctuation in the data
+
+---
+
+# t-statistic (big idea)
+
+(FYI, no one really knows what t stands for...)
+
+.center[
+`\(t = \frac{\text{Mean}}{\text{Standard Error of the Mean}}\)`
+]
+
+**Why would anyone bother dividing a mean by the SEM?**
+
+---
+
+# Confidence in mean
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Mean &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; SEM &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; t &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 50.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.5 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# Two questions
+
+1. What must be true if a t-value is less than 1?
+2. What must be true if a t-value is greater than 1?
+
+---
+
+# a bit of R
+
+
+```r
+my_t &lt;- function(x){
+  mean(x)/(sd(x)/sqrt(length(x)))
+}
+
+sample &lt;- c(1,5,4,3,6,7)
+my_t(sample)
+```
+
+```
+## [1] 4.913538
+```
+
+```r
+t.test(sample)$statistic
+```
+
+```
+##        t 
+## 4.913538
+```
+
+---
+
+# The sampling distribution of t
+
+1. Take a sample of size n from a normal population
+2. Compute t
+3. Repeat many times
+4. Plot the distribution
+
+---
+
+# Simulating the t distribution
+
+
+```r
+ts &lt;- c()
+for(i in 1:1000){
+  sample &lt;- rnorm(10,0,1)
+  ts[i] &lt;- t.test(sample)$statistic
+}
+```
+
+---
+
+# Plotting the histogram
+
+![](6a_ttest_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+
+---
+
+# Formula for t-distribution
+
+&lt;img src="figs/ttest/tdist.png" width="1768" /&gt;
+
+
+---
+
+# t distributions
+
+.pull-left[
+
+- shaped like a normal
+- **but**, more spread out
+- depends on sample-size (df)
+
+- blue is normal(0,1)
+- red is t(df=1)
+- green is t(df=2, and df=3)
+
+]
+
+.pull-right[
+
+&lt;img src="figs/ttest/tdist2.png" width="944" /&gt;
+
+]
+
+---
+
+# ts and ps
+
+.pull-left[
+
+- t-distribution with 9 degrees of freedom
+- one-directional test
+- Only 5% of ts are larger than 1.8331129
+
+]
+
+.pull-right[
+![](6a_ttest_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+class: center
+
+# ts and ps the old way
+
+&lt;img src="figs/ttest/ttable.png" width="45%" /&gt;
+
+
+---
+
+# pt(): find p for a t
+
+Use the `pt()` function to find the probability (p) of t-values (from smallest possible to value of t)
+
+- Must supply t-value, and df.
+
+
+- For a t-distribution (df=9), what is the probability that a t-value will be 0 or smaller?
+
+
+```r
+pt(q=0,df=9)
+```
+
+```
+## [1] 0.5
+```
+
+---
+
+# pt(): more examples
+
+- For a t-distribution (df=9), what is the probability that a t-value will be 1 or smaller?
+
+
+```r
+pt(q=1,df=9)
+```
+
+```
+## [1] 0.8282818
+```
+
+- For a t-distribution (df=9), what is the probability that a t-value will be 1 or greater?
+
+
+```r
+1-pt(q=1,df=9)
+```
+
+```
+## [1] 0.1717182
+```
+
+---
+
+
+# qt(): find t for a p
+
+Use the `qt()` function to find the t-value associated with a particular p-value.
+
+- Must supply p-value, and df.
+
+
+- For a t-distribution (df=9), what value of t has a probability of .5?
+
+
+```r
+qt(p=0.5,df=9)
+```
+
+```
+## [1] 0
+```
+
+---
+
+# qt(): more examples
+
+- For a t-distribution (df=9), what value of t or smaller occurs 95% of the time?
+
+
+```r
+qt(p=.95,df=9)
+```
+
+```
+## [1] 1.833113
+```
+
+- For a t-distribution (df=9), what value of t or smaller occurs 5% of the time
+
+
+```r
+qt(p=.05,df=9)
+```
+
+```
+## [1] -1.833113
+```
+
+---
+
+# comparing solutions
+
+A simulated t-distribution gives similar p-values to analytic answer (using `pt()`)
+
+
+```r
+all_ts&lt;-replicate(10000,t.test(rnorm(10,0,1))$statistic)
+length(all_ts[all_ts&lt;=2])/10000
+```
+
+```
+## [1] 0.9616
+```
+
+```r
+pt(2,9)
+```
+
+```
+## [1] 0.9617236
+```
+
+---
+
+class: pink, center, middle, clear
+
+# t-tests and designs
+
+---
+
+# Three kinds of t-tests
+
+1. one-sample
+2. paired-sample
+3. Independent sample
+
+---
+
+# One-sample t-test
+
+Purpose: Compare sample mean to a hypothetical population mean
+
+---
+
+# Paired-sample t-test
+
+Purpose: Compare two sample means in a within-subjects design
+
+Within-subjects design: Same subjects are measured across both levels of the experimental manipulation (independent variable)
+
+---
+
+# Independent-sample t-test
+
+Purpose: Compare two sample means in a between-subjects design
+
+Between-subjects design: Different subjects are measured across both levels of the experimental manipulation (independent variable)
+
+---
+
+
+class: pink, center, middle, clear
+
+# One-sample t-test
+
+---
+
+# One-sample t-test
+
+.pull-left[
+
+Purpose: Compare sample mean to a hypothetical population mean
+
+- `\(\bar{X}\)` = sample mean
+- `\(u\)` = hypothetical population mean
+- `\(s\)` = sample standard deviation (divide by n-1)
+- `\(n\)` = sample-size
+
+]
+
+.pull-right[
+
+`\(t = \frac{\bar{X}-u}{\text{SEM}}\)`
+
+`\(t = \frac{\bar{X}-u}{\frac{s}{\sqrt{n}}}\)`
+
+`\(s = \sqrt{\frac{\sum{(x_i-\bar{X})^2}}{N-1}}\)`
+
+]
+
+---
+
+# An example
+
+
+
+
+.pull-left[
+
+Question: 
+
+What population did this sample come from?
+
+
+```r
+mean(scores)
+```
+
+```
+## [1] 0.704
+```
+
+```r
+sd(scores)
+```
+
+```
+## [1] 0.1681666
+```
+
+]
+
+.pull-right[
+
+
+ subjects   scores
+---------  -------
+        1     0.50
+        2     0.56
+        3     0.76
+        4     0.80
+        5     0.90
+
+]
+
+---
+
+# Best guesses
+
+Remember
+
+1. The sample mean is our best estimate of the population mean
+2. The sample standard deviation (dividing by N-1) is our best estimate of the population standard deviation
+
+---
+
+# One possibility
+
+
+.pull-left[
+
+.font70[Our sample statistics are consistent with the data coming from a normal distribution with the following mean and standard deviation]
+
+
+```r
+mean(scores)
+```
+
+```
+## [1] 0.704
+```
+
+```r
+sd(scores)
+```
+
+```
+## [1] 0.1681666
+```
+
+]
+
+.pull-right[
+
+
+ subjects   scores
+---------  -------
+        1     0.50
+        2     0.56
+        3     0.76
+        4     0.80
+        5     0.90
+
+]
+
+
+---
+
+# Testing other possibilities
+
+The one sample t-test allows us to test other possibilities. For example:
+
+Could the data have come from a normal distribution with...
+
+- mean = .25
+- mean = .5
+- mean = .75
+
+---
+
+# Conducting the t-test
+
+Steps:
+
+1. Compute the observed t-value `\(t_\text{observed}\)`
+2. Set alpha criteria (p &lt;. 05)
+3. We will conduct a directional test
+4. Find the probability that t could be `\(t_\text{observed}\)` or larger
+
+---
+
+# Computing t for one-sample test
+
+Could the scores have come from a normal distribution with mean =.25?
+
+`\(t = \frac{\bar{X}-u}{\frac{s}{\sqrt{n}}}\)`
+
+
+```r
+scores&lt;-c(.5,.56,.76,.8,.9)
+effect &lt;- (mean(scores)-.25)
+error  &lt;- sd(scores)/sqrt(5)
+t      &lt;- effect/error
+t
+```
+
+```
+## [1] 6.036722
+```
+
+---
+
+# Compute the associated p-value
+
+Use pt(), df (degrees of freedom) is n-1.
+
+
+```r
+pt(t,df=4) # left side
+```
+
+```
+## [1] 0.9981017
+```
+
+```r
+1-pt(t,df=4) # right side
+```
+
+```
+## [1] 0.001898315
+```
+
+---
+
+# Looking at the evidence
+
+- Our sample mean was 0.704
+- Observed t was 6.0367217
+- The associated p was 0.0018983
+
+What does this mean? 
+
+The probability that our sample mean (or greater) came from normal distribution with (mean =.25, sd = 0.1681666) is 0.0018983.
+
+---
+
+# Making a decision
+
+Write up of results:
+
+We conducted a one sample t-test comparing the sample mean (0.704) against a population mean of .25, t(4) = 6.04, p = 0.0019.
+
+Our conclusion
+
+- We set an alpha criteria of p&lt;.05. We reject the hypothesis that our sample mean came from a normal population with mean =.25, and sd = 0.17.
+
+---
+
+# t.test()
+
+R has a t-test function that let's you do all three kinds of t-tests. Here is how you conduct a one-sample t-test using the function.
+
+
+```r
+scores&lt;-c(.5,.56,.76,.8,.9)
+t.test(scores, mu = .25, alternative="greater")
+```
+
+- alternative="greater" specifies a directional test: to find probability  of t or greater
+- alternative="lesser" directional test to find probability of t or less
+
+
+---
+
+# t.test() output
+
+
+```r
+t.test(scores, mu=.25, alternative="greater")
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  scores
+## t = 6.0367, df = 4, p-value = 0.001898
+## alternative hypothesis: true mean is greater than 0.25
+## 95 percent confidence interval:
+##  0.5436715       Inf
+## sample estimates:
+## mean of x 
+##     0.704
+```
+
+---
+
+# testing u =.5
+
+
+```r
+t.test(scores, mu=.5, alternative="greater")
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  scores
+## t = 2.7125, df = 4, p-value = 0.0267
+## alternative hypothesis: true mean is greater than 0.5
+## 95 percent confidence interval:
+##  0.5436715       Inf
+## sample estimates:
+## mean of x 
+##     0.704
+```
+
+---
+
+# testing u =.75
+
+
+```r
+t.test(scores, mu=.75, alternative="greater")
+```
+
+```
+## 
+## 	One Sample t-test
+## 
+## data:  scores
+## t = -0.61165, df = 4, p-value = 0.7131
+## alternative hypothesis: true mean is greater than 0.75
+## 95 percent confidence interval:
+##  0.5436715       Inf
+## sample estimates:
+## mean of x 
+##     0.704
+```
+
+---
+
+# Extracting values
+
+The `t.test()` function generates a bunch of output, sometime you might want to to extract the t-value, and the p-value.
+
+
+```r
+x &lt;- t.test(scores, mu=.75, alternative="greater")
+x$statistic
+```
+
+```
+##          t 
+## -0.6116502
+```
+
+```r
+x$p.value
+```
+
+```
+## [1] 0.7130873
+```
+
+
+---
+
+class: pink, center, middle, clear
+
+# Thinking ahead to paired samples-test
+
+---
+
+# Consider this
+
+Within-subjects experiment, n=5, all subjects are measured in level A and B of the experiment.
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; subjects &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_B &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+# Empirical question
+
+Did the manipulation (A vs. B) cause a difference in the measure?
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; subjects &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_B &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# Difference scores
+
+How could a one-sample t-test be used to analyze the difference scores?
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; subjects &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_B &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; differences &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+
+# Next class: Paired-Sample t-test
+
+1. Thursday, October 11th: paired sample t-tests
+
+---
+
+# Reminder
+
+1. Quiz 5 is due today Tuesday, October, 9th end of day (11:59pm).
+2. Quiz for this week will be posted tonight or tomorrow.
+3. No quiz next week (midterm review)
+
+
+---
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
