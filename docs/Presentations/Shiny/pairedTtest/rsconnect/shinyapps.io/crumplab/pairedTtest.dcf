@@ -1,0 +1,12 @@
+name: pairedTtest
+title: pairedTtest
+username:
+account: crumplab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 507040
+bundleId: 1636885
+url: https://crumplab.shinyapps.io/pairedTtest/
+when: 1539263463.86691
+asMultiple: FALSE
+asStatic: FALSE

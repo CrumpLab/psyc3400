@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>t-tests</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# t-tests
+## Paired sample
+### Matthew Crump
+### 2018/07/20 (updated: 2018-10-11)
+
+---
+
+
+
+
+
+
+
+class: pink, center, middle, clear
+
+# t-tests and designs
+
+---
+
+# Three kinds of t-tests
+
+1. one-sample
+2. paired-sample
+3. Independent sample
+
+---
+
+# One-sample t-test
+
+Purpose: Compare sample mean to a hypothetical population mean
+
+---
+
+# Paired-sample t-test
+
+Purpose: Compare two sample means in a within-subjects design
+
+Within-subjects design: Same subjects are measured across both levels of the experimental manipulation (independent variable)
+
+---
+
+# Consider this
+
+Within-subjects experiment, n=5, all subjects are measured in level A and B of the experiment.
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; subjects &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_B &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+# Empirical question
+
+Did the manipulation (A vs. B) cause a difference in the measure?
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; subjects &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_B &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# Difference scores
+
+How could a t-test be used to analyze the difference scores?
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; subjects &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; level_B &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; differences &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# Paired samples t-test
+
+.pull-left[
+
+Purpose: Compare two means from paired samples
+
+- `\(\bar{X}_D\)` = mean of difference scores
+- `\(u_0\)` = hypothetical population mean of 0
+- `\(s_D\)` = sample standard deviation of difference scores (divide by n-1)
+- `\(n\)` = sample-size
+
+]
+
+.pull-right[
+
+`\(t = \frac{\bar{X_D}-u_0}{\text{SEM}_D}\)`
+
+`\(t = \frac{\bar{X_D}-u_0}{\frac{s_D}{\sqrt{n}}}\)`
+
+`\(s = \sqrt{\frac{\sum{(x_i-\bar{X})^2}}{N-1}}\)`
+
+]
+
+---
+
+# In other words
+
+.pull-left[
+
+A paired samples t-test is a one-sample t-test applied to the difference scores
+
+We are testing the null-hypothesis that the differences have a mean of 0 (u=0).
+
+]
+
+.pull-right[
+
+Observed `\(t\)` for paired samples test:
+
+`\(t = \frac{\text{Mean of Difference scores}}{\text{SEM of Difference scores}}\)`
+
+]
+
+---
+
+# Calculating Difference scores
+
+Assume 5 subjects participated in both conditions (A and B) of an experiment.
+
+
+```r
+A &lt;-c(1,4,3,6,5)
+B &lt;-c(4,8,7,9,10)
+difference &lt;- B-A
+print(difference)
+```
+
+```
+## [1] 3 4 4 3 5
+```
+
+---
+
+# Calculating Mean and SEM
+
+
+```r
+A &lt;-c(1,4,3,6,5)
+B &lt;-c(4,8,7,9,10)
+difference &lt;- B-A
+# Calculate Mean
+mean(difference)
+```
+
+```
+## [1] 3.8
+```
+
+```r
+# Calculate SEM
+sd(difference)/sqrt(length(difference))
+```
+
+```
+## [1] 0.3741657
+```
+
+---
+
+# Calculate t (paired samples)
+
+
+```r
+A &lt;-c(1,4,3,6,5)
+B &lt;-c(4,8,7,9,10)
+difference &lt;- B-A
+mean_D &lt;- mean(difference)
+SEM_D &lt;- sd(difference)/sqrt(length(difference))
+
+# calculate t
+mean_D/SEM_D
+```
+
+```
+## [1] 10.15593
+```
+
+---
+
+# using the t.test() function
+
+There are two ways to use the t.test() function to calculate t for paired samples
+
+1. Treat the data as difference scores
+
+
+```r
+A &lt;-c(1,4,3,6,5)
+B &lt;-c(4,8,7,9,10)
+difference &lt;- B-A
+
+t.test(difference)$statistic
+```
+
+```
+##        t 
+## 10.15593
+```
+
+
+---
+
+# using the t.test() function
+
+2. Use both variables for each sample, and set `paired=TRUE`
+
+
+```r
+A &lt;-c(1,4,3,6,5)
+B &lt;-c(4,8,7,9,10)
+
+t.test(A,B, paired=TRUE)$statistic
+```
+
+```
+##         t 
+## -10.15593
+```
+
+Note: t is (-) here because the t.test formula computes the differences as the first variable minus the second variable.
+
+---
+
+class: pink, center, middle, clear
+
+# Hypothesis testing
+
+---
+
+# Where did t come from?
+
+1. We can compute t for a paired sample
+
+Next Steps for hypothesis testing:
+
+Big Question: Could our observed t be produced by chance alone?
+
+- How can we figure this out?
+
+---
+
+# Null distribution of t
+
+Answer: We need to find out what kind of ts can be produced by chance alone
+
+- we need to find the null distribution of t
+
+---
+
+# What is the null distribution of t?
+
+Null distribution of t:
+ - the distribution of t values that would occur by chance alone if the experimental manipulation caused no difference in the sample means
+
+---
+
+# Hypothetical possibilities
+
+.pull-left[
+
+The null
+
+- both samples come from the same distribution
+
+![](6b_paired_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+The "alternative"
+
+- each sample comes from it's own distribution
+
+![](6b_paired_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+]
+
+
+---
+
+# Considering the null
+
+.pull-left[
+
+The null
+
+- both samples come from the same distribution
+
+![](6b_paired_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+Question:
+
+.font80[
+- if we sampled two sets of scores from the **same distribution**, what would we expect for the sampling distribution of the mean difference scores?
+- how about the sampling distribution of t?
+]
+
+
+]
+
+---
+
+# Observed vs. critical t
+
+**Observed t**: 
+- the t-value that you calculate from your data
+
+**Critical t**:
+ - a t-value associated with the null-distribution
+ - depends on alpha, and df
+ - e.g., if alpha =.05, then any t bigger than critical t occurs 5% of the time by chance
+
+
+---
+
+# simulating t
+
+The following slide allows you to explore simulating a null and alternative distributions for a paired sample t-test
+
+1. pick n (sample-size)
+2. choose mean of normal distribution for each sample
+3. choose sd of normal distribution
+4. choose number of simulations
+
+---
+
+class: center, middle, clear
+
+&lt;iframe style="width:100%;height:100%;border-style:none;", src="https://crumplab.shinyapps.io/pairedTtest/" /&gt;
+
+
+---
+
+# Questions to ask
+
+1. When each sample comes from the same distribution, what is the average mean difference between the samples?
+
+--
+
+2. What happens to the range of the sampling distribution of mean differences as sample-size increases?
+
+--
+
+3. What happens to the range of the sampling distribution of mean differences as the standard deviation of the population increases?
+
+---
+
+# More questions
+
+1. If the two samples are taken from the same distribution, what percent of the time will be the observed t-value be greater than critical t?
+
+2. What happens to observed t when the samples are taken from distributions with different means?
+
+3. What are some ways (e.g., change sample-size, sd, mean difference) to ensure that observed t will generally be larger than critical t?
+
+
+---
+
+# Critical t
+
+Critical t is set by two properties:
+
+1. the alpha criterion
+2. whether the test is directional (one-tailed) or non-directional (two-tailed)
+
+---
+
+# Directional test (reminder)
+
+A directional test assumes that the experimental manipulation will cause a difference in a particular direction.
+
+- mean for A &gt; (greater than) mean for B
+- mean for A &lt; (less than) mean for B
+
+---
+
+# Critical t (one-tailed) example
+
+Critical t for a directional (one-tailed) test
+
+- alpha = 0.05, or 5%
+
+Critical t is the t-value associated with a null-distribution where this t-value or larger occurs 5% of the time.
+
+---
+
+# Critical t (one-tailed)
+
+&lt;img src="figs/ttest/6critT-1.png" width="1792" /&gt;
+
+---
+
+# Critical t depends on df and alpha
+
+.pull-left[
+
+The table shows values of critical t for a one-tailed test
+
+- alpha values of .10, .05, and .01
+- degress of freedom from 5 to 100
+
+]
+
+.pull-right[
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_10 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_05 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_01 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.36 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.94 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.14 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.41 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.40 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.90 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.82 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.76 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.53 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.40 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.36 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+# Non-Directional test 
+
+A non-directional test assumes that the experimental manipulation will cause **any** difference.
+
+- mean for A != (will not equal) mean for B
+
+E.g., 
+
+- Mean for A could be bigger or smaller than mean for B
+
+---
+
+# Non-directional test (2-tailed)
+
+&lt;img src="figs/ttest/6twotailedt-1.png" width="1792" /&gt;
+
+---
+
+# Comparing critical t (1 vs 2 tailed)
+
+.pull-left[
+
+One-tailed
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_10 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_05 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_01 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.36 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.76 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.53 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.40 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.36 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right[
+
+Two-tailed
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_10 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_05 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_01 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.03 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.17 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.09 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.85 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.68 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.98 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.63 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+# Making decisions
+
+.pull-left[
+One-tailed
+ - reject null 
+  - observed t in green area
+ - fail to reject null 
+  - observed t in white area
+
+]
+
+.pull-right[
+
+&lt;img src="figs/ttest/6critT-1.png" width="100%" /&gt;
+
+]
+
+---
+
+# Making decisions
+
+.pull-left[
+Two-tailed
+ - reject null 
+  - observed t in green area
+ - fail to reject null 
+  - observed t in white area
+
+]
+
+.pull-right[
+
+&lt;img src="figs/ttest/6twotailedt-1.png" width="100%" /&gt;
+
+]
+
+---
+
+class: pink, center, middle, clear
+
+# Example from lab
+
+---
+
+# Mehr, Song, and Spelke (2016)
+
+&lt;img src="figs/ttest/song.png" width="100%" /&gt;
+
+---
+
+# Research question
+
+Do infants use melodies as a cue about social interaction?
+
+If an infant heard and watched an unfamiliar adult singing a familiar melody, would they pay more attention to that person (by looking at them)?
+
+---
+
+# Study design
+
+&lt;img src="figs/ttest/design.png" width="90%" /&gt;
+
+---
+
+# Study predictions
+
+&lt;img src="figs/ttest/predictions.png" width="90%" /&gt;
+
+---
+
+# Data from first 5 infants
+
+&lt;img src="figs/ttest/first5.png" width="1725" /&gt;
+
+---
+
+# Means
+
+&lt;img src="figs/ttest/first5b.png" width="1731" /&gt;
+
+---
+
+# observed t
+
+&lt;img src="figs/ttest/first5c.png" width="2139" /&gt;
+
+---
+
+# r code
+
+
+```r
+baseline &lt;- c(.44,.41,.75,.44,.47)
+test &lt;- c(.6,.68,.72,.28,.5)
+```
+
+---
+# r results (two-tailed)
+
+
+```r
+t.test(test,baseline,paired=TRUE)
+```
+
+```
+## 
+## 	Paired t-test
+## 
+## data:  test and baseline
+## t = 0.72381, df = 4, p-value = 0.5092
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.1531384  0.2611384
+## sample estimates:
+## mean of the differences 
+##                   0.054
+```
+
+---
+
+# Interpretation (two-tailed)
+
+The results from the two-tailed test were:
+
+- t(4) = .723, p = .5092
+
+Interpretation:
+
+- p is the probability that the null-distribution produces an **absolute value** of t=.723 or larger
+- 50.92% of t-values from the null-distribution (assuming no difference) are larger than .723, and smaller than -.723.
+
+---
+
+# r results (one-tailed)
+
+
+```r
+t.test(test,baseline,paired=TRUE,
+       alternative="greater")
+```
+
+```
+## 
+## 	Paired t-test
+## 
+## data:  test and baseline
+## t = 0.72381, df = 4, p-value = 0.2546
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  -0.1050478        Inf
+## sample estimates:
+## mean of the differences 
+##                   0.054
+```
+
+---
+
+# Interpretation (one-tailed)
+
+The results from the one-tailed test were:
+
+- t(4) = .723, p = .2546
+
+Interpretation:
+
+- p is the probability that the null-distribution produces a value of t=.723 or larger
+- 25.46% of t-values from the null-distribution (assuming no difference) were larger than .723.
+
+---
+
+# Increasing N
+
+We only looked at data from the first 5 infants...
+
+We found that the observed t-value could easily have been produced by chance, and we did not reject the null-hypotheses (p-values were not less than .05)
+
+Let's see what happens when we use all of the data
+
+---
+
+# results using all of the data
+
+&lt;img src="figs/ttest/allinfants.png" width="1699" /&gt;
+
+
+---
+
+
+
+# Next class: Independent sample t-test
+
+1. Thursday, October 11th: paired sample t-tests
+
+---
+
+# Reminder
+
+1. Quiz 5 is due today Tuesday, October, 9th end of day (11:59pm).
+2. Quiz for this week will be posted tonight or tomorrow.
+3. No quiz next week (midterm review)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
