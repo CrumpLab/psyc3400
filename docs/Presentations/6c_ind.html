@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>t-tests</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# t-tests
+## Independent Sample
+### Matthew Crump
+### 2018/07/20 (updated: 2018-10-16)
+
+---
+
+
+
+
+
+
+#overview
+
+1. Independent samples t-test calculation
+2. Example from lab
+3. Directional and non-directional test
+4. t-test assumptions
+
+---
+
+class: pink, center, middle, clear
+
+# t-tests and designs
+
+---
+
+# Three kinds of t-tests
+
+1. one-sample
+2. paired-sample
+3. Independent sample
+
+---
+
+# Independent Sample t-test
+
+Purpose: Compare two sample means in a between-subjects design
+
+Between-subjects design: **Different** subjects are measured across both levels of the experimental manipulation (independent variable)
+
+---
+
+# Consider this
+
+Between-subjects experiment, n=5, different subjects are measured in group A and B of the experiment.
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; subjects_A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; subjects_B &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; B &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+# Empirical question
+
+Did the manipulation (A vs. B) cause a difference in the measure?
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; subjects_A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; subjects_B &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; B &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# Can't use Difference scores
+
+Unlike a paired samples t-test, we can't look at the difference scores for a between-subjects design. Why not?
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; subjects_A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; subjects_B &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; B &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# Independent samples t-test
+
+.pull-left[
+
+Purpose: Compare two means from different samples
+
+- `\(\bar{X}_1\)` = mean of sample 1
+- `\(\bar{X}_2\)` = mean of sample 2
+- `\(s_p\)` = pooled standard deviation
+- `\(s_p^2\)` = pooled variance
+- `\(n\)` = sample-size
+- `\(df\)` = `\(n_1 + n_2 - 2\)`
+
+]
+
+.pull-right[
+
+`\(t = \frac{\bar{X_1}-\bar{X_2}}{s_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\)`
+
+`\(s_p^2 = \sqrt{\frac{(n_1-1)s_\text{X1}^2+(n_2-1)s_\text{X2}^2}{n_1+n_2-2}}\)`
+
+]
+
+---
+
+# Pooled standard deviation
+
+`\(s_p\)` (standard deviation) and `\(s_p^2\)` (variance) are **pooled estimates** (combined).
+
+We have two samples
+1. The basic idea is to find the average of the standard deviations
+2. The formula makes the estimate unbiased
+
+---
+
+# R: Calculating t
+
+The `t.test()` function assumes independent samples by default. We do need to set the `var.equal=TRUE` option.
+
+
+```r
+A &lt;-c(1,4,3,6,5)
+B &lt;-c(4,8,7,9,10)
+t.test(A,B,var.equal = T)$statistic
+```
+
+```
+##         t 
+## -2.832353
+```
+
+---
+
+# Calculating pooled estimate
+
+
+```r
+A &lt;-c(1,4,3,6,5)
+B &lt;-c(4,8,7,9,10)
+mean_dif &lt;- mean(A)-mean(B)
+numerator &lt;- (4*var(A)) + (4*var(B))
+denominator &lt;- 5+5-2
+sp2   &lt;- sqrt(numerator/denominator)
+t&lt;- mean_dif/(sp2*sqrt((1/5)+(1/5)))
+t
+```
+
+```
+## [1] -2.832353
+```
+
+---
+
+class: pink, center, middle, clear
+
+# Lab Example
+
+---
+
+# Schroeder and Epley (2015)
+
+&lt;img src="figs/ttest/Lab7a.png" width="2925" /&gt;
+
+---
+
+# Research Question
+
+Are evaluations of a person's intellect better conveyed through writing or speaking?
+
+---
+
+# Method
+
+- Job applicants in an interview give both a written statement, and an audio version of them reading the statement
+- Interviewers (profesional recruiters) read or listen to each statement, and rate each applicant (intellect, general impression, Hiring likelihood)
+
+---
+
+# IVs and DVs
+
+IVs: 
+ - Read written transcript vs. Listen to spoken audio transcript
+ 
+DVS:
+ - Intellect rating (0-10)
+ - general impression rating (0-10)
+ - hiring likelihood rating (0-10)
+
+---
+
+# The results
+
+&lt;img src="figs/ttest/Lab7b.png" width="80%" /&gt;
+
+---
+
+# The write-up
+
+&lt;img src="figs/ttest/Lab7c.png" width="1416" /&gt;
+
+---
+
+# R analysis
+
+&lt;img src="figs/ttest/Lab7d.png" width="1648" /&gt;
+
+---
+
+class: pink, center, middle, clear
+
+# Directional vs. non-directional tests
+
+---
+
+
+
+# Critical t
+
+Critical t is set by two properties:
+
+1. the alpha criterion
+2. whether the test is directional (one-tailed) or non-directional (two-tailed)
+
+---
+
+# Directional test (reminder)
+
+A directional test assumes that the experimental manipulation will cause a difference in a particular direction.
+
+- mean for A &gt; (greater than) mean for B
+- mean for A &lt; (less than) mean for B
+
+---
+
+# Critical t (one-tailed) example
+
+Critical t for a directional (one-tailed) test
+
+- alpha = 0.05, or 5%
+
+Critical t is the t-value associated with a null-distribution where this t-value or larger occurs 5% of the time.
+
+---
+
+# Critical t (one-tailed)
+
+&lt;img src="figs/ttest/6critT-1.png" width="1792" /&gt;
+
+---
+
+# Critical t depends on df and alpha
+
+.pull-left[
+
+The table shows values of critical t for a one-tailed test
+
+- alpha values of .10, .05, and .01
+- degress of freedom from 5 to 100
+
+]
+
+.pull-right[
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_10 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_05 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_01 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.36 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.44 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.94 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.14 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.41 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.89 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.40 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.86 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.90 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.38 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.83 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.82 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.76 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.53 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.40 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.36 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+# Non-Directional test 
+
+A non-directional test assumes that the experimental manipulation will cause **any** difference.
+
+- mean for A != (will not equal) mean for B
+
+E.g., 
+
+- Mean for A could be bigger or smaller than mean for B
+
+---
+
+# Non-directional test (2-tailed)
+
+&lt;img src="figs/ttest/6twotailedt-1.png" width="1792" /&gt;
+
+---
+
+# Comparing critical t (1 vs 2 tailed)
+
+.pull-left[
+
+One-tailed
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_10 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_05 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_01 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.48 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.36 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.37 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.76 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.33 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.53 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.30 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.40 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.29 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.36 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right[
+
+Two-tailed
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; df &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_10 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_05 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; p_01 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.02 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.57 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.03 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.81 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.23 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.17 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.72 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.09 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.85 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.68 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.68 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.66 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.98 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.63 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+
+# Making decisions
+
+.pull-left[
+One-tailed
+ - reject null 
+  - observed t in green area
+ - fail to reject null 
+  - observed t in white area
+
+]
+
+.pull-right[
+
+&lt;img src="figs/ttest/6critT-1.png" width="100%" /&gt;
+
+]
+
+---
+
+# Making decisions
+
+.pull-left[
+Two-tailed
+ - reject null 
+  - observed t in green area
+ - fail to reject null 
+  - observed t in white area
+
+]
+
+.pull-right[
+
+&lt;img src="figs/ttest/6twotailedt-1.png" width="100%" /&gt;
+
+]
+
+---
+
+class: pink, center, middle, clear
+
+# t-test assumptions
+
+---
+
+class: center, middle, clear
+
+&lt;iframe style="width:100%;height:100%;border-style:none;", src="https://crumplab.shinyapps.io/indTtest/" /&gt;
+
+
+---
+
+
+
+# Next class: Midterm review
+
+1. Thursday, October 18th: Midterm review
+2. quiz on t-tests due Thursday, October 18th (11:59pm)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
