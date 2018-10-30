@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>One-Factor ANOVA</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# One-Factor ANOVA
+## Between-subjects designs
+### Matthew Crump
+### 2018/07/20 (updated: 2018-10-30)
+
+---
+
+
+
+
+class: pink, center, middle, clear
+
+# ANOVAs
+
+---
+
+# Overview
+
+1. ANOVA concepts
+2. one-factor between subjects example
+
+- Look at the last few slides for quiz tips (using R)
+
+---
+
+# ANOVA
+
+ANOVA stands for ANalysis Of VAriance
+
+---
+
+# Purpose of ANOVA
+
+1. Statistical inference test for multiple (2 or more)  groups
+2. The kind of ANOVA you run depends on the experimental design. This week we focus on **Between-Subjects designs**
+
+---
+
+# Heads up
+
+The end result of an ANOVA gives back similar information as a t-test
+
+1. t(df) = t-value, p = p-value
+2. F(df1, df2) = F-value, p = value
+
+Reporting of F-tests also typically include one more thing:
+
+3. F(df1, df2) = F-value, MSE = MS error value, p = value
+
+---
+
+# Fast Example
+
+
+```r
+A &lt;- c(20,11,2)
+B &lt;- c(6,2,7)
+C &lt;- c(2,11,2)
+IV &lt;- as.factor(rep(c("A","B","C"),each=3))
+DV &lt;- c(A,B,C)
+df &lt;- data.frame(IV,DV)
+```
+
+---
+
+# R: aov()
+
+
+```r
+aov(DV~IV,df)
+```
+
+```
+## Call:
+##    aov(formula = DV ~ IV, data = df)
+## 
+## Terms:
+##                  IV Residuals
+## Sum of Squares   72       230
+## Deg. of Freedom   2         6
+## 
+## Residual standard error: 6.191392
+## Estimated effects may be unbalanced
+```
+
+---
+
+# R: summary()
+
+The `summary()` function provides the ANOVA table
+
+
+```r
+aov_results &lt;- aov(DV~IV,df)
+summary(aov_results)
+```
+
+```
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV           2     72   36.00   0.939  0.442
+## Residuals    6    230   38.33
+```
+
+---
+
+# Things we need to understand
+
+1. The logic of the ANOVA
+2. What each part of the ANOVA table tells us
+
+Let's start by looking at the example for the next lab on ANOVA.
+
+---
+
+# ANOVA lab example
+
+&lt;img src="figs/anova1/lab1.png" width="2888" /&gt;
+
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/anova1/lab2.png" width="80%" /&gt;
+
+---
+
+# Results
+
+&lt;img src="figs/anova1/lab3.png" width="50%" /&gt;
+
+---
+
+# Write-up
+
+&lt;img src="figs/anova1/lab4.png" width="2901" /&gt;
+
+---
+
+# Things we need to understand
+
+1. The logic of the ANOVA
+2. What each part of the ANOVA table tells us
+
+---
+
+# ANOVA is an omnibus test
+
+- Omnibus definition: comprising many items
+
+- ANOVAs can test for differences among many means (2 or more)
+
+- Test question: Are there any differences among the means?
+
+- If the answer is yes, then we still do not know which specific means are different from one another.
+
+
+
+
+---
+
+# F-value
+
+F is a ratio between two variances
+
+
+```
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV           2     72   36.00   0.939  0.442
+## Residuals    6    230   38.33
+```
+
+`\(F=\frac{\text{MSE}_\text{Effect}}{\text{MSE}_\text{Error}}\)`
+`\(F=\frac{\text{Mean Squared Error}_\text{IV}}{\text{Mean Squared Error}_\text{Residuals}}\)`
+
+```r
+36/38.33
+```
+
+```
+## [1] 0.9392121
+```
+
+---
+
+# MSE: Mean squared Error (effect)
+
+MSE (Mean Squared Error) is the SS (sums of sqaures) divided by the degrees of freedom
+
+
+```
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV           2     72   36.00   0.939  0.442
+## Residuals    6    230   38.33
+```
+
+`\(\text{MSE}_\text{Effect}=\frac{\text{SS}_\text{Effect}}{\text{df}_\text{Effect}}\)`
+`\(\text{MSE}_\text{IV}=\frac{\text{SS}_\text{IV}}{\text{df}_\text{IV}}\)`
+
+
+```r
+72/2
+```
+
+```
+## [1] 36
+```
+
+---
+
+# MSE: Mean squared Error (error)
+
+MSE (Mean Squared Error) is the SS (sums of sqaures) divided by the degrees of freedom
+
+
+```
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV           2     72   36.00   0.939  0.442
+## Residuals    6    230   38.33
+```
+
+`\(\text{MSE}_\text{Error}=\frac{\text{SS}_\text{Error}}{\text{df}_\text{Error}}\)`
+`\(\text{MSE}_\text{Residuals}=\frac{\text{SS}_\text{Residuals}}{\text{df}_\text{Residuals}}\)`
+
+
+```r
+6/230
+```
+
+```
+## [1] 0.02608696
+```
+
+---
+
+# ANOVA reference table
+
+&lt;img src="figs/anova1/aov_formula.png" width="1816" /&gt;
+
+---
+
+class: pink, center, middle, clear
+
+# The big idea
+
+---
+
+# Partitioning the Variance
+
+Idea is to split up the variance in the data into two parts:
+
+1. The part due to the manipulation (IV)
+2. The leftover part, due to random error
+
+---
+
+class: center, middle, clear, nopad
+
+
+&lt;img src="figs/anova1/aovlec.001.png" width="1365" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+
+&lt;img src="figs/anova1/aovlec.002.png" width="1365" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+
+&lt;img src="figs/anova1/aovlec.003.png" width="1365" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+
+&lt;img src="figs/anova1/aovlec.004.png" width="1365" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+
+&lt;img src="figs/anova1/aovlec.005.png" width="1365" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+
+&lt;img src="figs/anova1/aovlec.006.png" width="1365" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+
+&lt;img src="figs/anova1/aovlec.007.png" width="1365" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+
+&lt;img src="figs/anova1/aovlec.008.png" width="1365" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+
+&lt;img src="figs/anova1/aovlec.009.png" width="1365" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+
+&lt;img src="figs/anova1/aovlec.010.png" width="1365" /&gt;
+
+---
+
+# SS total
+
+`\(SS_\text{Total} = SS_\text{Effect} + SS_\text{Error}\)`
+
+`\(SS_\text{Total} = SS_\text{Can Explain} + SS_\text{Can't Explain}\)`
+
+`\(SS_\text{Total} = SS_\text{Change due to manipulation} + SS_\text{Change due to Chance}\)`
+
+`\(SS_\text{Total} = \sum_{i=1}^n(x_{i}-\bar{X})^2\)`
+
+- `\(x_{i}\)` = each score
+- `\(\bar{X}\)` = Grand Mean of all scores
+
+---
+
+# SS total example
+
+&lt;img src="figs/anova1/SS_total.png" width="70%" /&gt;
+
+---
+
+# R: SS total
+
+`\(SS_\text{Total} = \sum_{i=1}^n(x_{i}-\bar{X})^2\)`
+
+- the sum of the squared differences between every score and the grand mean
+
+
+```r
+A &lt;- c(20,11,2)
+B &lt;- c(6,2,7)
+C &lt;- c(2,11,2)
+all_scores &lt;- c(A,B,C)
+grand_mean &lt;- mean(all_scores)
+SS_total &lt;- sum((all_scores-grand_mean)^2)
+print(SS_total)
+```
+
+```
+## [1] 302
+```
+
+
+---
+
+# Remember what SS represents?
+
+SS (the sums of squares) is a single number representing the sum of all of the **change** in the data. 
+
+- Specifically, the squared deviations from each score from the mean
+
+---
+
+# Question
+
+What are some **sources** of change that could cause `\(SS_\text{Total}\)` for a set of data to increase or decrease?
+
+- what properties of the sample data could be changed that would increase or decrease `\(SS_\text{Total}\)`?
+
+---
+
+# SS total and the Effect (IV)
+
+A successful manipulation (IV) will cause an effect (e.g., cause differences between the sample means)
+
+**Question**: How can the effect of an IV cause increases or decreases to `\(SS_\text{Total}\)`?
+
+---
+
+# SS total and sampling error
+
+Sampling error is due to existing variability in the data.
+
+**Question**: How can the effect of sampling error cause increases or decreases to `\(SS_\text{Total}\)`?
+
+---
+
+# The F-distribution
+
+Let's examine some ANOVA concepts by simulation in R.
+
+---
+
+# Quiz help
+
+The next few slides show examples of computing parts of the ANOVA table in R
+
+---
+
+# The entire ANOVA table: Step 1
+
+1. Put the data into a dataframe. One column should code the levels of the IV, and the other column should include the DV
+
+
+```r
+A &lt;- c(20,11,2)
+B &lt;- c(6,2,7)
+C &lt;- c(2,11,2)
+IV &lt;- as.factor(rep(c("A","B","C"),each=3))
+DV &lt;- c(A,B,C)
+df &lt;- data.frame(IV,DV)
+```
+
+---
+
+# The entire ANOVA table: Step 2
+
+
+```r
+summary(aov(DV~IV, df))
+```
+
+```
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV           2     72   36.00   0.939  0.442
+## Residuals    6    230   38.33
+```
+
+---
+
+# SS total
+
+The sum of the squared deviations between each score and the grand mean.
+
+
+```r
+A &lt;- c(20,11,2)
+B &lt;- c(6,2,7)
+C &lt;- c(2,11,2)
+all_scores &lt;- c(A,B,C)
+grand_mean &lt;- mean(all_scores)
+SS_total &lt;- sum((all_scores-grand_mean)^2)
+print(SS_total)
+```
+
+```
+## [1] 302
+```
+
+---
+
+# SS total using the ANOVA table
+
+Add up both of the Sums of Squares...
+
+
+```r
+summary(aov(DV~IV, df))
+```
+
+```
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV           2     72   36.00   0.939  0.442
+## Residuals    6    230   38.33
+```
+
+---
+
+# SS effect
+
+`\(SS_\text{Effect} = \sum_{i=1}^kn_i(X_{i}-\bar{X})^2\)`
+
+Each score is treated as it's group mean. Then, all of these "group mean" scores for each subject is subtracted from the grand mean. The SS effect is the sum of these squared deviations.
+
+---
+
+# R: SS effect
+
+
+```r
+A &lt;- c(20,11,2)
+B &lt;- c(6,2,7)
+C &lt;- c(2,11,2)
+grand_mean &lt;- mean(c(A,B,C))
+scores_as_grp_means &lt;- c(rep(mean(A),3),
+                           rep(mean(B),3),
+                           rep(mean(C),3))
+SS_Effect &lt;- sum((scores_as_grp_means-grand_mean)^2)
+print(SS_Effect)
+```
+
+```
+## [1] 72
+```
+
+---
+
+# SS effect from ANOVA table
+
+Or, just look at the Sums of squares in the first row of the ANOVA table (for IV in this case, which represents the effect).
+
+
+```r
+summary(aov(DV~IV, df))
+```
+
+```
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV           2     72   36.00   0.939  0.442
+## Residuals    6    230   38.33
+```
+
+---
+
+# SS error
+
+The sum of the squared deviations between each score and it's group mean.
+
+---
+
+# R: SS error
+
+
+```r
+A &lt;- c(20,11,2)
+B &lt;- c(6,2,7)
+C &lt;- c(2,11,2)
+scores_as_grp_means &lt;- c(rep(mean(A),3),
+                           rep(mean(B),3),
+                           rep(mean(C),3))
+SS_Error &lt;- sum((scores_as_grp_means-c(A,B,C))^2)
+print(SS_Error)
+```
+
+```
+## [1] 230
+```
+
+---
+
+# SS error from ANOVA table
+
+Or, just look at the Sums of squares in the second row of the ANOVA table (for residuals in this case, which represents the error).
+
+
+```r
+summary(aov(DV~IV, df))
+```
+
+```
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV           2     72   36.00   0.939  0.442
+## Residuals    6    230   38.33
+```
+
+---
+
+# Getting F and p from ANOVA table
+
+Put the ANOVA summary into a variable
+
+
+```r
+anova_variable &lt;- summary(aov(DV~IV, df))
+```
+
+Get F and associated p
+
+
+```r
+anova_variable[[1]]$`F value`
+```
+
+```
+## [1] 0.9391304        NA
+```
+
+```r
+anova_variable[[1]]$`Pr(&gt;F)`
+```
+
+```
+## [1] 0.4417359        NA
+```
+
+---
+
+# Getting Df, SS, and MS
+
+
+```r
+anova_variable[[1]]$Df
+```
+
+```
+## [1] 2 6
+```
+
+```r
+anova_variable[[1]]$`Sum Sq`
+```
+
+```
+## [1]  72 230
+```
+
+```r
+anova_variable[[1]]$`Mean Sq`
+```
+
+```
+## [1] 36.00000 38.33333
+```
+
+
+---
+
+
+
+# Next class: More ANOVA
+
+1. ANOVA quiz begins this afternoon, due Next Tuesday (Nov 6th) @ 11:59pm
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

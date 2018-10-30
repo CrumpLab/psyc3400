@@ -10,6 +10,10 @@ a, a > code {
 }
 .remark-code-line-highlighted     { background-color: #ffff88; }
 
+.nopad {
+  padding: 0em 0em 0em 0em !important;
+}
+
 .inverse {
   background-color: #272822;
   color: #d6d6d6;
