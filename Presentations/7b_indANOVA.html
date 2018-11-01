@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>One-Factor ANOVA continued</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# One-Factor ANOVA continued
+## Between-subjects designs
+### Matthew Crump
+### 2018/07/20 (updated: 2018-11-01)
+
+---
+
+
+
+
+# Overview
+
+1. Visual intution for Observed F
+2. The F-distribution
+3. Statistical inference with F's
+4. Examples
+
+---
+
+# Observed F
+
+Observed F is computed directly from the data:
+
+&lt;img src="figs/anova1/aov_formula.png" width="1816" /&gt;
+
+---
+
+# F is a ratio of variances
+
+`\(F = \frac{MS_\text{Effect}}{MS_\text{Error}}\)`
+
+- F is greater than 1 when the variance due to mean differences between the groups is larger than the remaining error variance
+
+- F is less than 1 when the variance due to to mean differences between the groups is smaller than the remaining error variance
+
+---
+
+# Visualizing the sources of variance
+
+The one-factor ANOVA splits up the total variance into two parts, one for the effect of the means, and one for the remaining unexplained variance.
+
+- Let's look at some graphs with sample data and see if we can form intuitions about the value of F
+
+---
+
+# Questions to answer
+
+1. How big is the variation between the group means? This tells us about the variation due to the effect.
+
+2. How big is the variation between each group mean and the scores in each group? This tells us about the leftover variation due to sampling error.
+
+3. Is one bigger than the other?
+
+---
+
+# Example 1
+
+.pull-left[
+
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+- MS Effect = 3132.39
+- MS Error = 0.84
+- F = 3749.8
+
+]
+
+---
+
+# Example 2
+
+.pull-left[
+
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+- MS Effect = 2920.64
+- MS Error = 27.64
+- F = 105.68
+
+]
+
+---
+
+# Example 3
+
+.pull-left[
+
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+- MS Effect = 1407.99
+- MS Error = 470.14
+- F = 2.99
+
+]
+
+---
+
+# Summary of Examples 1-3
+
+The examples had:
+
+1. Systematic mean differences between the groups
+2. Increasing variance within each group (from example 1 to 3)
+
+Result:
+
+F was large for Example 1, and decreased for E2 and E3 as the error variance increased (compared to the effect variance)
+
+
+---
+
+# Null examples
+
+Let's sample data into three groups from the **same** normal distribution. 
+- 3 groups
+- n = 10 in each group
+- mean = 10
+- standard deviation = 20
+
+
+---
+
+# Null Example 1
+
+.pull-left[
+
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+- MS Effect = 522.04
+- MS Error = 363.89
+- F = 1.43
+
+]
+
+
+---
+
+# Null Example 2
+
+.pull-left[
+
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+- MS Effect = 230.27
+- MS Error = 298.74
+- F = 0.77
+
+]
+
+
+---
+
+# Null Example 3
+
+.pull-left[
+
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+- MS Effect = 1051.25
+- MS Error = 258.71
+- F = 4.06
+
+]
+
+
+---
+
+
+# Null Example 4
+
+.pull-left[
+
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+- MS Effect = 212.85
+- MS Error = 411.59
+- F = 0.52
+
+]
+
+
+---
+
+
+# Null Example 5
+
+.pull-left[
+
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+
+- MS Effect = 153.16
+- MS Error = 574.82
+- F = 0.27
+
+]
+
+
+---
+
+# Summary Null Examples
+
+**Remember**: we sampled scores into each group from the same population, so on average the means for each group should be the same, but they are not always the same because of sampling error
+
+**By chance**:
+ - variation between groups can be larger or smaller than variation within groups
+ - F-values can be larger or smaller than 1 by chance
+
+---
+
+# The sampling distribution of F
+
+The sampling distribution of F is a hypothetical distribution. It shows the distribution of F-values you could get for particular situations:
+
+1. depends on n per group
+2. number of groups
+3. the population the scores come from
+
+---
+
+# How does F behave under the null?
+
+In order to use an observed F-value for statistical inference, we need to know what kind of F-values can be produced by chance alone, when all of the sample data for each group is taken from the same population.
+
+---
+
+# Simulating an F distribution in R
+
+**This simulates a null-distribution**
+
+
+```r
+save_f&lt;-c()
+for(i in 1:1000){
+  A &lt;- rnorm(10,10,20)
+  B &lt;- rnorm(10,10,20)
+  C &lt;- rnorm(10,10,20)
+  DV &lt;- c(A,B,C)
+  IV &lt;- rep(c("A","B","C"),each=10)
+  df &lt;- data.frame(IV,DV)
+  sum_aov &lt;- summary(aov(DV~IV,df))
+  save_f[i] &lt;- sum_aov[[1]]$`F value`[1]
+}
+```
+
+---
+
+# histogram of simulated Fs
+
+
+```r
+hist(save_f)
+```
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+
+# Analytic formula for F-distribution
+
+[see wikipedia page on the F-distribution](https://en.wikipedia.org/wiki/F-distribution)
+
+---
+
+# F-distribution shape
+
+- right-skewed
+- changes depending on dfs for the numerator and denominator
+
+Question: Can you ever get an F less than 0?
+
+---
+
+# Critical F (alpha= .05)
+
+Critical F (2,27) = 3.3541308 
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+
+---
+
+# Critical F (alpha= .05)
+
+Critical F (9,50) = 2.0733512 
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+
+---
+
+# Critical F by df1 and df2
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+---
+
+# Statistical inference with F
+
+- Observed F = the f-value you got from your data
+- p-value = the probability of obtaining your f-value or larger by chance
+
+- Critical F = the f-value associated with your alpha criterion (and df1, df2)
+- p-value = set by the alpha criterion
+
+---
+
+# Rejecting the Null
+
+Decisions:
+
+1. Reject the null: When the p-value for the observed F is smaller than alpha (or, F observed is larger than F critical)
+
+2. Fail to reject: When the p-value for the observed F is larger than alpha (or, F observed is smaller than F critical)
+
+---
+
+# What does rejecting the null mean?
+
+Rejecting the null = the mean differences between the groups are unlikely to be produced by chance
+
+---
+
+# F-tests are non-directional
+
+Why?
+
+---
+
+# An R example
+
+We simulate data from a between-subjects design with 3 groups.
+
+- n = 10 in each group
+- all sample data comes from a normal with standard deviation = 5
+- we program some differences in to the means
+
+---
+
+# simulate the data
+
+
+```r
+A &lt;- rnorm(10,20,5)
+B &lt;- rnorm(10,20,5)
+C &lt;- rnorm(10,40,5)
+DV &lt;- c(A,B,C)
+IV &lt;- rep(c("A","B","C"),each=10)
+df &lt;- data.frame(IV,DV)
+```
+
+---
+
+# plot the data
+
+![](7b_indANOVA_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+---
+
+# Conduct the ANOVA
+
+
+```r
+summary(aov(DV~IV,df))
+```
+
+```
+##             Df Sum Sq Mean Sq F value  Pr(&gt;F)    
+## IV           2 1971.7   985.9    58.6 1.5e-10 ***
+## Residuals   27  454.2    16.8                    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+# Conduct follow-up comparisons
+
+- The ANOVA will only test the omnibus question...Are there any differences anywhere?
+
+- Need to concuct additional tests to compare specific means...
+
+- There are numerous recommendations for the "right" way to do this...For now we do follow-up t-tests, and discuss the implications of this choice in later lectures.
+
+---
+
+# conduct follow-up t-tests A vs. B
+
+
+```r
+t.test(A,B,var.equal=T)
+```
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  A and B
+## t = 0.62245, df = 18, p-value = 0.5415
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -2.622588  4.830851
+## sample estimates:
+## mean of x mean of y 
+##  21.57814  20.47401
+```
+
+---
+
+# conduct follow-up t-tests A vs. C
+
+
+```r
+t.test(A,C,var.equal=T)
+```
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  A and C
+## t = -9.5199, df = 18, p-value = 1.894e-08
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -20.28660 -12.95141
+## sample estimates:
+## mean of x mean of y 
+##  21.57814  38.19714
+```
+
+---
+
+# Write-up the results
+
+See the lab manual for some examples and tips
+
+---
+
+class: pink, center, middle, clear
+
+Some questions to start thinking about
+
+---
+
+# Obtaining statistical significance
+
+Let's say you set your alpha criterion to .05 for your statistical test.
+
+1. If your experimental manipulation **does not** work (causes no change across levels), what proportion of the time would you expect to reject the null-hypothesis?
+
+---
+
+# More questions
+
+2. If your experimental manipulation **does** work (causes no change across levels), what proportion of the time would you expect to reject the null-hypothesis?
+
+3. If your experimental manipulation **does** work (causes no change across levels), what proportion of the time would you expect to fail  to reject the null-hypothesis?
+
+---
+
+# Even more questions
+
+Assume your experimental does work, and it causes some change between levels
+
+4. What can you change about your experimental design to increase the proportion of times you would reject the null hypothesis?
+
+---
+
+
+# Next class: Repeated measures ANOVA
+
+1.Quiz due Next Tuesday (Nov 6th) @ 11:59pm
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
