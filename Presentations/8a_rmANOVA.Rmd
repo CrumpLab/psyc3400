@@ -1,0 +1,255 @@
+---
+title: "Repeated measures ANOVA"
+subtitle: "Within-subjects designs"
+author: "Matthew Crump"
+date: "2018/07/20 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: ["defaultb.css", "metropolisb.css", "metropolis-fontsb.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE, cache = TRUE)
+```
+
+# Overview
+
+1. Repeated Measures ANOVA
+2. New partition for subjects
+3. Lab example
+
+---
+
+# Repeated measures ANOVA
+
+When to use:
+
+1. Your design is within-subjects
+2. Your IV has multiple levels (2 or more).
+
+---
+
+class: center, middle, clear, nopad
+
+```{r, out.width="90%"}
+knitr::include_graphics("figs/rmanova/SS_ANOVA.png")
+```
+
+---
+
+# A new partition for Subjects
+
+```{r}
+knitr::include_graphics("figs/rmanova/SS_RMANOVA.png")
+```
+
+---
+
+class: center, middle, clear, nopad
+
+```{r}
+knitr::include_graphics("figs/rmanova/rmANOVAtable.png")
+```
+
+---
+
+# Goal: Fill in this table
+
+```{r}
+knitr::include_graphics("figs/rmanova/rmblank.png")
+```
+
+---
+
+# SS TOTAL
+
+```{r, out.width="90%"}
+knitr::include_graphics("figs/rmanova/rmTotal.png")
+```
+
+---
+
+# SS Effect
+
+```{r, out.width="90%"}
+knitr::include_graphics("figs/rmanova/rmEffect.png")
+```
+
+---
+
+# SS Subject
+
+```{r, out.width="90%"}
+knitr::include_graphics("figs/rmanova/rmSubject.png")
+```
+
+---
+
+# Again: SS effect and subject
+
+```{r, out.width="100%"}
+knitr::include_graphics("figs/rmanova/rm1.png")
+```
+
+---
+
+# ANOVA table
+
+```{r, out.width="90%"}
+knitr::include_graphics("figs/rmanova/rmfilled.png")
+```
+
+---
+
+# R for RM anova
+
+```{r, echo=T}
+A <- c(1,2,1,2,4)
+B <- c(9,7,6,4,4)
+C <- c(2,9,2,3,4)
+DV <- c(A,B,C)
+subjects <- as.factor(c(1,2,3,4,5))
+IV <- rep(c("A","B","C"), each=5)
+df <- data.frame(subjects,IV, DV) 
+```
+
+---
+
+# the data frame (rows 1:8)
+
+```{r}
+
+knitr::kable(df[1:8,], "html")
+
+```
+
+---
+
+# the data frame (rows 9:15)
+
+```{r}
+
+knitr::kable(df[9:15,], "html")
+
+```
+
+---
+
+# R anova formula for repeated measures
+
+`aov(DV~IV + Error(subjects/IV), df)`
+
+```{r, eval=F, echo=T}
+summary(aov(DV~IV+Error(subjects/IV),df))
+```
+
+---
+
+# R anova table
+
+```{r}
+summary(aov(DV~IV+Error(subjects/IV),df))
+```
+
+---
+
+# calculating SS subjects
+
+```{r, echo=T}
+library(dplyr)
+subject_means <- df %>%
+                 group_by(subjects) %>%
+                 summarise(means=mean(DV))
+grand_mean <- mean(df$DV)
+n_groups <- length(unique(df$IV))
+SS_subjects <- n_groups*sum((subject_means$means-grand_mean)^2)
+print(SS_subjects)
+```
+
+---
+
+# Fs and ps
+
+R has `pf()` and `qf()` functions for finding critical values of F given a particular p-value, and p-values associated with particular Fs
+
+---
+
+# pf()
+
+What is the p-value associated with F(3,27) = 2.15 ?
+
+`pf(q, df1, df2)` (q is the f-value, stands for quantile)
+
+```{r, echo=T}
+1-pf(2.15, 3, 27)
+```
+
+An F of 2.15 or larger, with degrees of freedom (3,27), occurs with this probability.
+
+---
+
+# qf()
+
+Assume an alpha of .05. What is the critical value of F, with degrees of freedom (3,27)?
+
+`qf(p, df1, df2)`
+
+```{r, echo=T}
+qf(.95, 3, 27)
+```
+
+We set p to .95. Fs larger than the critical value will occur less than 1-.95=.05 of the time.
+
+---
+
+# Lab Example
+
+```{r, out.width="100%"}
+knitr::include_graphics("figs/rmanova/lab1.png")
+```
+
+---
+
+# Research question
+
+One research question was whether we would replicate previous finding showing that people type faster when the letters are in word or word like arrangements, compared to random strings
+
+- Word: truck
+- english-like: quemp
+- random: wxzjy
+
+---
+
+# Repeated Measures Design
+
+- everybody typed letters in the word, english-like, and random conditions
+
+```{r, out.width="90%"}
+knitr::include_graphics("figs/rmanova/lab2.png")
+```
+
+---
+
+# Results
+
+```{r, out.width="100%"}
+knitr::include_graphics("figs/rmanova/lab3.png")
+```
+
+---
+
+
+
+
+# Next class: Repeated measures ANOVA II
+
+1.Quiz for this week on repeated measures posted tonight (Due next tuesday @ 11:59pm)
+
+
+

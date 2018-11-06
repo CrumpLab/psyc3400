@@ -643,15 +643,15 @@ Let's say you set your alpha criterion to .05 for your statistical test.
 
 # More questions
 
-2. If your experimental manipulation **does** work (causes no change across levels), what proportion of the time would you expect to reject the null-hypothesis?
+2. If your experimental manipulation **does** work, what proportion of the time would you expect to reject the null-hypothesis?
 
-3. If your experimental manipulation **does** work (causes no change across levels), what proportion of the time would you expect to fail  to reject the null-hypothesis?
+3. If your experimental manipulation **does** work, what proportion of the time would you expect to fail to reject the null-hypothesis?
 
 ---
 
 # Even more questions
 
-Assume your experimental does work, and it causes some change between levels
+Assume your experimental manipulation does work, and it causes some change between levels
 
 4. What can you change about your experimental design to increase the proportion of times you would reject the null hypothesis?
 

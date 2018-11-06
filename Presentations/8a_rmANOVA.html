@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Repeated measures ANOVA</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Repeated measures ANOVA
+## Within-subjects designs
+### Matthew Crump
+### 2018/07/20 (updated: 2018-11-06)
+
+---
+
+
+
+
+# Overview
+
+1. Repeated Measures ANOVA
+2. New partition for subjects
+3. Lab example
+
+---
+
+# Repeated measures ANOVA
+
+When to use:
+
+1. Your design is within-subjects
+2. Your IV has multiple levels (2 or more).
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/rmanova/SS_ANOVA.png" width="90%" /&gt;
+
+---
+
+# A new partition for Subjects
+
+&lt;img src="figs/rmanova/SS_RMANOVA.png" width="1627" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/rmanova/rmANOVAtable.png" width="1821" /&gt;
+
+---
+
+# Goal: Fill in this table
+
+&lt;img src="figs/rmanova/rmblank.png" width="1088" /&gt;
+
+---
+
+# SS TOTAL
+
+&lt;img src="figs/rmanova/rmTotal.png" width="90%" /&gt;
+
+---
+
+# SS Effect
+
+&lt;img src="figs/rmanova/rmEffect.png" width="90%" /&gt;
+
+---
+
+# SS Subject
+
+&lt;img src="figs/rmanova/rmSubject.png" width="90%" /&gt;
+
+---
+
+# Again: SS effect and subject
+
+&lt;img src="figs/rmanova/rm1.png" width="100%" /&gt;
+
+---
+
+# ANOVA table
+
+&lt;img src="figs/rmanova/rmfilled.png" width="90%" /&gt;
+
+---
+
+# R for RM anova
+
+
+```r
+A &lt;- c(1,2,1,2,4)
+B &lt;- c(9,7,6,4,4)
+C &lt;- c(2,9,2,3,4)
+DV &lt;- c(A,B,C)
+subjects &lt;- as.factor(c(1,2,3,4,5))
+IV &lt;- rep(c("A","B","C"), each=5)
+df &lt;- data.frame(subjects,IV, DV) 
+```
+
+---
+
+# the data frame (rows 1:8)
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; subjects &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; DV &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# the data frame (rows 9:15)
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; subjects &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; DV &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; C &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# R anova formula for repeated measures
+
+`aov(DV~IV + Error(subjects/IV), df)`
+
+
+```r
+summary(aov(DV~IV+Error(subjects/IV),df))
+```
+
+---
+
+# R anova table
+
+
+```
+## 
+## Error: subjects
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Residuals  4     18     4.5               
+## 
+## Error: subjects:IV
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)  
+## IV         2     40      20       4 0.0625 .
+## Residuals  8     40       5                 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+# calculating SS subjects
+
+
+```r
+library(dplyr)
+subject_means &lt;- df %&gt;%
+                 group_by(subjects) %&gt;%
+                 summarise(means=mean(DV))
+grand_mean &lt;- mean(df$DV)
+n_groups &lt;- length(unique(df$IV))
+SS_subjects &lt;- n_groups*sum((subject_means$means-grand_mean)^2)
+print(SS_subjects)
+```
+
+```
+## [1] 18
+```
+
+---
+
+# Fs and ps
+
+R has `pf()` and `qf()` functions for finding critical values of F given a particular p-value, and p-values associated with particular Fs
+
+---
+
+# pf()
+
+What is the p-value associated with F(3,27) = 2.15 ?
+
+`pf(q, df1, df2)` (q is the f-value, stands for quantile)
+
+
+```r
+1-pf(2.15, 3, 27)
+```
+
+```
+## [1] 0.1172199
+```
+
+An F of 2.15 or larger, with degrees of freedom (3,27), occurs with this probability.
+
+---
+
+# qf()
+
+Assume an alpha of .05. What is the critical value of F, with degrees of freedom (3,27)?
+
+`qf(p, df1, df2)`
+
+
+```r
+qf(.95, 3, 27)
+```
+
+```
+## [1] 2.960351
+```
+
+We set p to .95. Fs larger than the critical value will occur less than 1-.95=.05 of the time.
+
+---
+
+# Lab Example
+
+&lt;img src="figs/rmanova/lab1.png" width="100%" /&gt;
+
+---
+
+# Research question
+
+One research question was whether we would replicate previous finding showing that people type faster when the letters are in word or word like arrangements, compared to random strings
+
+- Word: truck
+- english-like: quemp
+- random: wxzjy
+
+---
+
+# Repeated Measures Design
+
+- everybody typed letters in the word, english-like, and random conditions
+
+&lt;img src="figs/rmanova/lab2.png" width="90%" /&gt;
+
+---
+
+# Results
+
+&lt;img src="figs/rmanova/lab3.png" width="100%" /&gt;
+
+---
+
+
+
+
+# Next class: Repeated measures ANOVA II
+
+1.Quiz for this week on repeated measures posted tonight (Due next tuesday @ 11:59pm)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
