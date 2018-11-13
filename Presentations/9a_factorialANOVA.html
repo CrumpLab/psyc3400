@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Factorial ANOVA</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Factorial ANOVA
+## Two or more IVs
+### Matthew Crump
+### 2018/07/20 (updated: 2018-11-13)
+
+---
+
+
+
+
+# Overview
+
+1. Factorial ANOVA basics
+2. Main effects and interactions
+3. Textbook Example
+
+---
+
+# Factorial ANOVA
+
+When to use:
+
+1. Your design has multiple independent variables.
+
+  a. IVs could be all between-subject
+  
+  b. IVs could be all within-subject
+  
+  c. IVs could be a mix
+
+---
+
+# Factorial Notation
+
+Each number represents one IV. The value is the number of levels in the manipulation. Multplying through gives number of conditions.
+
+- 2x2 = 2 IVs, each has two levels
+- 2x2x2 = 3 IVs, each has two levels
+- 3x4 = 2 IVs, the first has 3 levels, the second has 4 levels.
+
+
+---
+
+# 2x2 Design
+
+&lt;img src="figs/factorial/2x2Design.png" width="100%" /&gt;
+
+---
+
+# 2x3 Design
+
+&lt;img src="figs/factorial/2x3Design.png" width="1832" /&gt;
+
+---
+
+# Fully Factorial
+
+A design is fully factorial when the levels of each variable are fully crossed with the levels of every other variable.
+
+e.g., the levels of of IV1 are manipulated across the levels of IV2 (in a 2x2 design)
+
+-in other words, there are no missing cells
+
+---
+
+# Main effects and Interactions
+
+1. Main effects: Differences between the means for each level of an IV.
+
+2. Interaction: Occurs when the effect of one IV depends on the levels of another IV. (e.g, the differences between the means for IV 1 changes across the levels of IV2)
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial/twitter_interaction.png" width="70%" /&gt;
+
+---
+
+class: center, middle, clear
+
+Learning Goals
+
+---
+
+# Factorial skills
+
+Be able to:
+
+1. Identify the pattern of main effects in a table, bar graph or line graph
+
+2. Identify the pattern of an interaction in a table, bar graph or line grpah
+
+3. Conduct and interpret a 2x2 factorial ANOVA in R (betweem, repeated, or mixed)
+
+---
+
+# Possible outcomes for a 2x2
+
+&lt;img src="figs/factorial/possibilities.png" width="80%" /&gt;
+
+---
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial/10bar22-1.png" width="80%" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial/10lines22-1.png" width="80%" /&gt;
+
+---
+
+class: center, middle, clear
+
+Textbook Example
+
+---
+
+# Why have more than one IV?
+
+- The first IV usually measures an effect of interest.
+- Additional IVs allow a researcher to identify causal forces that change (modulate) the effect of interest
+
+---
+
+# Research interest: Distraction
+
+Let's say you want to study the ability to maintain focus in the presence of distraction...you might:
+
+1. Create a task to measure performance
+2. Measure the effect of distraction on performance
+3. Then, try out other manipulations that might change the distraction effect
+
+---
+
+# Pick a task to measure performance:
+
+Spot the difference
+
+&lt;img src="figs/factorial/spot_dif.png" width="80%" /&gt;
+
+---
+
+# Create a distraction effect
+
+IV 1: Distraction (no distraction vs. distraction)
+
+&lt;img src="figs/factorial/9meandiff-1.png" width="80%" /&gt;
+
+---
+
+# Manipulate the distraction effect
+
+IV 2: Reward (no reward vs. reward)
+
+&lt;img src="figs/factorial/9reward-1.png" width="80%" /&gt;
+
+---
+
+# Putting reward on x-axis
+
+IV 2: Reward (no reward vs. reward)
+
+&lt;img src="figs/factorial/9rewardB-1.png" width="80%" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial/9visualdiffs-1.png" width="85%" /&gt;
+
+---
+
+# Main effects and Interaction
+
+&lt;img src="figs/factorial/9alleffects-1.png" width="80%" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial/FactorialSlides.001.png" width="95%" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial/FactorialSlides.002.png" width="95%" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial/FactorialSlides.003.png" width="95%" /&gt;
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial/FactorialSlides.004.png" width="95%" /&gt;
+
+---
+
+# Factorial ANOVA Table
+
+&lt;img src="figs/factorial/factorialTable.png" width="90%" /&gt;
+
+
+---
+
+# R: Between 2x2 Factorial
+
+
+```r
+NR_D &lt;- c(3,2,4,1)
+NR_ND &lt;- c(8,7,8,6)
+R_D &lt;- c(6,7,5,7)
+R_ND &lt;-c (9,8,7,10)
+DV &lt;- c(NR_D,NR_ND,R_D,R_ND)
+Reward &lt;- rep(c("NoReward","Reward"),each=8)
+Distraction &lt;- rep(c("Distraction","NoDistraction"),each=4)
+Distraction &lt;-rep(Distraction,2)
+df&lt;-data.frame(Reward,Distraction,DV)
+```
+
+---
+
+# R: Factorial ANOVA formula (between)
+
+
+```r
+summary(aov(DV~Reward*Distraction,df))
+```
+
+```
+##                    Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Reward              1  25.00   25.00  19.355 0.000866 ***
+## Distraction         1  49.00   49.00  37.935 4.88e-05 ***
+## Reward:Distraction  1   6.25    6.25   4.839 0.048162 *  
+## Residuals          12  15.50    1.29                     
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+# 2x2 Factorial in Excel
+
+
+---
+
+
+# Next class: Extra credit tutorial
+
+1. No quiz this week
+2. Next class, Shira Stone will show you how to do the posted extra-credit assignments (1% each on final grade)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
