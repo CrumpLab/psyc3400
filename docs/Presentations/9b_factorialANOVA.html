@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Factorial ANOVA Continued</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Factorial ANOVA Continued
+## Two or more IVs
+### Matthew Crump
+### 2018/07/20 (updated: 2018-11-20)
+
+---
+
+
+
+
+# Overview
+
+1. Factorial ANOVA basics
+2. Main effects and interactions
+3. Textbook Example
+
+---
+
+# Factorial skills
+
+Be able to:
+
+1. Identify the pattern of main effects in a table, bar graph or line graph
+
+2. Identify the pattern of an interaction in a table, bar graph or line grpah
+
+3. Conduct and interpret a 2x2 factorial ANOVA in R (between, repeated, or mixed)
+
+---
+
+# Conducting Factorial ANOVAs in R
+
+1. put your data in a long-format data-frame
+2. Get means for each subject in each condition
+3. Make sure your subject and IV columns are factors
+4. run the aov and summary functions
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial2/FactorialANOVAStuff.001.png" width="90%" /&gt;
+
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial2/FactorialANOVAStuff.002.png" width="90%" /&gt;
+
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial2/FactorialANOVAStuff.003.png" width="90%" /&gt;
+
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial2/FactorialANOVAStuff.004.png" width="90%" /&gt;
+
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/factorial2/FactorialANOVAStuff.005.png" width="90%" /&gt;
+
+
+---
+
+# R factorial ANOVA Formulas
+
+Between-subjects formula 
+
+`aov(DV ~ IV1*IV2, data = dataframe)`
+
+Within-subjects formula 
+
+`aov(DV ~ IV1*IV2 + Error(Subjects/(IV1*IV2)), 
+data = dataframe)`
+
+Mixed design formula 
+
+`aov(DV ~ IVW*IVB + Error(Subjects/(IVW)), 
+data = dataframe)`
+
+---
+
+# Simulated 2x2 data (both between)
+
+
+```r
+n_subject &lt;- 5 # in each condition 20 total
+DV  &lt;- rnorm(5*2*2,0,1)
+IV1 &lt;- as.factor(rep(c("A","B"),each=5*2))
+IV2 &lt;- as.factor(rep(c("1","2"),5*2))
+df  &lt;- data.frame(DV,IV1,IV2)
+head(df) # prints the first few lines of df
+```
+
+```
+##           DV IV1 IV2
+## 1  1.3769816   A   1
+## 2  0.9453931   A   2
+## 3  0.8956643   A   1
+## 4  1.4135806   A   2
+## 5 -1.2971198   A   1
+## 6 -1.3441323   A   2
+```
+
+---
+
+# Between ANOVA
+
+
+```r
+aov_output &lt;- aov(DV~IV1*IV2, data=df)
+summary(aov_output)
+```
+
+```
+##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV1          1  0.090  0.0905   0.083  0.776
+## IV2          1  0.796  0.7964   0.734  0.404
+## IV1:IV2      1  0.082  0.0820   0.076  0.787
+## Residuals   16 17.355  1.0847
+```
+
+---
+
+# Simulated 2x2 data (both within)
+
+
+```r
+n_subject &lt;- 5 # in each condition 5 total
+DV  &lt;- rnorm(5*2*2,0,1)
+IV1 &lt;- as.factor(rep(c("A","B"),each=5*2))
+IV2 &lt;- as.factor(rep(c("1","2"),5*2))
+subjects &lt;- as.factor(rep(seq(1,5,1),4))
+df  &lt;- data.frame(subjects,DV,IV1,IV2)
+head(df) # prints the first few lines of df
+```
+
+```
+##   subjects         DV IV1 IV2
+## 1        1  0.4384167   A   1
+## 2        2  0.4390582   A   2
+## 3        3  1.2009535   A   1
+## 4        4 -1.5263968   A   2
+## 5        5 -0.5245665   A   1
+## 6        1  1.6035916   A   2
+```
+
+---
+
+# within ANOVA
+
+
+```r
+aov_output &lt;- aov(DV~IV1*IV2 + 
+                    Error(subjects/(IV1*IV2)),
+                    data=df)
+```
+
+---
+
+class: clear, nopad, font150
+
+
+```r
+summary(aov_output)
+```
+
+```
+## 
+## Error: subjects
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Residuals  4  7.428   1.857               
+## 
+## Error: subjects:IV1
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV1        1  0.542  0.5420    0.81  0.419
+## Residuals  4  2.677  0.6692               
+## 
+## Error: subjects:IV2
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV2        1  0.618  0.6183   0.652  0.465
+## Residuals  4  3.795  0.9487               
+## 
+## Error: subjects:IV1:IV2
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV1:IV2    1 0.1134  0.1134   0.492  0.522
+## Residuals  4 0.9217  0.2304
+```
+
+---
+
+# Simulated 2x2 data (mixed)
+
+
+```r
+n_subject &lt;- 5 # in each condition 10 total
+DV  &lt;- rnorm(5*2*2,0,1)
+IV1 &lt;- as.factor(rep(c("A","B"),each=5*2)) # within
+IV2 &lt;- as.factor(rep(c("1","2"),5*2)) # between
+subjects &lt;- as.factor(rep(seq(1,5*2,1),2))
+df  &lt;- data.frame(subjects,DV,IV1,IV2)
+head(df) # prints the first few lines of df
+```
+
+```
+##   subjects          DV IV1 IV2
+## 1        1  0.53329020   A   1
+## 2        2 -0.09098488   A   2
+## 3        3 -0.68976821   A   1
+## 4        4 -0.61039193   A   2
+## 5        5  0.50012390   A   1
+## 6        6  0.10753214   A   2
+```
+
+---
+
+# mixed ANOVA
+
+
+```r
+aov_output &lt;- aov(DV~IV1*IV2 + 
+                    Error(subjects/IV1),
+                    data=df)
+```
+
+---
+
+class: clear, nopad, font180
+
+
+```r
+summary(aov_output)
+```
+
+```
+## 
+## Error: subjects
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV2        1  1.577   1.577   1.566  0.246
+## Residuals  8  8.057   1.007               
+## 
+## Error: subjects:IV1
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## IV1        1  0.513  0.5131   0.787  0.401
+## IV1:IV2    1  0.039  0.0388   0.060  0.813
+## Residuals  8  5.214  0.6517
+```
+
+---
+class: clear, font130
+
+### getting means from aov
+
+
+```r
+model.tables(aov_output,"means")
+```
+
+```
+## Tables of means
+## Grand mean
+##           
+## 0.1775945 
+## 
+##  IV1 
+## IV1
+##      A      B 
+## 0.0174 0.3378 
+## 
+##  IV2 
+## IV2
+##       1       2 
+##  0.4584 -0.1032 
+## 
+##  IV1:IV2 
+##    IV2
+## IV1 1       2      
+##   A  0.3423 -0.3074
+##   B  0.5745  0.1010
+```
+
+
+---
+
+# Looking at the means
+
+1. Compute main effect for IV1
+2. Compute main effect for IV2
+3. Compute interaction for IV1*IV2
+
+---
+
+# Main effect IV1
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; dv &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- mean A = (6+8)/2 = 14/2 = 7
+- mean B = (10+20)/2 = 30/2 = 15
+- Main effect IV1 = 15-7 = 8
+
+---
+
+# Main effect IV2
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; dv &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- mean 1 = (6+10)/2 = 16/2 = 8
+- mean 2 = (8+20)/2 = 28/2 = 14
+- Main effect IV2 = 14-8 = 6
+
+---
+
+# IV1 * IV2 interaction
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; dv &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- A: 2-1 = 8-6 = 2
+- B: 2-1 = 20-10 = 10
+- Interaction = 10-2 = 8
+
+---
+
+# IV1 * IV2 interaction
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; dv &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; IV2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 20 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- 1: B-A = 10-6 = 4
+- 2: B-A = 20-8 = 12
+- Interaction = 12-4 = 8
+
+---
+
+# Looking at the labs...
+
+---
+
+# Next class:
+
+1. Interpreting main effects and interactions
+2. Factorial quiz for this week is online, due next tuesday @ 11:59pm.
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
