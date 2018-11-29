@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Simulation I</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data Simulation I
+## Power and Effect Size
+### Matthew Crump
+### 2018/07/20 (updated: 2018-11-29)
+
+---
+
+
+
+
+# Overview
+
+1. Power
+2. Effect-size
+3. Simulating data for a t-test for sample-size planning
+
+---
+
+# Experiment Design Question
+
+I am planning to run an experiment, how many subjects do I need?
+
+---
+
+# Power and Effect-size
+
+**Statistical Power**
+
+- A property of designs. The likelihood that a design will detect a true effect when there is a true effect to be detected
+
+**Effect size**
+
+- Some measure of the size or magnitude of the effect in question
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/power/Power.001.png" width="90%" /&gt;
+
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/power/Power.002.png" width="90%" /&gt;
+
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/power/Power.003.png" width="90%" /&gt;
+
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/power/Power.004.png" width="90%" /&gt;
+
+
+---
+
+class: center, middle, clear, nopad
+
+&lt;img src="figs/power/Power.005.png" width="90%" /&gt;
+
+
+---
+
+# Power
+
+You will often see researchers conducting a power-analysis of their design **before** they conduct the research.
+
+In a paper, they will report something like this:
+
+"Our design needed an N of 50 to achieve power .8 to detect an effect of d=.5"
+
+---
+
+# Cohen's d
+
+A standardized measure of effect-size
+
+**Within-subject design**
+
+`\(d= \frac{|u1 - u2|}{\text{sd}}\)`
+
+**Between-subject design**
+
+`\(d= \frac{|u1 - u2|}{\text{sd}_\text{pooled}}\)`
+
+---
+
+# Interpeting d
+
+- d=0, no mean difference
+- d=1, the difference between means is 1 sd
+- d=2, the difference between means is 2 sds.
+
+---
+
+# What is a big or small d?
+
+Conventional recommendations by Cohen:
+
+- d = .2 (small)
+- d = .5 (medium)
+- d &gt;= .8 (large)
+
+---
+
+# More interpretation of d
+
+- Researchers should establish for themselves a minimum effect-size of interest.
+- Minimum effect-size of interest depends on the research question
+
+For example:
+
+- d = .1, is small (and perhaps meaningless) if we are talking about whether a drug cures symptom like headache pain
+- d = .1 is small (but meaningful) if we are using theories to test for the presence or absence of an effect
+
+---
+
+
+# Data-simulation
+
+A process for simulating the results of an experiment
+
+1. Useful for understanding the likely outcomes of a particular design
+2. General method, can be applied to many kinds of designs
+3. Useful for sample-size planning
+
+---
+
+# simulating a t-test
+
+Link: 
+
+[T-test simulations](https://crumplab.github.io/psyc3400/Presentations/ttestSimulation.html)
+
+---
+
+# Next class:
+
+1. Data simulation for ANOVAs
+2. No quiz this week. We'll have the next one starting Tuesday
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

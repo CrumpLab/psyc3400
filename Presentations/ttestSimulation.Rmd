@@ -1,0 +1,230 @@
+---
+title: "Data Sim 1"
+author: "Matt"
+date: "11/29/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Simulating a t-test (paired sample)
+
+Simulates a single experiment (assumes the null is true)
+
+```{r}
+n <- 10
+sim_sd <- 50
+mean_A <- 100
+mean_B <- 100
+A <- rnorm(n,mean_A,sim_sd)
+B <- rnorm(n,mean_B,sim_sd)
+t.test(A,B, paired=T)
+
+# find cohen's d
+differences <- A-B
+mean_differences <- mean(differences)
+sd_differences <- sd(differences)
+cohens_d <- abs(mean_differences)/sd_differences
+cohens_d
+
+```
+
+
+# Simulating a t-test (paired sample)
+
+Simulating multiple t-tests of the same experiment (assumes the null is true)
+
+```{r}
+n <- 10
+sim_sd <- 50
+mean_A <- 100
+mean_B <- 100
+
+num_to_sim <- 1000
+save_p <- c()
+for(i in 1:num_to_sim){
+  A <- rnorm(n,mean_A,sim_sd)
+  B <- rnorm(n,mean_B,sim_sd)
+  save_p[i] <- t.test(A,B, paired=T)$p.value
+}
+
+# plot histogram of p-values
+hist(save_p)
+
+# find proportion of ps less than alpha
+length(save_p[save_p<.05])/num_to_sim
+
+```
+
+
+# Simulated Power analysis
+
+Simulating multiple t-tests of the same experiment. 
+
+Set `sim_sd` to 1. Set `mean_A` to 0. Set `mean_B` to the size of effect you want to simulate (d). 
+
+Power is the proportion of simulations where p < alpha (0.05).
+
+Note: Increase N to see the influence on power
+
+```{r}
+n <- 10
+sim_sd <- 1
+mean_A <- 0
+mean_B <- 0.2
+
+num_to_sim <- 1000
+save_p <- c()
+for(i in 1:num_to_sim){
+  A <- rnorm(n,mean_A,sim_sd)
+  B <- rnorm(n,mean_B,sim_sd)
+  save_p[i] <- t.test(A,B, paired=T)$p.value
+}
+
+# plot histogram of p-values
+hist(save_p)
+
+# find proportion of ps less than alpha
+power <- length(save_p[save_p<.05])/num_to_sim
+power
+
+```
+
+# p-distribution when d is large
+
+```{r}
+n <- 10
+sim_sd <- 1
+mean_A <- 0
+mean_B <- 1
+
+num_to_sim <- 1000
+save_p <- c()
+for(i in 1:num_to_sim){
+  A <- rnorm(n,mean_A,sim_sd)
+  B <- rnorm(n,mean_B,sim_sd)
+  save_p[i] <- t.test(A,B, paired=T)$p.value
+}
+
+# plot histogram of p-values
+hist(save_p)
+
+# find proportion of ps less than alpha
+power <- length(save_p[save_p<.05])/num_to_sim
+power
+
+```
+
+
+# Simulating power for different Ns
+
+d=.2
+
+```{r}
+n <- c(10,20,30,40,50,60,70,80,90,100,200,500)
+sim_sd <- 1
+mean_A <- 0
+mean_B <- 0.2
+num_to_sim <- 1000
+
+power<-c()
+for(j in 1:length(n)){
+  save_p <- c()
+  for(i in 1:num_to_sim){
+    A <- rnorm(n[j],mean_A,sim_sd)
+    B <- rnorm(n[j],mean_B,sim_sd)
+    save_p[i] <- t.test(A,B, paired=T)$p.value
+  }
+  power[j] <- length(save_p[save_p<.05])/num_to_sim
+}
+
+# results in table
+sim_results <- data.frame(n,power)
+knitr::kable(sim_results)
+
+# results in plot
+library(ggplot2)
+ggplot(sim_results, aes(x=n,y=power))+
+  geom_point()+
+  geom_line()+
+  theme_classic(base_size=20)+
+  ggtitle("Simulated Power analysis (d=.2)")
+
+```
+
+
+
+# Simulating power for different Ns
+
+d=.5
+
+```{r}
+n <- c(10,20,30,40,50,60,70,80,90,100,200,500)
+sim_sd <- 1
+mean_A <- 0
+mean_B <- 0.5
+num_to_sim <- 1000
+
+power<-c()
+for(j in 1:length(n)){
+  save_p <- c()
+  for(i in 1:num_to_sim){
+    A <- rnorm(n[j],mean_A,sim_sd)
+    B <- rnorm(n[j],mean_B,sim_sd)
+    save_p[i] <- t.test(A,B, paired=T)$p.value
+  }
+  power[j] <- length(save_p[save_p<.05])/num_to_sim
+}
+
+# results in table
+sim_results <- data.frame(n,power)
+knitr::kable(sim_results)
+
+# results in plot
+library(ggplot2)
+ggplot(sim_results, aes(x=n,y=power))+
+  geom_point()+
+  geom_line()+
+  theme_classic(base_size=20)+
+  ggtitle("Simulated Power analysis (d=.2)")
+
+```
+
+
+# Simulating power for different Ns
+
+d=.8
+
+```{r}
+n <- c(10,20,30,40,50,60,70,80,90,100,200,500)
+sim_sd <- 1
+mean_A <- 0
+mean_B <- 0.5
+num_to_sim <- 1000
+
+power<-c()
+for(j in 1:length(n)){
+  save_p <- c()
+  for(i in 1:num_to_sim){
+    A <- rnorm(n[j],mean_A,sim_sd)
+    B <- rnorm(n[j],mean_B,sim_sd)
+    save_p[i] <- t.test(A,B, paired=T)$p.value
+  }
+  power[j] <- length(save_p[save_p<.05])/num_to_sim
+}
+
+# results in table
+sim_results <- data.frame(n,power)
+knitr::kable(sim_results)
+
+# results in plot
+library(ggplot2)
+ggplot(sim_results, aes(x=n,y=power))+
+  geom_point()+
+  geom_line()+
+  theme_classic(base_size=20)+
+  ggtitle("Simulated Power analysis (d=.2)")
+
+```
