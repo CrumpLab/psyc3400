@@ -120,13 +120,13 @@ power
 
 # Simulating power for different Ns
 
-d=.2
+d=.01
 
 ```{r}
-n <- c(10,20,30,40,50,60,70,80,90,100,200,500)
+n <- c(10000,50000,100000)
 sim_sd <- 1
 mean_A <- 0
-mean_B <- 0.2
+mean_B <- 0.01
 num_to_sim <- 1000
 
 power<-c()

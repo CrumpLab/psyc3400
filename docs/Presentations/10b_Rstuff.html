@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>R markdown</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R markdown
+## More things you can do with R
+### Matthew Crump
+### 2018/07/20 (updated: 2018-12-04)
+
+---
+
+
+
+
+# Overview
+
+1. Some pointers to helpful free resources (mostly R)
+
+---
+
+# R markdown
+
+Powerful content generation language
+
+- create documents with notes, code, and stats output...and much more
+- APA papers (papaja)
+- slide presentations (xaringan)
+- websites
+- books (bookdown)
+- web applications (RShiny)
+
+---
+
+# Resources for R Markdown
+
+- [The R Markdown website](https://rmarkdown.rstudio.com/lesson-1.html)
+
+- [R Markdown: The definitive Guide](https://bookdown.org/yihui/rmarkdown/)
+
+---
+
+# Writing APA papers
+
+Install the `papaja` package
+
+- write your paper in R markdown using the template
+- compile your paper into APA style (does the bibliography)
+
+- [install papaja](https://github.com/crsh/papaja)
+- [papaja manual](https://crsh.github.io/papaja_man/)
+
+---
+
+# papaja demo
+
+
+---
+
+# Zotero
+
+- Free tool for organizing pdfs.
+- [get zotero](https://www.zotero.org)
+- browser plugins let you download papers easily when you find them online
+- can produce bibliographies easily (for word or for papaja)
+
+---
+
+# Slide presentations
+
+- multiple formatting options (choose presentation when you create an R Markdown document)
+- Slides in this course are made with `xaringan` package
+- [xaringan tutorial](https://slides.yihui.name/xaringan/)
+
+---
+
+# Slide presentation demo
+
+---
+
+# R markdown websites
+
+The website for this course is made using R markdown.
+
+- [Tutorial on websites with R Markdown](https://rmarkdown.rstudio.com/lesson-13.html)
+- [Tips for hosting a website on github for free](https://github.com/CrumpLab/LabJournalWebsite)
+
+---
+
+# R markdown website demo
+
+
+---
+
+# Books in R markdown
+
+The textbook and lab manual for this course were written in R markdown using the `bookdown` package
+
+- can generate web-books, pdfs, and epubs.
+- [bookdown example](https://github.com/rstudio/bookdown-demo)
+
+---
+
+# bookdown demo
+
+
+---
+
+# Web apps using R Shiny
+
+You can create interactive web applications using R shiny.
+
+- e.g., User can control inputs that change parameters of a statistical anaylsis or graph
+- Then the new outputs (analyses, plots, virtually anything that R can do...) are returned and displayed on the website
+- [Getting started with R shiny](https://shiny.rstudio.com/tutorial/)
+
+---
+
+# R shiny demo
+
+
+---
+
+# Next class
+
+1. Quiz for power and effect-size is online. Due next tuesday
+2. Next class we discuss issues of reproducibiliy in psych science
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
