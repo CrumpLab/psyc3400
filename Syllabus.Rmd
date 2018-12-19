@@ -124,8 +124,8 @@ Percentage grades are converted to letter grades according to the following rubr
 |D+	|66.67-69.99|
 |C-	|70-72.99|
 |C	|73-76.66|
-|C+	|76.67-79.49|
-|B-	|79.5-83.32|
+|C+	|76.67-79.99|
+|B-	|80-83.32|
 |B	|83.33-86.66|
 |B+	|86.67-89.99|
 |A-	|90-93.32|
