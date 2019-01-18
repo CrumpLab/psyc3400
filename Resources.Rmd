@@ -17,9 +17,4 @@ output: html_document
 5. Check out my slightly older programming book that also introduces R [https://crumplab.github.io/programmingforpsych/](https://crumplab.github.io/programmingforpsych/)
 6. Another solid and accessible resource for psyc stats using R [https://ademos.people.uic.edu/index.html](https://ademos.people.uic.edu/index.html).
 
-### R basics lab
-
-This is the lab for week 3, where we talk about some basic things when using R and R studio. The link to the lab is [http://crumplab.github.io/psyc3400/lab3_rbasics/RBasics.html](http://crumplab.github.io/psyc3400/lab3_rbasics/RBasics.html).
-
-**IMPORTANT**: If you are in a thursday lab you will complete this lab in class on Thursday, September 13th 2018. If you are in a Tuesday lab, then you will complete this lab on your own time before your next lab (Tuesday, September 25th).
 

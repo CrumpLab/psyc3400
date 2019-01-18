@@ -17,7 +17,7 @@ output: html_document
 <div class="row" style="padding-top: 30px;">
 <div class="col-sm-6">
 
-# **Psyc 3400 Fall 2018**
+# **Psyc 3400 Spring 2019**
 ### *Statistical Methods in Psychological Research* {style="padding-top: 0px;"}
 
 #### Matthew Crump

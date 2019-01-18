@@ -15,7 +15,7 @@ output:
 
 Lectures
 
-- T,TH	11:00am-12:15pm 	RM: Ingersoll 1127
+- M,W	11:00am-12:15pm 	RM: Whitehead 222
 
 Instructor
 
@@ -40,9 +40,12 @@ knitr::kable(intructors)
 ### Lecture Schedule
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE}
-library(data.table)
-schedule <- fread("Lectures.csv")
-knitr::kable(schedule)
+#library(data.table)
+library(readxl)
+Lectures <- read_excel("LectureSpring2019.xlsx", sheet = 1, col_names = TRUE, col_types = NULL, na = "", skip = 0)
+Lectures[is.na(Lectures)]<- " "
+#Lectures <- fread("Lectures.csv")
+knitr::kable(Lectures)
 
 ```
 

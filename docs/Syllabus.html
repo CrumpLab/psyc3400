@@ -99,6 +99,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -113,7 +116,6 @@ body {
   padding-top: 56px;
   margin-top: -56px;
 }
-
 .section h2 {
   padding-top: 56px;
   margin-top: -56px;
@@ -133,6 +135,43 @@ body {
 .section h6 {
   padding-top: 56px;
   margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -154,18 +193,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -320,14 +418,14 @@ div.tocify {
 <h3>Instructor Info</h3>
 <p>Lectures</p>
 <ul>
-<li>T,TH 11:00am-12:15pm RM: Ingersoll 1127</li>
+<li>M,W 11:00am-12:15pm RM: Whitehead 222</li>
 </ul>
 <p>Instructor</p>
 <ul>
 <li>Dr. Matt Crump 4401B James Hall</li>
 <li>Office hours: by appointment</li>
 <li>Office phone: 718-951-5000 x. 6068</li>
-<li><a href="mailto:mcrump@brooklyn.cuny.edu">mcrump@brooklyn.cuny.edu</a></li>
+<li><a href="mailto:mcrump@brooklyn.cuny.edu" class="email">mcrump@brooklyn.cuny.edu</a></li>
 </ul>
 <hr />
 </div>
@@ -352,122 +450,146 @@ div.tocify {
 <tr class="odd">
 <td align="left">Crump, Matthew</td>
 <td align="left">Lecture</td>
-<td align="right">18346</td>
+<td align="right">29989</td>
 <td align="left">PSYC.</td>
 <td align="right">3400</td>
-<td align="left">TEAL</td>
-<td align="left">Tu,Th</td>
-<td align="left">Ingersoll 1127</td>
+<td align="left">MEAL</td>
+<td align="left">M,W</td>
+<td align="left">Whitehead 222</td>
 <td align="left">11:00AM - 12:15PM</td>
-<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu">mcrump@brooklyn.cuny.edu</a></td>
+<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu" class="email">mcrump@brooklyn.cuny.edu</a></td>
 </tr>
 <tr class="even">
 <td align="left">Crump, Matthew</td>
 <td align="left">Lecture</td>
-<td align="right">18347</td>
+<td align="right">29991</td>
 <td align="left">PSYC.</td>
 <td align="right">3400</td>
-<td align="left">TEBL</td>
-<td align="left">Tu,Th</td>
-<td align="left">Ingersoll 1127</td>
+<td align="left">MEBL</td>
+<td align="left">M,W</td>
+<td align="left">Whitehead 222</td>
 <td align="left">11:00AM - 12:15PM</td>
-<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu">mcrump@brooklyn.cuny.edu</a></td>
+<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu" class="email">mcrump@brooklyn.cuny.edu</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Crump, Matthew</td>
 <td align="left">Lecture</td>
-<td align="right">18348</td>
+<td align="right">29993</td>
 <td align="left">PSYC.</td>
 <td align="right">3400</td>
-<td align="left">TECL</td>
-<td align="left">Tu,Th</td>
-<td align="left">Ingersoll 1127</td>
+<td align="left">MECL</td>
+<td align="left">M,W</td>
+<td align="left">Whitehead 222</td>
 <td align="left">11:00AM - 12:15PM</td>
-<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu">mcrump@brooklyn.cuny.edu</a></td>
+<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu" class="email">mcrump@brooklyn.cuny.edu</a></td>
 </tr>
 <tr class="even">
 <td align="left">Crump, Matthew</td>
 <td align="left">Lecture</td>
-<td align="right">18349</td>
+<td align="right">29995</td>
 <td align="left">PSYC.</td>
 <td align="right">3400</td>
-<td align="left">TEDL</td>
-<td align="left">Tu,Th</td>
-<td align="left">Ingersoll 1127</td>
+<td align="left">MEDL</td>
+<td align="left">M,W</td>
+<td align="left">Whitehead 222</td>
 <td align="left">11:00AM - 12:15PM</td>
-<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu">mcrump@brooklyn.cuny.edu</a></td>
+<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu" class="email">mcrump@brooklyn.cuny.edu</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Crump, Matthew</td>
 <td align="left">Lecture</td>
-<td align="right">18351</td>
+<td align="right">29997</td>
 <td align="left">PSYC.</td>
 <td align="right">3400</td>
-<td align="left">TEEL</td>
-<td align="left">Tu,Th</td>
-<td align="left">Ingersoll 1127</td>
+<td align="left">MEEL</td>
+<td align="left">M,W</td>
+<td align="left">Whitehead 222</td>
 <td align="left">11:00AM - 12:15PM</td>
-<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu">mcrump@brooklyn.cuny.edu</a></td>
+<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu" class="email">mcrump@brooklyn.cuny.edu</a></td>
+</tr>
+<tr class="even">
+<td align="left">Crump, Matthew</td>
+<td align="left">Lecture</td>
+<td align="right">30004</td>
+<td align="left">PSYC.</td>
+<td align="right">3400</td>
+<td align="left">MEFL</td>
+<td align="left">M,W</td>
+<td align="left">Whitehead 222</td>
+<td align="left">11:00AM - 12:15PM</td>
+<td align="left"><a href="mailto:mcrump@brooklyn.cuny.edu" class="email">mcrump@brooklyn.cuny.edu</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Stone, Shira</td>
+<td align="left">Lab</td>
+<td align="right">29990</td>
+<td align="left">PSYC.</td>
+<td align="right">3400</td>
+<td align="left">MEAB</td>
+<td align="left">M</td>
+<td align="left">James 4607</td>
+<td align="left">12:20PM - 2:10PM</td>
+<td align="left"><a href="mailto:Shira623@gmail.com" class="email">Shira623@gmail.com</a></td>
 </tr>
 <tr class="even">
 <td align="left">Alhazmi, Fahd</td>
 <td align="left">Lab</td>
-<td align="right">18659</td>
+<td align="right">29992</td>
 <td align="left">PSYC.</td>
 <td align="right">3400</td>
-<td align="left">TEAB</td>
-<td align="left">Tu</td>
-<td align="left">James 4607</td>
-<td align="left">09:00AM - 10:50AM</td>
-<td align="left"><a href="mailto:falhazmi@gradcenter.cuny.edu">falhazmi@gradcenter.cuny.edu</a></td>
+<td align="left">MEBB</td>
+<td align="left">M</td>
+<td align="left">James 5201</td>
+<td align="left">12:20PM - 2:10PM</td>
+<td align="left"><a href="mailto:falhazmi@gradcenter.cuny.edu" class="email">falhazmi@gradcenter.cuny.edu</a></td>
 </tr>
 <tr class="odd">
+<td align="left">Alhazmi, Fahd</td>
+<td align="left">Lab</td>
+<td align="right">29994</td>
+<td align="left">PSYC.</td>
+<td align="right">3400</td>
+<td align="left">MECB</td>
+<td align="left">W</td>
+<td align="left">James 4607</td>
+<td align="left">12:20PM - 2:10PM</td>
+<td align="left"><a href="mailto:falhazmi@gradcenter.cuny.edu" class="email">falhazmi@gradcenter.cuny.edu</a></td>
+</tr>
+<tr class="even">
 <td align="left">Anderson, Kyle</td>
 <td align="left">Lab</td>
-<td align="right">18660</td>
+<td align="right">29996</td>
 <td align="left">PSYC.</td>
 <td align="right">3400</td>
-<td align="left">TEBB</td>
-<td align="left">Tu</td>
+<td align="left">MEDB</td>
+<td align="left">W</td>
 <td align="left">James 5201</td>
-<td align="left">09:00AM - 10:50AM</td>
-<td align="left"><a href="mailto:kanderson1@gradcenter.cuny.edu">kanderson1@gradcenter.cuny.edu</a></td>
-</tr>
-<tr class="even">
-<td align="left">Alhazmi, Fahd</td>
-<td align="left">Lab</td>
-<td align="right">18661</td>
-<td align="left">PSYC.</td>
-<td align="right">3400</td>
-<td align="left">TECB</td>
-<td align="left">Th</td>
-<td align="left">James 4607</td>
-<td align="left">09:00AM - 10:50AM</td>
-<td align="left"><a href="mailto:falhazmi@gradcenter.cuny.edu">falhazmi@gradcenter.cuny.edu</a></td>
+<td align="left">12:20PM - 2:10PM</td>
+<td align="left"><a href="mailto:kanderson1@gradcenter.cuny.edu" class="email">kanderson1@gradcenter.cuny.edu</a></td>
 </tr>
 <tr class="odd">
 <td align="left">Stone, Shira</td>
 <td align="left">Lab</td>
-<td align="right">18662</td>
+<td align="right">29998</td>
 <td align="left">PSYC.</td>
 <td align="right">3400</td>
-<td align="left">TEDB</td>
-<td align="left">Th</td>
-<td align="left">James 5201</td>
+<td align="left">MEEB</td>
+<td align="left">F</td>
+<td align="left">James 4607</td>
 <td align="left">09:00AM - 10:50AM</td>
-<td align="left"><a href="mailto:Shira623@gmail.com">Shira623@gmail.com</a></td>
+<td align="left"><a href="mailto:Shira623@gmail.com" class="email">Shira623@gmail.com</a></td>
 </tr>
 <tr class="even">
 <td align="left">Stone, Shira</td>
 <td align="left">Lab</td>
-<td align="right">18663</td>
+<td align="right">30005</td>
 <td align="left">PSYC.</td>
 <td align="right">3400</td>
-<td align="left">TEEB</td>
-<td align="left">Th</td>
+<td align="left">MEFB</td>
+<td align="left">F</td>
 <td align="left">James 4607</td>
-<td align="left">12:25PM - 02:15PM</td>
-<td align="left"><a href="mailto:Shira623@gmail.com">Shira623@gmail.com</a></td>
+<td align="left">11:00AM - 12:50AM</td>
+<td align="left"><a href="mailto:Shira623@gmail.com" class="email">Shira623@gmail.com</a></td>
 </tr>
 </tbody>
 </table>
@@ -480,246 +602,458 @@ div.tocify {
 <tr class="header">
 <th align="left">Week</th>
 <th align="left">Date</th>
+<th align="left">Reading</th>
 <th align="left">Lecture Slides</th>
-<th align="left">Tuesday Lab</th>
-<th align="left">Thursday Lab</th>
+<th align="left">Monday Lab</th>
+<th align="left">Wednesday Lab</th>
+<th align="left">Friday Lab</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left"></td>
+<td align="left">F Jan 25</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/lab3_rbasics/RBasics.html">1: R Basics</a></td>
+</tr>
+<tr class="even">
 <td align="left">1</td>
-<td align="left">T Aug 28</td>
+<td align="left">M Jan 28</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/why-statistics.html">Chpt 1</a></td>
 <td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/1_a_intro.html#1">Intro/Science</a></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-1-graphing-data.html">1: Intro/Graphing</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/lab3_rbasics/RBasics.html">1: R Basics</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">W Jan 30</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/why-statistics.html">Chpt 1</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/1_b_datavis.html#1">DataVis</a></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/lab3_rbasics/RBasics.html">1: R Basics</a></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Th Aug 30</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/1_b_datavis.html#1">DataVis</a></td>
+<td align="left">F Feb 1</td>
 <td align="left"></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-1-graphing-data.html">1: Intro/Graphing</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-1-graphing-data.html">2: Intro/Graphing</a></td>
 </tr>
 <tr class="odd">
 <td align="left">2</td>
-<td align="left">T Sep 4</td>
+<td align="left">M Feb 4</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/DescribingData.html">Chpt 2</a></td>
 <td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/2-Descriptives.html#1">Central Tendency</a></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-2-descriptive-statistics.html">2: Descriptives</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-1-graphing-data.html">2: Intro/Graphing</a></td>
+<td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Th Sep 6</td>
+<td align="left">W Feb 6</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/DescribingData.html">Chpt 2</a></td>
 <td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/2b_variation.html#1">Variance</a></td>
 <td align="left"></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-2-descriptive-statistics.html">2: Descriptives</a></td>
-</tr>
-<tr class="odd">
-<td align="left"><strong>No class</strong></td>
-<td align="left"><strong>T Sep 11</strong></td>
-<td align="left"><strong>No Class</strong></td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/lab3_rbasics/RBasics.html">R Basics (homework)</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-1-graphing-data.html">2: Intro/Graphing</a></td>
 <td align="left"></td>
 </tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">F Feb 8</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-2-descriptive-statistics.html">3: Descriptives</a></td>
+</tr>
 <tr class="even">
-<td align="left">3</td>
-<td align="left">Th Sep 13</td>
+<td align="left"></td>
+<td align="left">M Feb 11</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/Correlation.html">Chpt 3</a></td>
 <td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/3a_correlation.html#1">Correlation</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-2-descriptive-statistics.html">3: Descriptives</a></td>
 <td align="left"></td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/lab3_rbasics/RBasics.html">R Basics</a></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><strong>No class</strong></td>
-<td align="left"><strong>T Sep 18</strong></td>
-<td align="left"><strong>No Class</strong></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left"></td>
-<td align="left">Th Sep 20</td>
+<td align="left">3</td>
+<td align="left">W Feb 13</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/Correlation.html">Chpt 3</a></td>
 <td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/3b_regression.html#1">Regression</a></td>
 <td align="left"></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-3-correlation.html">3: Correlation</a></td>
-</tr>
-<tr class="odd">
-<td align="left">4</td>
-<td align="left">T Sep 25</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/4a_Distribution.html#1">Distributions</a></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-3-correlation.html">3: Correlation</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-2-descriptive-statistics.html">3: Descriptives</a></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Th Sep 27</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/4b_Sampling.html#1">Sampling</a></td>
+<td align="left">F Feb 15</td>
 <td align="left"></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-4-normal-distribution-central-limit-theorem.html">4: Central Limit Theorem</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">flex lab</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><strong>M Feb 18</strong></td>
+<td align="left"></td>
+<td align="left"><strong>No Class</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">W Feb 20</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/probability-sampling-and-estimation.html">Chpt 4</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/4a_Distribution.html#1">Distributions</a></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-3-correlation.html">4: Correlation</a></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">F Feb 22</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-3-correlation.html">4: Correlation</a></td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">M Feb 25</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/probability-sampling-and-estimation.html">Chpt 4</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/4b_Sampling.html#1">Sampling</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-3-correlation.html">4: Correlation</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">W Feb 27</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/foundations-for-inference.html">Chpt 5</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/5a_foundations.html#1">Foundations for inference</a></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-4-normal-distribution-central-limit-theorem.html">5: Central Limit Theorem</a></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">F Mar 1</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-4-normal-distribution-central-limit-theorem.html">5: Central Limit Theorem</a></td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">T Oct 2</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/5a_foundations.html#1">Foundations for inference</a></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-4-normal-distribution-central-limit-theorem.html">4: Central Limit Theorem</a></td>
+<td align="left">M Mar 4</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/foundations-for-inference.html">Chpt 5</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/5b_randomization.html#1">Randomization test</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-4-normal-distribution-central-limit-theorem.html">5: Central Limit Theorem</a></td>
+<td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Th Oct 4</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/5b_randomization.html#1">Randomization test</a></td>
+<td align="left">W Mar 6</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/t-tests.html">Chpt 6</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/6a_ttest.html#1">one-sample t tests</a></td>
 <td align="left"></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-5-fundamentals-of-hypothesis-testing.html">5. Hypothesis Testing</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-5-fundamentals-of-hypothesis-testing.html">6. Hypothesis Testing</a></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
+<td align="left"></td>
+<td align="left">F Mar 8</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-5-fundamentals-of-hypothesis-testing.html">6. Hypothesis Testing</a></td>
+</tr>
+<tr class="even">
 <td align="left">6</td>
-<td align="left">T Oct 9</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/6a_ttest.html#1">one-sample t tests</a></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-5-fundamentals-of-hypothesis-testing.html">5. Hypothesis Testing</a></td>
+<td align="left">M Mar 11</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/t-tests.html">Chpt 6</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/6b_paired.html#1">paired sample t-tests</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-5-fundamentals-of-hypothesis-testing.html">6. Hypothesis Testing</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">W Mar 13</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/t-tests.html">Chpt 6</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/6c_ind.html#1">Independent t-tests</a></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-6-t-test-one-sample-paired-sample.html">7. T-tests 1</a></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Th Oct 11</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/6b_paired.html#1">paired sample t-tests</a></td>
+<td align="left">F Mar 15</td>
 <td align="left"></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-6-t-test-one-sample-paired-sample.html">6. T-tests 1</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-6-t-test-one-sample-paired-sample.html">7. T-tests 1</a></td>
 </tr>
 <tr class="odd">
 <td align="left">7</td>
-<td align="left">T Oct 16</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/6c_ind.html#1">Independent t-tests</a></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-6-t-test-one-sample-paired-sample.html">6. T-tests 1</a></td>
+<td align="left">M Mar 18</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/thinking-about-answering-questions-with-data.html">Chpt 12</a></td>
+<td align="left">Power and Effect Size</td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-6-t-test-one-sample-paired-sample.html">7. T-tests 1</a></td>
+<td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Th Oct 18</td>
-<td align="left">Midterm review</td>
+<td align="left">W Mar 20</td>
+<td align="left"></td>
+<td align="left">Midterm Review</td>
 <td align="left"></td>
 <td align="left">Midterm Study</td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
+<td align="left"></td>
+<td align="left">F Mar 22</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Midterm study</td>
+</tr>
+<tr class="even">
 <td align="left">8</td>
-<td align="left">T Oct 23</td>
+<td align="left">M Mar 25</td>
+<td align="left"></td>
 <td align="left"><strong>Midterm</strong></td>
 <td align="left">Midterm Study</td>
 <td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">W Mar 27</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/anova.html">Chpt 7</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/7a_indANOVA.html#1">One-factor ANOVA I</a></td>
+<td align="left"></td>
+<td align="left">Flex lab</td>
+<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Th Oct 25</td>
-<td align="left">ANOVA foundations</td>
+<td align="left">F Mar 29</td>
 <td align="left"></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-7-t-test-independent-sample.html">7. T-tests 2</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-8-one-way-anova.html">8. One-way ANOVA</a></td>
 </tr>
 <tr class="odd">
 <td align="left">9</td>
-<td align="left">T Oct 30</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/7a_indANOVA.html#1">One-factor ANOVA I</a></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-7-t-test-independent-sample.html">7. T-tests 2</a></td>
+<td align="left">M Apr 1</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/anova.html">Chpt 7</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/7b_indANOVA.html#1">One-factor ANOVA II</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-8-one-way-anova.html">8. One-way ANOVA</a></td>
+<td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Th Nov 1</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/7b_indANOVA.html#1">One-factor ANOVA II</a></td>
+<td align="left">W Apr 3</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/repeated-measures-anova.html">Chpt 8</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/8a_rmANOVA.html#1">Repeated measures ANOVA I</a></td>
 <td align="left"></td>
 <td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-8-one-way-anova.html">8. One-way ANOVA</a></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
+<td align="left"></td>
+<td align="left">F Apr 5</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-9-repeated-measures-anova.html">9. RM ANOVA</a></td>
+</tr>
+<tr class="even">
 <td align="left">10</td>
-<td align="left">T Nov 6</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/8a_rmANOVA.html#1">Repeated measures ANOVA I</a></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-8-one-way-anova.html">8. One-way ANOVA</a></td>
+<td align="left">M Apr 8</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/repeated-measures-anova.html">Chpt 8</a></td>
+<td align="left">Repeated measures ANOVA II</td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-9-repeated-measures-anova.html">9. RM ANOVA</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">W Apr 10</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/factorial-anova.html">Chpt 9</a></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/9a_factorialANOVA.html#1">Factorial ANOVA I</a></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-9-repeated-measures-anova.html">9. RM ANOVA</a></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Th Nov 8</td>
-<td align="left">Repeated measures ANOVA</td>
+<td align="left">F Apr 12</td>
 <td align="left"></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-9-repeated-measures-anova.html">9. RM ANOVA</a></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-10-factorial-anova.html">10. Factorial ANOVA</a></td>
 </tr>
 <tr class="odd">
 <td align="left">11</td>
-<td align="left">T Nov 13</td>
+<td align="left">M Apr 15</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/factorial-anova.html">Chpt 9</a></td>
 <td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/9a_factorialANOVA.html#1">Factorial ANOVA I</a></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-9-repeated-measures-anova.html">9. RM ANOVA</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-10-factorial-anova.html">10. Factorial ANOVA</a></td>
+<td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
-<td align="left">Th Nov 15</td>
-<td align="left">Extra Credit Review</td>
-<td align="left"></td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-10-factorial-anova.html">10. Factorial ANOVA</a></td>
-</tr>
-<tr class="odd">
-<td align="left">12</td>
-<td align="left">T Nov 20</td>
+<td align="left">W Apr 17</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/more-on-factorial-designs.html">Chpt 10</a></td>
 <td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/9b_factorialANOVA.html#1">Factorial ANOVA II</a></td>
+<td align="left"></td>
 <td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-10-factorial-anova.html">10. Factorial ANOVA</a></td>
 <td align="left"></td>
 </tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">F Apr 19</td>
+<td align="left"></td>
+<td align="left">Spring Recess</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
 <tr class="even">
-<td align="left">No Class</td>
-<td align="left">Th Nov 22</td>
-<td align="left">No Class</td>
+<td align="left"></td>
+<td align="left">M Apr 22</td>
+<td align="left"></td>
+<td align="left">Spring Recess</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">T Nov 27</td>
-<td align="left">Mixed Design ANOVAs II</td>
-<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-11-mixed-factorial-anova.html">11. Mixed ANOVA</a></td>
+<td align="left">W Apr 24</td>
+<td align="left"></td>
+<td align="left">Spring Recess</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">F Apr 26</td>
+<td align="left"></td>
+<td align="left">Spring Recess</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">M Apr 29</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/more-on-factorial-designs.html">Chpt 10</a></td>
+<td align="left">Mixed Design ANOVAs</td>
+<td align="left">Flex lab</td>
+<td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">13</td>
-<td align="left">Th Nov 29</td>
+<td align="left">W May 1</td>
+<td align="left"><a href="https://crumplab.github.io/statistics/simulating-data.html">Chpt 11</a></td>
 <td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/10a_datasim.html#1">Data Simulation I</a></td>
 <td align="left"></td>
 <td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-11-mixed-factorial-anova.html">11. Mixed ANOVA</a></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
-<td align="left">T Dec 4</td>
-<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/10b_Rstuff.html#1">R Markdown</a></td>
-<td align="left">12. Flex lab</td>
+<td align="left">F May 3</td>
 <td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-11-mixed-factorial-anova.html">11. Mixed ANOVA</a></td>
 </tr>
 <tr class="even">
+<td align="left"></td>
+<td align="left">M May 6</td>
+<td align="left"></td>
+<td align="left"><a href="https://crumplab.github.io/psyc3400/Presentations/10b_Rstuff.html#1">R Markdown</a></td>
+<td align="left"><a href="https://crumplab.github.io/statisticsLab/lab-11-mixed-factorial-anova.html">11. Mixed ANOVA</a></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
 <td align="left">14</td>
-<td align="left">Th Dec 6</td>
+<td align="left">W May 8</td>
+<td align="left"></td>
 <td align="left">Reproducible Science</td>
 <td align="left"></td>
 <td align="left">Final Study</td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left">T Dec 11</td>
-<td align="left">Final Review</td>
-<td align="left">Final Study</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
+<td align="left"></td>
+<td align="left">F May 10</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Final Study</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">M May 13</td>
+<td align="left"></td>
+<td align="left">Final Review</td>
+<td align="left">Final Study</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">W May 15</td>
+<td align="left"></td>
 <td align="left">Reading Day</td>
-<td align="left">Th Dec 13</td>
-<td align="left">Reading Day</td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">Final Exam</td>
 <td align="left"></td>
 <td align="left"></td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
-<p>Website: <a href="http://crumplab.github.io/psyc3400" class="uri">http://crumplab.github.io/psyc3400</a></p>
+<p>Website: <a href="http://crumplab.github.io/psyc3400">http://crumplab.github.io/psyc3400</a></p>
 <hr />
 </div>
 <div id="catalog-description" class="section level3">
@@ -937,7 +1271,7 @@ div.tocify {
 </div>
 <div id="universitys-policy-on-academic-integrity" class="section level3">
 <h3>University’s policy on Academic Integrity</h3>
-<p>The faculty and administration of Brooklyn College support an environment free from cheating and plagiarism. As a student, <strong>you are personally responsible for being aware of what constitutes cheating, and plagiarism; and, for avoiding both</strong>. You can view the complete text of the CUNY Academic Integrity Policy here: <a href="http://www.brooklyn.cuny.edu/bc/policies" class="uri">http://www.brooklyn.cuny.edu/bc/policies</a> <strong>If a faculty member suspects a violation of academic integrity, and upon investigation, confirms that violation, or if the student admits the violation, the faculty member MUST report the violation</strong>.</p>
+<p>The faculty and administration of Brooklyn College support an environment free from cheating and plagiarism. As a student, <strong>you are personally responsible for being aware of what constitutes cheating, and plagiarism; and, for avoiding both</strong>. You can view the complete text of the CUNY Academic Integrity Policy here: <a href="http://www.brooklyn.cuny.edu/bc/policies">http://www.brooklyn.cuny.edu/bc/policies</a> <strong>If a faculty member suspects a violation of academic integrity, and upon investigation, confirms that violation, or if the student admits the violation, the faculty member MUST report the violation</strong>.</p>
 <hr />
 </div>
 <div id="missing-an-exam-or-class" class="section level3">
@@ -948,7 +1282,7 @@ div.tocify {
 </div>
 <div id="accessibility" class="section level3">
 <h3>Accessibility</h3>
-<p>It is important to me that the course be accessible to all students. In order to receive disability-related academic accommodations students must first be registered with the Center for Student Disability Services. Students who have a documented disability or suspect they may have a disability are invited to set up an appointment with the Director of the Center for Student Disability Services, Ms. Valerie Stewart-Lovell at 718-951-5538. If you have already registered with the Center for Student Disability Services please provide me with the course accommodation form so we may discuss your specific accommodation. A guide and more information can be found here <a href="http://catsweb.cuny.edu" class="uri">http://catsweb.cuny.edu</a></p>
+<p>It is important to me that the course be accessible to all students. In order to receive disability-related academic accommodations students must first be registered with the Center for Student Disability Services. Students who have a documented disability or suspect they may have a disability are invited to set up an appointment with the Director of the Center for Student Disability Services, Ms. Valerie Stewart-Lovell at 718-951-5538. If you have already registered with the Center for Student Disability Services please provide me with the course accommodation form so we may discuss your specific accommodation. A guide and more information can be found here <a href="http://catsweb.cuny.edu">http://catsweb.cuny.edu</a></p>
 <hr />
 </div>
 <div id="class-citizenshiprules-of-conduct" class="section level3">
@@ -968,8 +1302,8 @@ div.tocify {
 <p>I will regularly use e-mail to send out announcements, changes in the syllabus, reminders about tests or due dates etc. It is your responsibility to check e-mail regularly to keep up-to-date with these announcements. I will use the e-mail address you have listed with the College. Therefore, please make sure that this is indeed the correct address.</p>
 <div id="general-help-with-research-and-writing" class="section level4">
 <h4>General Help with Research and Writing</h4>
-<p>The Library maintains a collection of links to sites that can assist you with proper citation format and paraphrasing and quoting other authors at <a href="https://library.brooklyn.cuny.edu/resources/?service=research-help">Research &amp; Writing Help</a>. The Learning Center has writing tutors available to help you with your writing <a href="http://lc.brooklyn.cuny.edu/" class="uri">http://lc.brooklyn.cuny.edu/</a>.</p>
-<p>The best learning is done in conversation with others, whether they are people—classmates, teachers, friends—or texts—books, articles, essays, poems, films etc. It should not be a solitary process. However, the assignments that you hand in for this course must be done on your own, should represent your own thinking, and should be original work that you have done for this particular course. A good way to balance these two seemingly contradictory approaches (collaborative learning and original individually-produced work) without knowingly—or, even unwittingly—resorting to plagiarism or other forms of academic misconduct is to learn and meticulously observe the rules for citing the work of others (this could be the great point your roommate made that you used in your paper, it could be a well-turned phrase from an academic essay, or it could be anything in between). It is your responsibility to learn what constitutes plagiarism and the correct rules for citing sources—read the information on the following website carefully: <a href="http://www.brooklyn.cuny.edu/bc/policies/" class="uri">http://www.brooklyn.cuny.edu/bc/policies/</a>. The bottom line is: passing off anyone’s words or ideas as your own for any reason whatsoever is plagiarism.</p>
+<p>The Library maintains a collection of links to sites that can assist you with proper citation format and paraphrasing and quoting other authors at <a href="https://library.brooklyn.cuny.edu/resources/?service=research-help">Research &amp; Writing Help</a>. The Learning Center has writing tutors available to help you with your writing <a href="http://lc.brooklyn.cuny.edu/">http://lc.brooklyn.cuny.edu/</a>.</p>
+<p>The best learning is done in conversation with others, whether they are people—classmates, teachers, friends—or texts—books, articles, essays, poems, films etc. It should not be a solitary process. However, the assignments that you hand in for this course must be done on your own, should represent your own thinking, and should be original work that you have done for this particular course. A good way to balance these two seemingly contradictory approaches (collaborative learning and original individually-produced work) without knowingly—or, even unwittingly—resorting to plagiarism or other forms of academic misconduct is to learn and meticulously observe the rules for citing the work of others (this could be the great point your roommate made that you used in your paper, it could be a well-turned phrase from an academic essay, or it could be anything in between). It is your responsibility to learn what constitutes plagiarism and the correct rules for citing sources—read the information on the following website carefully: <a href="http://www.brooklyn.cuny.edu/bc/policies/">http://www.brooklyn.cuny.edu/bc/policies/</a>. The bottom line is: passing off anyone’s words or ideas as your own for any reason whatsoever is plagiarism.</p>
 </div>
 </div>
 
