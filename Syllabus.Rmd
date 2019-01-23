@@ -174,9 +174,12 @@ The third part of each lab will have some questions that require written answers
 
 Each question will come with a clear rubric about how the question will be graded.
 
+<!--
 **Group work** is possible for part 3. If you want to form a group other students for part 3, then you can do this. You can work together to come up with a written answer to the question(s) in part 3. If you write as a group, then you MUST hand-in as a group. That means everybody in the group hands in the "exact" same written work to the question, and everybody in the group will get the exact same grade for the question.
 
 **IMPORTANT: Part 3 of the labs will prepare you for the Midterm and Final**. Half of the midterm and half of the final involve writing. In fact, some of the long answer questions on the midterm and final will be taken from your labs, so you will already have had practice thinking about the questions. However, the **midterm and final** are **individual** assignments, so if you do group work in lab, make sure you are prepared to give answers individually for the midterm and final.
+
+-->
 
 ---
 
@@ -215,13 +218,23 @@ Lecture and Lab attendance is taken every lecture and lab.
 
 **You will LOSE points on your quizzes and lab assignments for NOT ATTENDING LECTURE AND LAB**.
 
-LECTURE ATTENDANCE POLICY: If a student is late or misses more than 3 classes, then each additional late/missed class will result in subtracting 1% from the 15% for the Weekly quizzes. We know that life happens and sometimes you can't make it to class. We are giving you you three classes where you can miss (because of things happening in your life that we don't need to know about) without having any impact on your grade (all lecture notes are online for missed classes, talk to a friend, read the textbook, etc.)
+#### LECTURE ATTENDANCE POLICY
+
+If a student is late or misses more than 3 classes, then each additional late/missed class will result in subtracting 1% from the 25% for the Weekly quizzes. We know that life happens and sometimes you can't make it to class. We are giving you you three classes where you can miss (because of things happening in your life that we don't need to know about) without having any impact on your grade (all lecture notes are online for missed classes, talk to a friend, read the textbook, etc.)
 
 Lecture attendance is taken every lecture at the very beginning of class. Latecomers who miss attendance will not be allowed to record their attendance, and will be recorded as absent.
 
-LAB ATTENDANCE POLICY: If you do not show up and participate in the lab, and hand your lab assignments in during the lab, then you will receive 0 points on each lab you miss.
+#### LAB ATTENDANCE POLICY
 
-If you do have to miss class or lab due to exceptional circumstances let me or your lab instructor know.
+- Lab attendance is mandatory.
+- Each student is given one unexcused lab absence with no penalty as long as your lab is submitted on time.  If you need to miss additional labs, please speak to your lab instructor and provide documentation regarding the reason you have to miss.
+- If you miss more than one unexcused lab, you are still encouraged to hand your lab in and will receive up to 2 (rather than the usual 4) points.
+- Labs for which no lab is handed in will receive a 0.
+
+
+**Late Labs:**
+Unless you have contacted your lab instructor regarding serious extenuating circumstances, there will be a penalty of .25 per day up to a total of 2 points for late labs.  This means that it is in your best interests to complete the lab, even late, as you can still receive up to 2 points (50% of the grade).  However, no lab reports will be accepted after three weeks beyond the due date.  Labs not submitted by three weeks past the due date will receive a zero.
+
 
 ---
 
