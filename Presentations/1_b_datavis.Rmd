@@ -98,10 +98,23 @@ library(googlesheets)
 gs_ls()
 web_df <- gs_title("Psyc 3400 (Responses)")
 ss_df <- gs_read(ss=web_df, ws = "Form Responses 1", skip=0)
+
+year <- c()
+for(i in 1: dim(ss_df)[1]){
+  a <- strsplit(ss_df$Timestamp[i],split=" ")
+  b <- strsplit(a[[1]][1],"/")
+  year[i] <- b[[1]][3]
+}
+
+ss_df <- cbind(ss_df,year)
+
 ```
 
 ```{r, fig.align='center'}
-load("1_b_Data.RData")
+load("1_b_Data2019.RData")
+ss_df_all <- ss_df
+ss_df <- ss_df[ss_df$year==2019,]
+
 library(ggplot2)
 names(ss_df)<-c("timestamp",
                 "people_you_know",
@@ -109,7 +122,17 @@ names(ss_df)<-c("timestamp",
                 "books_read",
                 "earliest_memory",
                 "consciousness",
-                "Mental Imagery")
+                "Mental Imagery",
+                "year")
+
+names(ss_df_all)<-c("timestamp",
+                "people_you_know",
+                "texts_per_day",
+                "books_read",
+                "earliest_memory",
+                "consciousness",
+                "Mental Imagery",
+                "year")
 
 ggplot(ss_df, aes(y=people_you_know, x=1:dim(ss_df)[1]))+
   geom_point()+
@@ -201,7 +224,7 @@ library(ggpubr)
 
 a<-ggplot(ss_df, aes(x = people_you_know)) +
   geom_histogram(bins=2, color="white")+
-  theme_classic(base_size = 20)+
+  theme_classic(base_size = 15)+
   xlab("Number of people you know")+
   ylab("Frequency Counts")
 
@@ -244,11 +267,11 @@ ggplot(ss_df, aes(x = texts_per_day)) +
 
 ---
 
-# Q2: texts sent, < 500 only
+# Q2: texts sent, < 250 only
 
 ```{r, fig.align='center'}
 
-ggplot(ss_df[ss_df$texts_per_day<=500,], aes(x = texts_per_day)) +
+ggplot(ss_df[ss_df$texts_per_day<=250,], aes(x = texts_per_day)) +
   geom_histogram(bins=100, color="white")+
   theme_classic(base_size = 24)+
   xlab("Texts sent per day")+
@@ -276,7 +299,7 @@ ggplot(ss_df, aes(x = books_read)) +
 
 ```{r, fig.align='center'}
 
-ggplot(ss_df[ss_df$earliest_memory<10,], aes(x = earliest_memory)) +
+ggplot(ss_df[ss_df$earliest_memory<20,], aes(x = earliest_memory)) +
   geom_histogram(bins=10, color="white")+
   theme_classic(base_size = 24)+
   xlab("Age of earliest memory")+
@@ -561,6 +584,29 @@ knitr::include_graphics("figs/1b_selfC.png")
 
 ---
 
+# Q5: Where is your consciousness?
+
+```{r, fig.align='center'}
+
+ss_df_all$consciousness<-as.factor(ss_df_all$consciousness)
+levels(ss_df_all$consciousness)<-c("Body","Head", "Other")
+
+library(dplyr)
+
+plot_df <- ss_df_all %>%
+           group_by(year,consciousness) %>%
+           summarize(counts = length(consciousness))
+
+ggplot(plot_df, aes(x = consciousness, y=counts)) +
+  geom_bar(stat="identity")+
+  theme_classic(base_size = 24)+
+  xlab("Location of consciousness")+
+  ylab("Frequency Counts")+facet_wrap(~year)
+
+```
+
+---
+
 class: pink, center, middle, clear
 
 # Data Visualization Extras
@@ -611,7 +657,6 @@ knitr::include_graphics("figs/gapminder.png")
 
 # Reminders
 
-1. Quiz 1 is online, due Tuesday 4th, end of day (11:59pm). You must take the quiz before the deadline, otherwise you will receive 0 points. You can take the quiz as many times as you want before the deadline
+1. Quiz 1 is online, due Monday the 4th, end of day (11:59pm). You must take the quiz before the deadline, otherwise you will receive 0 points. You can take the quiz as many times as you want before the deadline
 
-2. If you want to get a headstart on Lab 2, try it out at home. [https://crumplab.github.io/statisticsLab/lab-2-descriptive-statistics.html](https://crumplab.github.io/statisticsLab/lab-2-descriptive-statistics.html)
 
