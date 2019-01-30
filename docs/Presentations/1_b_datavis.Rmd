@@ -547,7 +547,7 @@ When different measures of the same construct converge on similar patterns, we c
 # A different self-location measure
 
 ```{r, fig.align='center'}
-knitr::include_graphics("figs/1b_selfA.png")
+knitr::include_graphics("figs/1b_SelfA.png")
 ```
 
 ---
@@ -555,7 +555,7 @@ knitr::include_graphics("figs/1b_selfA.png")
 # The new measure
 
 ```{r, fig.align='center', out.width="400px"}
-knitr::include_graphics("figs/1b_selfB.png")
+knitr::include_graphics("figs/1b_SelfB.png")
 ```
 
 ---
@@ -563,7 +563,7 @@ knitr::include_graphics("figs/1b_selfB.png")
 # The results
 
 ```{r, fig.align='center'}
-knitr::include_graphics("figs/1b_selfC.png")
+knitr::include_graphics("figs/1b_SelfC.png")
 ```
 
 ---
