@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Descriptive Statistics
 ## What to do with lots of numbers
 ### Matthew Crump
-### 2018/07/20 (updated: 2018-09-04)
+### 2018/07/20 (updated: 2019-02-04)
 
 ---
 
@@ -983,6 +983,71 @@ The Mean (also called average) is the sum of the numbers, divided by the number 
 
 ---
 
+# The mean is the balancing point
+
+.pull-left[
+
+- deviation = score minus mean
+- sum of deviations will always equal zero
+
+]
+
+.pull-right[
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; index &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; x &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; deviations &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; -4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sum &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 30 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; N &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mean &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+---
+
 # Finding the Mean in R
 
 Use the `mean()` function
@@ -1072,13 +1137,13 @@ class: pink, center, middle, clear
 
 Mean (Red), Median (Green), Mode (Blue)
 
-&lt;img src="2-Descriptives_files/figure-html/unnamed-chunk-23-1.png" width="450px" style="display: block; margin: auto;" /&gt;
+&lt;img src="2-Descriptives_files/figure-html/unnamed-chunk-24-1.png" width="450px" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # Right-skewed
 
-&lt;img src="2-Descriptives_files/figure-html/unnamed-chunk-24-1.png" width="450px" style="display: block; margin: auto;" /&gt;
+&lt;img src="2-Descriptives_files/figure-html/unnamed-chunk-25-1.png" width="450px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1086,7 +1151,7 @@ Mean (Red), Median (Green), Mode (Blue)
 
 Outliers are really big or really small values that are unusual compared to the rest of the data
 
-&lt;img src="2-Descriptives_files/figure-html/unnamed-chunk-25-1.png" width="400px" style="display: block; margin: auto;" /&gt;
+&lt;img src="2-Descriptives_files/figure-html/unnamed-chunk-26-1.png" width="400px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1094,7 +1159,7 @@ Outliers are really big or really small values that are unusual compared to the 
 
 The mean is influenced by outliers, the median is not.
 
-&lt;img src="2-Descriptives_files/figure-html/unnamed-chunk-26-1.png" width="400px" style="display: block; margin: auto;" /&gt;
+&lt;img src="2-Descriptives_files/figure-html/unnamed-chunk-27-1.png" width="400px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1102,7 +1167,7 @@ The mean is influenced by outliers, the median is not.
 
 The big number (2000) makes the mean really big, because it is included in the sum.
 
-&lt;img src="2-Descriptives_files/figure-html/unnamed-chunk-27-1.png" width="400px" style="display: block; margin: auto;" /&gt;
+&lt;img src="2-Descriptives_files/figure-html/unnamed-chunk-28-1.png" width="400px" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -1141,7 +1206,7 @@ class: pink, center, middle, clear
 
 1. Quiz 1 for last week is due tonight @ 11:59pm. If you do not complete the quiz, you will be given 0 points
 
-2. Quiz 2 for this week begins Thursday 6th, due next Thursday 13th end of day @ 11:59pm
+2. Quiz 2 for this week begins Today, due next Monday end of day @ 11:59pm
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

@@ -474,6 +474,33 @@ knitr::kable(df,'html')
 
 ---
 
+# The mean is the balancing point
+
+.pull-left[
+
+- deviation = score minus mean
+- sum of deviations will always equal zero
+
+]
+
+.pull-right[
+
+```{r}
+x<-c(4,7,2,9,8)
+index<-c(1,2,3,4,5)
+deviations<-x-mean(x)
+df<-data.frame(index,x, deviations)
+
+df <- df %>%
+  rbind(c("Sum",colSums(df[1:5,2:3]))) %>%
+  rbind(c("N",5,5)) %>%
+  rbind(c("Mean",colMeans(df[1:5,2:3])))
+knitr::kable(df,'html')
+
+```
+]
+---
+
 # Finding the Mean in R
 
 Use the `mean()` function
@@ -695,5 +722,5 @@ class: pink, center, middle, clear
 
 1. Quiz 1 for last week is due tonight @ 11:59pm. If you do not complete the quiz, you will be given 0 points
 
-2. Quiz 2 for this week begins Thursday 6th, due next Thursday 13th end of day @ 11:59pm
+2. Quiz 2 for this week begins Today, due next Monday end of day @ 11:59pm
 
