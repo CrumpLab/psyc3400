@@ -425,7 +425,7 @@ Covariation can tell us about correlation in the data, it is a measure of correl
 
 # Computing Covariation
 
-```{r, out.width="80%"}
+```{r, out.width="90%"}
 knitr::include_graphics('figs/correlation/cov4.png')
 ```
 
