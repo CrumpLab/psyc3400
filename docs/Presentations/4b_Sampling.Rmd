@@ -27,7 +27,7 @@ class: pink, center, middle, clear
 
 class: pink, center, middle, clear
 
-# Make sure you undertand this next graph
+# Make sure you understand this next graph
 
 ---
 
@@ -713,16 +713,11 @@ sd(x)/sqrt(length(x))
 
 # Next class: Inference
 
-1. Tuesday, October 2nd: We explore foundational ideas for statistical inference
+1. Wednesday, February 27th: We explore foundational ideas for statistical inference
 
----
+2. Correlations quiz due today @ 11:59pm
 
-# Reminder
-
-1. Quiz 4 for this week is due Tuesday, October, 2nd end of day (11:59pm).
-
-2. Quiz 5 for Inference will be posted Tuesday, October 2nd.
-
+3. Distribution/Sample quiz begins today, due Next Monday @ 11:59pm
 
 ---
 
