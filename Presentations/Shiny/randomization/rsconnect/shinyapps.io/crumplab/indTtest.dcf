@@ -1,0 +1,12 @@
+name: indTtest
+title: indTtest
+username:
+account: crumplab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 516904
+bundleId: 1645688
+url: https://crumplab.shinyapps.io/indTtest/
+when: 1539699026.81173
+asMultiple: FALSE
+asStatic: FALSE

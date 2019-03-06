@@ -15,12 +15,63 @@ class: center, middle, inverse, title-slide
 # Randomization Tests
 ## and little bit of hypothesis testing
 ### Matthew Crump
-### 2018/07/20 (updated: 2018-10-04)
+### 2018/07/20 (updated: 2019-03-06)
 
 ---
 
 
 
+
+
+
+# Topics for class
+
+1. Hypothesis Testing 
+2. Randomization Test
+
+---
+
+class: pink, center, middle, clear
+
+# Important skill: Interpreting results sections
+
+---
+
+# Results sections can be confusing
+
+&lt;img src="figs/randomization/hypothesis testing.002.png" width="1365" /&gt;
+
+---
+
+# Learn to identify parts
+
+&lt;img src="figs/randomization/hypothesis testing.003.png" width="1365" /&gt;
+
+---
+
+# Two parts to look for
+
+&lt;img src="figs/randomization/hypothesis testing.004.png" width="1365" /&gt;
+
+---
+
+# Some general issues
+
+**Problem**
+
+Results can be written in different ways, and do not always include all information
+
+**Solution**
+
+Gain a conceptual understanding of the process so you know what is being reported, the purpose of reporting each element, and what isn't being reported.
+
+---
+
+class: center, middle, clear
+
+&lt;img src="figs/randomization/hypothesis testing.001.png" width="1365" /&gt;
+
+---
 
 
 class: pink, center, middle, clear
@@ -34,13 +85,6 @@ class: pink, center, middle, clear
 Definition: disagreement, typically when prolonged, public, and heated.
 
 Would you believe it, statistical inference is controversial. There are different ways to do it. And, reasonable people disagree. Sometimes in public. With heat.
-
----
-
-# Topics for class
-
-1. Hypothesis Testing 
-2. Randomization Test
 
 ---
 
@@ -128,7 +172,7 @@ Let's make a null-distribution
 
 .pull-right[
 
-![](5b_randomization_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+![](5b_randomization_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -261,9 +305,9 @@ We stay with Fisher for now, and introduce the others later in this course.
 
 # Directional Hypotheses
 
-Non-directional hypothesis: The manipulation will cause a difference. Any difference, up or down, positive or negative, just a difference
+**Non-directional hypothesis**: The manipulation will cause a difference. Any difference, up or down, positive or negative, just a difference
 
-Directional hypothesis: The manipulation cause a difference in a particular direction, positive only, or negative only.
+**Directional hypothesis**: The manipulation cause a difference in a particular direction, positive only, or negative only.
 
 More on this when we get to t-tests
 
@@ -303,7 +347,13 @@ class: pink, center, middle, clear
 
 ---
 
-# Example
+# Table of randomization test
+
+&lt;img src="figs/randomization/Rtest.png" width="1520" /&gt;
+
+---
+
+# Example: Original scores for A &amp; B
 
 .pull-left[
 &lt;table&gt;
@@ -350,7 +400,7 @@ mean(A)
 ```
 
 ```
-## [1] 3
+[1] 3
 ```
 
 ```r
@@ -358,7 +408,7 @@ mean(B)
 ```
 
 ```
-## [1] 6.5
+[1] 6.5
 ```
 
 ```r
@@ -366,7 +416,79 @@ mean(B)-mean(A)
 ```
 
 ```
-## [1] 3.5
+[1] 3.5
+```
+
+
+]
+
+
+---
+
+# Re-assign scores randomly to groups
+
+.pull-left[
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; B &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+
+
+```r
+mean(A)
+```
+
+```
+[1] 5.833333
+```
+
+```r
+mean(B)
+```
+
+```
+[1] 3.666667
+```
+
+```r
+mean(B)-mean(A)
+```
+
+```
+[1] -2.166667
 ```
 
 
@@ -379,12 +501,14 @@ mean(B)-mean(A)
 
 
 ```r
+A&lt;-c(1,3,2,4,3,5)
+B&lt;-c(6,5,7,6,8,7)
 all_scores&lt;-c(A,B)
 all_scores
 ```
 
 ```
-##  [1] 1 3 2 4 3 5 6 5 7 6 8 7
+ [1] 1 3 2 4 3 5 6 5 7 6 8 7
 ```
 
 ```r
@@ -393,7 +517,7 @@ random_scores
 ```
 
 ```
-##  [1] 6 6 7 4 3 2 8 7 3 1 5 5
+ [1] 7 6 7 6 3 4 2 8 1 5 5 3
 ```
 
 ---
@@ -410,7 +534,7 @@ mean(random_B)-mean(random_A)
 ```
 
 ```
-## [1] 0.1666667
+[1] -1.5
 ```
 
 ---
@@ -434,7 +558,7 @@ for(i in 1:1000){
 
 Red line is original observed mean difference
 
-&lt;img src="5b_randomization_files/figure-html/unnamed-chunk-10-1.png" width="50%" /&gt;
+&lt;img src="5b_randomization_files/figure-html/unnamed-chunk-17-1.png" width="50%" /&gt;
 
 ---
 
@@ -458,7 +582,7 @@ print(critical_difference)
 ```
 
 ```
-## [1] 1.833333
+[1] 1.833333
 ```
 
 ---
@@ -467,7 +591,7 @@ print(critical_difference)
 
 red = original difference, blue= critical value
 
-&lt;img src="5b_randomization_files/figure-html/unnamed-chunk-12-1.png" width="50%" /&gt;
+&lt;img src="5b_randomization_files/figure-html/unnamed-chunk-19-1.png" width="50%" /&gt;
 
 ---
 
@@ -500,7 +624,7 @@ We could find the probability of obtaining our observed mean difference by chanc
 
 
 ```
-## [1] 0.001
+[1] 0.002
 ```
 
 
@@ -516,7 +640,7 @@ The number of simulations (randomizations) matter.
 
 # varying the number of simulations
 
-![](5b_randomization_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+![](5b_randomization_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -530,15 +654,10 @@ Randomization tests are non-parametric
 
 ---
 
-# Next class: Randomization Test
+# Next class: T-Tests
 
-1. Tuesday, October 9th: T-tests
-
----
-
-# Reminder
-
-1. Quiz 5 is due today Tuesday, October, 9th end of day (11:59pm).
+- Quiz 4 is due tonight @ 11:59 pm
+- Quiz 5 begins today, due next wednesday @ 11:59pm
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

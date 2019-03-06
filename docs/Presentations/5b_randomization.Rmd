@@ -15,8 +15,68 @@ output:
 
 ```{r setup, include=FALSE, echo=FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE, cache = TRUE)
+knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE, cache = TRUE,
+                      comment=NA)
 ```
+
+
+
+# Topics for class
+
+1. Hypothesis Testing 
+2. Randomization Test
+
+---
+
+class: pink, center, middle, clear
+
+# Important skill: Interpreting results sections
+
+---
+
+# Results sections can be confusing
+
+```{r}
+knitr::include_graphics("figs/randomization/hypothesis testing.002.png")
+```
+
+---
+
+# Learn to identify parts
+
+```{r}
+knitr::include_graphics("figs/randomization/hypothesis testing.003.png")
+```
+
+---
+
+# Two parts to look for
+
+```{r}
+knitr::include_graphics("figs/randomization/hypothesis testing.004.png")
+```
+
+---
+
+# Some general issues
+
+**Problem**
+
+Results can be written in different ways, and do not always include all information
+
+**Solution**
+
+Gain a conceptual understanding of the process so you know what is being reported, the purpose of reporting each element, and what isn't being reported.
+
+---
+
+class: center, middle, clear
+
+```{r}
+knitr::include_graphics("figs/randomization/hypothesis testing.001.png")
+```
+
+---
 
 
 class: pink, center, middle, clear
@@ -30,13 +90,6 @@ class: pink, center, middle, clear
 Definition: disagreement, typically when prolonged, public, and heated.
 
 Would you believe it, statistical inference is controversial. There are different ways to do it. And, reasonable people disagree. Sometimes in public. With heat.
-
----
-
-# Topics for class
-
-1. Hypothesis Testing 
-2. Randomization Test
 
 ---
 
@@ -269,9 +322,9 @@ We stay with Fisher for now, and introduce the others later in this course.
 
 # Directional Hypotheses
 
-Non-directional hypothesis: The manipulation will cause a difference. Any difference, up or down, positive or negative, just a difference
+**Non-directional hypothesis**: The manipulation will cause a difference. Any difference, up or down, positive or negative, just a difference
 
-Directional hypothesis: The manipulation cause a difference in a particular direction, positive only, or negative only.
+**Directional hypothesis**: The manipulation cause a difference in a particular direction, positive only, or negative only.
 
 More on this when we get to t-tests
 
@@ -315,7 +368,15 @@ knitr::include_graphics("figs/randomization/randomizationTest-1.gif")
 
 ---
 
-# Example
+# Table of randomization test
+
+```{r}
+knitr::include_graphics("figs/randomization/Rtest.png")
+```
+
+---
+
+# Example: Original scores for A & B
 
 .pull-left[
 ```{r}
@@ -340,9 +401,38 @@ mean(B)-mean(A)
 
 ---
 
+# Re-assign scores randomly to groups
+
+.pull-left[
+```{r}
+all<-c(A,B)
+all<-sample(all,12)
+A<-all[1:6]
+B<-all[7:12]
+df<-data.frame(A,B)
+knitr::kable(df,"html")
+```
+]
+
+.pull-right[
+
+```{r,echo=T}
+mean(A)
+mean(B)
+mean(B)-mean(A)
+```
+
+
+]
+
+
+---
+
 # randomize the scores
 
 ```{r,echo=T}
+A<-c(1,3,2,4,3,5)
+B<-c(6,5,7,6,8,7)
 all_scores<-c(A,B)
 all_scores
 random_scores<-sample(all_scores,12,replace=FALSE)
@@ -506,15 +596,10 @@ Randomization tests are non-parametric
 
 ---
 
-# Next class: Randomization Test
+# Next class: T-Tests
 
-1. Tuesday, October 9th: T-tests
-
----
-
-# Reminder
-
-1. Quiz 5 is due today Tuesday, October, 9th end of day (11:59pm).
+- Quiz 4 is due tonight @ 11:59 pm
+- Quiz 5 begins today, due next wednesday @ 11:59pm
 
 
 
