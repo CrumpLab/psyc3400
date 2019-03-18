@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Randomization Tests
 ## and little bit of hypothesis testing
 ### Matthew Crump
-### 2018/07/20 (updated: 2019-03-06)
+### 2018/07/20 (updated: 2019-03-18)
 
 ---
 
@@ -437,28 +437,28 @@ mean(B)-mean(A)
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -472,7 +472,7 @@ mean(A)
 ```
 
 ```
-[1] 5.833333
+[1] 5
 ```
 
 ```r
@@ -480,7 +480,7 @@ mean(B)
 ```
 
 ```
-[1] 3.666667
+[1] 4.5
 ```
 
 ```r
@@ -488,7 +488,7 @@ mean(B)-mean(A)
 ```
 
 ```
-[1] -2.166667
+[1] -0.5
 ```
 
 
@@ -517,7 +517,7 @@ random_scores
 ```
 
 ```
- [1] 7 6 7 6 3 4 2 8 1 5 5 3
+ [1] 5 7 6 4 7 1 3 5 2 3 8 6
 ```
 
 ---
@@ -534,7 +534,7 @@ mean(random_B)-mean(random_A)
 ```
 
 ```
-[1] -1.5
+[1] -0.5
 ```
 
 ---
@@ -582,7 +582,7 @@ print(critical_difference)
 ```
 
 ```
-[1] 1.833333
+[1] 2.166667
 ```
 
 ---
@@ -607,7 +607,7 @@ Null hypothesis: The observed mean difference could have been produced by chance
 
 # test the null-hypothesis
 
-We found that 5% of the mean differences from the simulation were 1.8333333 or greater.
+We found that 5% of the mean differences from the simulation were 2.1666667 or greater.
 
 **Reject the null hypothesis:** We reject the null-hypothesis when the probability of the observed mean difference (3.5) or larger is less than 5%
 

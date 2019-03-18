@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE, echo=FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE, cache = TRUE)
+knitr::opts_chunk$set(echo = FALSE,message=FALSE,warning=FALSE, cache = FALSE)
 ```
 
 
@@ -92,6 +92,7 @@ knitr::kable(df, "html")
 .pull-left[
 
 Purpose: Compare two means from different samples
+
 
 - $\bar{X}_1$ = mean of sample 1
 - $\bar{X}_2$ = mean of sample 2
@@ -398,10 +399,11 @@ cat('<iframe style="width:100%;height:100%;border-style:none;", src="https://cru
 
 
 
-# Next class: Midterm review
+# Next class: Power and Effect-size
 
-1. Thursday, October 18th: Midterm review
-2. quiz on t-tests due Thursday, October 18th (11:59pm)
+1. Quiz on t-tests starts today, due next Monday
+2. Midterm review next Monday
+3. Midterm review sheet and info is posted on Blackboard
 
 
 
