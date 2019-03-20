@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Power and Effect-size</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Matthew Crump" />
+    <link rel="stylesheet" href="defaultb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolisb.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsb.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Power and Effect-size
+## Experiment planning
+### Matthew Crump
+### 2018/07/20 (updated: 2019-03-20)
+
+---
+
+
+
+
+class: pink, center, middle, clear
+
+# Don't run an experiment that is designed to fail
+
+---
+
+class: pink, center, middle, clear
+
+# How? Power analysis, effect-size, and sample-size planning
+
+---
+
+#overview
+
+1. Z-score reminder
+2. Effect-size
+3. Power
+4. Sample-size planning
+
+---
+
+class: pink, center, middle, clear
+
+# z-scores
+
+---
+
+# z-score review
+
+Formula for z-score
+
+`\(z = \frac{\text{score} - \text{mean}}{\text{SD}}\)`
+
+---
+
+# what does z tell us?
+
+A z-score tells us **how far away a score is from the mean, in standard deviation units**
+
+![](6d_power_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+
+---
+
+# What is Z?
+
+.pull-left[
+- Mean = 100
+- SD = 25
+- **Score = 125**
+- **z = ?**
+]
+
+.pull-right[
+
+![](6d_power_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+]
+
+---
+
+
+# What is Z?
+
+.pull-left[
+- Mean = 100
+- SD = 25
+- **Score = 50**
+- **z = ?**
+]
+
+.pull-right[
+
+![](6d_power_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+---
+
+
+# What is Z?
+
+.pull-left[
+- Mean = 0
+- SD = 1
+- **Score = 1.5**
+- **z = ?**
+]
+
+.pull-right[
+
+![](6d_power_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+]
+
+---
+
+# review of z
+
+- when z=1, the score is 1 sd from the mean
+- when z=2, the score is 2 sd from the mean
+- when z=3, the score is 3 sd from the mean
+
+---
+
+class: pink, center, middle, clear
+
+# Effect-size
+
+---
+
+# Effect-size
+
+When we run an experiment, we are interested in whether the **manipulation** caused a difference in our **measurement**
+
+If, our **manipulation** causes a difference in our **measurement**, then there will be an **effect**.
+
+**Effect-size** refers to how big or small the effect is
+
+---
+
+# Measures of effect-size
+
+There are many different measures of effect size. Consider the simplest measure for two groups, A and B.
+
+**Mean difference**
+
+The difference between the mean of A, and the mean of B, is a measure of the effect size.
+
+- Large mean difference is a large effect
+- Small mean difference is a small effect
+
+---
+
+# How big is big?
+
+- What if the mean difference is 50, is that big or small?
+
+- What if the mean difference is 1, is that big or small?
+
+---
+
+# Relative to what?
+
+Mean differences can be interpreted if we know what the difference is relative to.
+
+- mean A = 1000, mean B = 1050
+  - difference=50
+  - 5% increase, not so big
+  
+- mean A = 1, mean B = 2
+  - difference=1
+  - 100% increase, pretty big
+
+
+---
+
+# Cohen's D
+
+Cohen's D express a mean difference between two samples in terms of standard deviation units (like a z-score). This allows us to know something about the relative size.
+
+- D = .1 (mean difference is shifted by .1 SD)
+- D = 1 (mean difference is shifted by 1 SD)
+- D = 2 (mean difference is shifted by 2 SD)
+
+---
+
+# Cohen's D formula
+
+The general idea is:
+
+`\(d = \frac{\text{MeanA}-\text{MeanB}}{SD}\)`
+
+---
+
+# M=0, SD=1, D=1
+
+A = Black, B = Red, Cohen's D = 1
+
+![](6d_power_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+
+
+# M=100, SD=25, D=1
+
+A = Black, B = Red, Cohen's D = 1
+
+![](6d_power_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
+
+# No-difference
+
+If there is no difference, how big is Cohen's D?
+
+What do the distributione for A and B look like?
+
+---
+
+# No-difference
+
+A and B come from the same distribution, no difference
+
+![](6d_power_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+
+---
+
+# Interpreting Cohen's D
+
+Cohen gives these recommendations:
+
+- **Small**: d = .2  
+- **Medium**: d =.5
+- **Large**: d &gt;= .8
+
+Note d's larger than 1 are really big, they shift the whole distribution by a whole standard deviation, that's a lot!
+
+---
+
+# D's in Psychology
+
+Many effects in Psychology are **small**, with **d around .2**.
+
+One reason is that we measure people, and people are highly variable.
+
+---
+
+class: pink, center, middle, clear
+
+# Power
+
+---
+
+# Power
+
+**Power** is the probability of rejecting the null-hypothesis, **when there is a TRUE DIFFERENCE**
+
+- **Power = .2**, You will reject the null-hypothesis 20% of the time (20/100 experiments)
+- **Power = .8**, (considered high power), You will reject the null-hypothesis 80% of the time (80/100 experiments)
+
+---
+
+# Power is a property of a design
+
+Every design has it's own **Power** to detect effects of different sizes.
+
+The power of a design depends on:
+  - sample-size (n)
+  - Effect-size (d)
+  - alpha-criterion
+
+---
+
+# General info about power
+
+1. Increasing sample-size, increases power
+2. Increasing effect-size, increases power
+3. Lowering alpha (making it easier to reject null), increases power
+
+---
+
+# type I error
+
+&lt;img src="figs/power/Power.001.png" width="1365" /&gt;
+
+---
+
+# Alternative Hypothesis (d &gt; 0)
+
+&lt;img src="figs/power/Power.002.png" width="1365" /&gt;
+
+---
+
+# B = type II error
+
+&lt;img src="figs/power/Power.003.png" width="1365" /&gt;
+
+---
+
+# Power = 1-B
+
+&lt;img src="figs/power/Power.004.png" width="1365" /&gt;
+
+---
+
+# Power and effect-size
+
+&lt;img src="figs/power/Power.005.png" width="1365" /&gt;
+
+---
+
+# Paired-sample t-test (n=10)
+
+- Get 1,000 t-values assuming null is true
+- Get 1,000 t-values assuming alternative is true (d=1)
+
+
+```r
+t_null &lt;- replicate(1000,t.test(rnorm(10,0,1),
+                                rnorm(10,0,1),
+                                paired=TRUE)$statistic)
+
+t_alt &lt;- replicate(1000,t.test(rnorm(10,1,1),
+                                rnorm(10,0,1),
+                                paired=TRUE)$statistic)
+```
+
+
+---
+
+# look at both t-distributions
+
+power = 0.665 to detect d=1
+
+![](6d_power_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+
+
+---
+
+# Increase N from 10 to 50
+
+- Get 1,000 t-values assuming null is true
+- Get 1,000 t-values assuming alternative is true (d=1)
+
+
+```r
+t_null &lt;- replicate(1000,t.test(rnorm(50,0,1),
+                                rnorm(50,0,1),
+                                paired=TRUE)$statistic)
+
+t_alt &lt;- replicate(1000,t.test(rnorm(50,1,1),
+                                rnorm(50,0,1),
+                                paired=TRUE)$statistic)
+```
+
+
+
+---
+
+# n=50
+
+power = 0.999 to detect d=1
+
+![](6d_power_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+
+---
+
+# N=10, Increase d to 2
+
+- Get 1,000 t-values assuming null is true
+- Get 1,000 t-values assuming alternative is true (d=1)
+
+
+```r
+t_null &lt;- replicate(1000,t.test(rnorm(10,0,1),
+                                rnorm(10,0,1),
+                                paired=TRUE)$statistic)
+
+t_alt &lt;- replicate(1000,t.test(rnorm(10,2,1),
+                                rnorm(10,0,1),
+                                paired=TRUE)$statistic)
+```
+
+
+
+---
+
+# n=10, d=2
+
+power = 0.993 to detect d=2
+
+![](6d_power_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+
+---
+
+# Power curves
+
+A specific design, e.g., 
+
+- Paired samples t-test, with n =10
+
+Has different levels of power, to detect effects of different size. This can be shown on a power curve.
+
+---
+
+# Power curve, t.test, n=10
+
+![](6d_power_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+---
+
+# Sample-size planning
+
+**How many subjects do you need for your experiment?**
+
+1. Establish a minumum effect-size of interest
+2. Conduct a power-analysis, to show how power changes as a function of sample-size to detect the minimum effect size of interest
+
+---
+
+# Example
+
+1. Minimum effect-size of interest, d = .2
+2. Plot the power function
+
+---
+
+# power as a function of n
+
+![](6d_power_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+
+
+---
+
+class: pink, center, middle, clear
+
+# Don't run an experiment that is designed to fail
+
+---
+
+class: pink, center, middle, clear
+
+# How? Do a power analysis, beforehand
+
+---
+
+
+# Next class: Midterm Review
+
+1. Quiz on t-tests, due next Monday
+2. Midterm review next Monday
+3. Midterm review sheet and info is posted on Blackboard
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
