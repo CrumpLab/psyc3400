@@ -1,0 +1,102 @@
+---
+title: "ANOVA"
+author: "Matt"
+date: "4/1/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
+```
+
+## one-way ANOVA
+
+Create some fake data for three groups. n=5, all data sampled from a normal distribution with mean = 0, sd =1.
+```{r}
+A <- rnorm(n=5,mean=0,sd=1)
+B <- rnorm(n=5,mean=0,sd=1)
+C <- rnorm(n=5,mean=0,sd=1)
+DV <- c(A,B,C)
+groups <- rep(c("A","B","C"), each=5)
+df <- data.frame(groups,DV)
+
+knitr::kable(df)
+```
+
+### print ANOVA summary and graph
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+plot_df <- df %>%
+            group_by(groups) %>%
+            summarise(means=mean(DV))
+ggplot(plot_df, aes(x=groups, y=means, fill=groups))+
+  geom_bar(stat="identity")
+
+summary(aov(DV~groups,df))
+```
+
+### repeat a few times
+
+```{r}
+
+for(i in 1:5){
+  
+A <- rnorm(n=5,mean=0,sd=1)
+B <- rnorm(n=5,mean=0,sd=1)
+C <- rnorm(n=5,mean=0,sd=1)
+DV <- c(A,B,C)
+groups <- rep(c("A","B","C"), each=5)
+df <- data.frame(groups,DV)
+
+plot_df <- df %>%
+            group_by(groups) %>%
+            summarise(means=mean(DV))
+
+print(ggplot(plot_df, aes(x=groups, y=means, fill=groups))+
+  geom_bar(stat="identity"))
+
+print(summary(aov(DV~groups,df)))
+
+}
+
+```
+
+# F-distribution
+
+The null F-distribution, are the values of F you **could** have found, if all of your samples in each group are coming from the same normal distribution. We can compute this by simulation (pretending to run the experiment 1,000 times)
+
+```{r}
+save_F<-c()
+for(i in 1:1000){
+A <- rnorm(n=5,mean=0,sd=1)
+B <- rnorm(n=5,mean=0,sd=1)
+C <- rnorm(n=5,mean=0,sd=1)
+DV <- c(A,B,C)
+groups <- rep(c("A","B","C"), each=5)
+df <- data.frame(groups,DV)
+
+aov_sum <- summary(aov(DV~groups,df))
+save_F[i]<-aov_sum[[1]]$`F value`[1]
+}
+
+```
+
+## plotting the F-distribution
+
+```{r}
+plot_df <- data.frame(sims=1:1000,
+                      save_F)
+
+critical_f<-sort(save_F)[950]
+
+ggplot(plot_df, aes(x=save_F))+
+  geom_histogram()+
+  geom_vline(xintercept=critical_f)
+print(critical_f)
+```
+
+
+
