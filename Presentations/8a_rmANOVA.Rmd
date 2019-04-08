@@ -249,7 +249,9 @@ knitr::include_graphics("figs/rmanova/lab3.png")
 
 # Next class: Repeated measures ANOVA II
 
-1.Quiz for this week on repeated measures posted tonight (Due next tuesday @ 11:59pm)
+1. First ANOVA quiz due Wednesday, April 10th
+2. Repeated measures ANOVA quiz will begin Wednesday, April 10th
+3. Review of extra-credit assignment on Wednesday, April 10th
 
 
 

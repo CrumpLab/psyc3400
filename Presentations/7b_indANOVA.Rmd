@@ -660,7 +660,7 @@ Assume your experimental manipulation does work, and it causes some change betwe
 
 # Next class: Repeated measures ANOVA
 
-1.Quiz due Next Tuesday (Nov 6th) @ 11:59pm
+1. First ANOVA quiz due Wednesday, April 10th. 
 
 
 
