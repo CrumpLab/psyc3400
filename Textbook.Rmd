@@ -14,12 +14,12 @@ output: html_document
 
 </style>
 
-<div class="row" style="padding-top: 30px;">
-<div class="col-sm-6">
-
 # **Textbook**
 
-### *Answering Questions with data* {style="padding-top: 0px;"}
+<div class="row">
+<div class="col-sm-6">
+
+### *Answering Questions with data*
 
 The textbook for this course is free and open-source, and can be accessedhere:
 

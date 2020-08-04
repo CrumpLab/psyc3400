@@ -14,12 +14,12 @@ output: html_document
 
 </style>
 
-<div class="row" style="padding-top: 30px;">
+<div class="row">
 <div class="col-sm-6">
 
 # **Lab Manual**
 
-### *Answering Questions with data: Lab Manual* {style="padding-top: 0px;"}
+### *Answering Questions with data: Lab Manual*
 
 Every week you will participate in a statistics lab. Here you will learn how to use R and R-studio to solve problems in statistics. You will be following the exercises in this lab manual.
 
