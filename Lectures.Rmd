@@ -18,7 +18,6 @@ Lectures <- read_excel("LectureSpring2019.xlsx", sheet = 1, col_names = TRUE, co
 Lectures[is.na(Lectures)]<- " "
 #Lectures <- fread("Lectures.csv")
 knitr::kable(Lectures)
-
 ```
 
 

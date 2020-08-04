@@ -16,7 +16,7 @@ output: html_document
 
 </style>
 
-# **Psyc 3400 Spring 2019**
+# Psyc 3400 Spring 2019
 
 <div class="row">
 <div class="col-sm-6">
